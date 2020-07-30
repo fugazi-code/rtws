@@ -1,0 +1,13 @@
+.login-form {
+    background-color: rgb(255 255 255 / 72%);
+    margin-top: 10%;
+}
+
+.login-form label {
+    color: #1f1b1b !important;
+}
+
+
+.sidebar[data-color="blue"]:after, .off-canvas-sidebar[data-color="blue"]:after  {
+    background: #aa41f9 !important;
+}
