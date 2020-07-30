@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 use \App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CustomerController;
-
+use \App\Http\Controllers\RiderController;
 Auth::routes();
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
@@ -27,4 +27,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/orders', [CustomerController::class, 'myOrders'])->name('orders');
     Route::post('/orders/fetch', [CustomerController::class, 'fetchOrders'])->name('orders.fetch');
+
+    Route::get('/posted', [RiderController::class, 'postedOrders'])->name('posted');
+    Route::post('/posted/fetch', [RiderController::class, 'fetchPosted'])->name('posted.fetch');
 });

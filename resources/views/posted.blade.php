@@ -12,21 +12,17 @@
                         <div class="table-full-width table-responsive">
                             <table class="table">
                                 <thead>
-                                    <th>Requests</th>
-                                    <th>Recipient</th>
-                                    <th>Address</th>
-                                    <th>Status</th>
+                                <th>Customer Name</th>
+                                <th>Address From</th>
+                                <th>Address To</th>
+                                <th>Fee</th>
                                 </thead>
                                 <tbody>
                                 <tr v-for="order in order_list">
-                                    <td>
-                                        <button class="btn btn-primary btn-neutral" style="padding: 0; font-size: 20px;">
-                                            <i class="now-ui-icons shopping_delivery-fast"></i> 0
-                                        </button>
-                                    </td>
+                                    <td class="text-left">@{{ order.customer.name }}</td>
                                     <td class="text-left">@{{ order.recipient }}</td>
                                     <td class="text-left">@{{ order.delivery_to }}</td>
-                                    <td class="text-left"><span class="badge badge-warning">Pending</span></td>
+                                    <td class="text-left">@{{ order.delivery_fee }}</td>
                                     <td class="td-actions text-right">
                                         <button type="button" rel="tooltip" title="" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Edit Task">
                                             <i class="now-ui-icons ui-2_settings-90"></i>
@@ -47,29 +43,29 @@
 @endsection
 
 @section('scripts')
-<script>
-    const v = new Vue({
-        el:'#app',
-        data() {
-          return {
-              order_list: []
-          }
-        },
-        methods: {
-            orderFetch() {
-                var $this = this;
-                $.ajax({
-                    url: '{{ route('orders.fetch') }}',
-                    method: 'POST',
-                    success(value) {
-                        $this.order_list = value;
-                    }
-                });
+    <script>
+        const v = new Vue({
+            el:'#app',
+            data() {
+                return {
+                    order_list: []
+                }
+            },
+            methods: {
+                orderFetch() {
+                    var $this = this;
+                    $.ajax({
+                        url: '{{ route('posted.fetch') }}',
+                        method: 'POST',
+                        success(value) {
+                            $this.order_list = value;
+                        }
+                    });
+                }
+            },
+            mounted() {
+                this.orderFetch();
             }
-        },
-        mounted() {
-            this.orderFetch();
-        }
-    });
-</script>
+        });
+    </script>
 @endsection

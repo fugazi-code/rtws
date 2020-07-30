@@ -34,7 +34,7 @@
             @endcan
             @canany(['rider','admin'])
                 <li class="{{ $page_name != 'Posted Orders'?: 'active' }}">
-                    <a href="{{ route('index') }}">
+                    <a href="{{ route('posted') }}">
                         <i class="now-ui-icons ui-1_bell-53"></i>
                         <p>Posted Orders</p>
                     </a>
