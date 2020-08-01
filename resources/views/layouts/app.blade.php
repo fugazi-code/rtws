@@ -22,6 +22,8 @@
     <link href="/template/assets/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="/template/assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet"/>
     <link href="/css/main.css" rel="stylesheet"/>
+    <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet"/>
+
     @yield('css')
 </head>
 
@@ -53,10 +55,8 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
     <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="/template/assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script>
-    <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
-    <script src="/template/assets/demo/demo.js"></script>
+    <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" type="text/javascript"></script>
     @include('layouts.partials.notification')
-
     <script>
         $.ajaxSetup({
             headers: {
@@ -64,7 +64,6 @@
             }
         });
     </script>
-
 
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     @yield('scripts')

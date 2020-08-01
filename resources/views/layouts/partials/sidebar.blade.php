@@ -46,6 +46,14 @@
                     </a>
                 </li>
             @endcan
+            @canany(['admin'])
+                <li class="{{ $page_name != 'User Accounts'?: 'active' }}">
+                    <a href="{{ route('accounts') }}">
+                        <i class="now-ui-icons users_circle-08"></i>
+                        <p>User Accounts</p>
+                    </a>
+                </li>
+            @endcan
         </ul>
     </div>
 </div>
