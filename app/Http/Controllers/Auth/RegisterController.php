@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Gallery;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
@@ -31,43 +33,70 @@ class RegisterController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+    protected $requestHttp;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Request $request)
     {
         $this->middleware('guest');
+        $this->requestHttp = $request;
     }
 
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name'         => ['required', 'string', 'max:255'],
+            'email'        => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password'     => ['required', 'string', 'min:8', 'confirmed'],
+            "contact"      => ['required', 'string', 'max:255'],
+            "birth_date"   => ['required', 'date'],
+            "address"      => ['required', 'string', 'max:255'],
+            "country"      => ['required', 'string', 'max:255'],
+            "postal_code"  => ['required', 'string', 'max:255'],
+            "certify"      => ['required'],
+            "selfie_photo" => ['required', 'mimes:jpeg,png,jpg,gif,svg'],
         ]);
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param array $data
      * @return \App\User
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        $user = User::create([
+            'name'        => $data['name'],
+            'email'       => $data['email'],
+            'password'    => Hash::make($data['password']),
+            'role'        => 'customer',
+            'status'      => 'active',
+            'contact'     => $data['contact'],
+            'birth_date'  => $data['birth_date'],
+            'address'     => $data['address'],
+            'country'     => $data['country'],
+            'postal_code' => $data['postal_code'],
         ]);
+
+        $path = $this->requestHttp->file('selfie_photo')->store('details');
+
+        Gallery::create([
+            'user_id' => $user->id,
+            'path'    => $path,
+            'purpose' => 'selfie_photo',
+        ]);
+
+        return $user;
     }
 }

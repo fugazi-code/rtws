@@ -30,53 +30,19 @@ class AccountsController extends Controller
 
     public function store(AccountStoreRequest $request, User $user, Gallery $gallery)
     {
-        $path_selfie_photo  = $request->file("selfie_photo")->store('details');
-        $path_license_plate = $request->file("license_plate")->store('details');
-        $path_front         = $request->file("front")->store('details');
-        $path_side          = $request->file("side")->store('details');
-        $path_back          = $request->file("back")->store('details');
-        $path_or_cr         = $request->file("or_cr")->store('details');
-
         $data = $request->input();
         unset($data['_token']);
         $data['password'] = Hash::make('password');
         $id               = $user->newQuery()->insertGetId($data);
 
-        $gallery->newQuery()->insert([
-            'user_id' => $id,
-            'path'    => $path_selfie_photo,
-            'purpose' => 'selfie_photo',
-        ]);
-
-        $gallery->newQuery()->insert([
-            'user_id' => $id,
-            'path'    => $path_license_plate,
-            'purpose' => 'license_plate',
-        ]);
-
-        $gallery->newQuery()->insert([
-            'user_id' => $id,
-            'path'    => $path_front,
-            'purpose' => 'front',
-        ]);
-
-        $gallery->newQuery()->insert([
-            'user_id' => $id,
-            'path'    => $path_side,
-            'purpose' => 'side',
-        ]);
-
-        $gallery->newQuery()->insert([
-            'user_id' => $id,
-            'path'    => $path_back,
-            'purpose' => 'back',
-        ]);
-
-        $gallery->newQuery()->insert([
-            'user_id' => $id,
-            'path'    => $path_or_cr,
-            'purpose' => 'or_cr',
-        ]);
+        foreach ($request->file() as $key => $file) {
+            $path = $file->store('details');
+            Gallery::query()->insert([
+                'user_id' => $id,
+                'path'    => $path,
+                'purpose' => $key,
+            ]);
+        }
 
         return redirect('accounts')->with('success', 'New User has been added!');
     }
@@ -93,16 +59,21 @@ class AccountsController extends Controller
     {
 
         foreach ($request->file() as $key => $file) {
-            Storage::delete(Gallery::query()->where('user_id', $id)->where('purpose', $key)->get('path')[0]->path);
+            $gallery = Gallery::query()->where('user_id', $id)->where('purpose', $key)->get('path');
+
+            if ($gallery->count()) {
+                Storage::delete($gallery[0]->path);
+            }
             $path = $file->store('details');
-            Gallery::query()->where('user_id', $id)->where('purpose', $key)->update([
+            Gallery::query()->where('user_id', $id)->where('purpose', $key)->delete();
+            Gallery::query()->insert([
                 'user_id' => $id,
                 'path'    => $path,
                 'purpose' => $key,
             ]);
         }
 
-        $data               = $request->input();
+        $data = $request->input();
         unset($data['_token']);
         User::query()->where('id', $id)->update($data);
 

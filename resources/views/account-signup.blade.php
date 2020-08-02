@@ -16,9 +16,9 @@
                                     <div class="form-group">
                                         <label>Role</label>
                                         <select name="role" class="form-control" v-model="role">
-                                            <option value="Rider">Rider</option>
-                                            <option value="Customer">Customer</option>
-                                            <option value="Admin">Admin</option>
+                                            <option value="rider">Rider</option>
+                                            <option value="customer">Customer</option>
+                                            <option value="admin">Admin</option>
                                         </select>
                                     </div>
                                 </div>
@@ -32,25 +32,31 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Name</label>
                                         <input name="name" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label>E-mail</label>
                                         <input name="email" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Birth Date</label>
+                                        <input name="birth_date" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Contact</label>
                                         <input name="contact" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Postal Code</label>
                                         <input name="postal_code" class="form-control">
@@ -175,7 +181,7 @@
             el: "#app",
             data() {
                 return {
-                    role: 'Rider'
+                    role: 'rider'
                 }
             },
             mounted() {

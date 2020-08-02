@@ -106,6 +106,14 @@
                                                value="{{ auth()->user()->postal_code }}">
                                     </div>
                                 </div>
+                                <div class="col-md-4 pl-1">
+                                    <div class="form-group">
+                                        <label>Birth Date</label>
+                                        <input type="text" class="form-control" placeholder="ZIP Code"
+                                               name="postal_code"
+                                               value="{{ auth()->user()->birth_date }}">
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="row">

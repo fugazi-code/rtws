@@ -32,25 +32,31 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Name</label>
                                         <input name="name" class="form-control" v-model="user.name">
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label>E-mail</label>
                                         <input name="email" class="form-control" v-model="user.email">
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Birth Date</label>
+                                        <input type="date" name="birth_date" class="form-control" v-model="user.birth_date">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Contact</label>
                                         <input name="contact" class="form-control" v-model="user.contact">
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Postal Code</label>
                                         <input name="postal_code" class="form-control" v-model="user.postal_code">

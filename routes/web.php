@@ -25,6 +25,7 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 Route::middleware(['auth'])->group(function () {
     Route::resource('/', 'UserController');
     Route::post('/u/p', [UserController::class, 'profilePicUpload'])->name('profile.pic.upload');
+    Route::post('/u/c/p', [UserController::class, 'changePassword'])->name('profile.change.pass');
 
     Route::get('/posting', [CustomerController::class, 'postForm'])->name('posting');
     Route::post('/posting/submit', [CustomerController::class, 'postSubmit'])->name('posting.submit');
@@ -42,5 +43,4 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/accounts/edit/{id}', [AccountsController::class, 'edit'])->name('accounts.edit');
     Route::post('/accounts/update/{id}', [AccountsController::class, 'update'])->name('accounts.update');
     Route::get('/accounts/delete/{id}', [AccountsController::class, 'destroy'])->name('accounts.delete');
-
 });
