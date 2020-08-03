@@ -25,10 +25,28 @@
                         <p>Book Now</p>
                     </a>
                 </li>
-                <li class="{{ $page_name != 'My Orders'?: 'active' }}">
+                <li class="{{ $page_name != 'Book History'?: 'active' }}">
                     <a href="{{ '#' }}">
-                        <i class="now-ui-icons shopping_basket"></i>
-                        <p>My Orders</p>
+                        <i class="now-ui-icons design_bullet-list-67"></i>
+                        <p>Book History</p>
+                    </a>
+                </li>
+                <li class="{{ $page_name != 'Manage Drivers'?: 'active' }}">
+                    <a href="{{ '#' }}">
+                        <i class="now-ui-icons shopping_delivery-fast"></i>
+                        <p>Manage Drivers</p>
+                    </a>
+                </li>
+                <li class="{{ $page_name != 'Wallet'?: 'active' }}">
+                    <a href="{{ '#' }}">
+                        <i class="now-ui-icons shopping_credit-card"></i>
+                        <p>Wallet</p>
+                    </a>
+                </li>
+                <li class="{{ $page_name != 'News'?: 'active' }}">
+                    <a href="{{ '#' }}">
+                        <i class="now-ui-icons files_paper"></i>
+                        <p>News</p>
                     </a>
                 </li>
             @endcan
