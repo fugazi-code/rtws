@@ -18,6 +18,7 @@ use App\Http\Controllers\CustomerController;
 use \App\Http\Controllers\RiderController;
 use \App\Http\Controllers\UserController;
 use App\Http\Controllers\AccountsController;
+use App\Http\Controllers\BookingController;
 
 Auth::routes();
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
@@ -27,14 +28,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/u/p', [UserController::class, 'profilePicUpload'])->name('profile.pic.upload');
     Route::post('/u/c/p', [UserController::class, 'changePassword'])->name('profile.change.pass');
 
-    Route::get('/posting', [CustomerController::class, 'postForm'])->name('posting');
-    Route::post('/posting/submit', [CustomerController::class, 'postSubmit'])->name('posting.submit');
-
-    Route::get('/orders', [CustomerController::class, 'myOrders'])->name('orders');
-    Route::post('/orders/fetch', [CustomerController::class, 'fetchOrders'])->name('orders.fetch');
-
-    Route::get('/posted', [RiderController::class, 'postedOrders'])->name('posted');
-    Route::post('/posted/fetch', [RiderController::class, 'fetchPosted'])->name('posted.fetch');
+    Route::get('/b', [BookingController::class, 'index'])->name('booking');
 
     Route::get('/accounts', [AccountsController::class, 'index'])->name('accounts');
     Route::post('/accounts/fetch', [AccountsController::class, 'fetch'])->name('accounts.fetch');

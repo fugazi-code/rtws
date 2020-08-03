@@ -19,32 +19,21 @@
                 </a>
             </li>
             @canany(['customer','admin'])
-                <li class="{{ $page_name != 'Post to Deliver'?: 'active' }}">
-                    <a href="{{ route('posting') }}">
+                <li class="{{ $page_name != 'Book Now'?: 'active' }}">
+                    <a href="{{ route('booking') }}">
                         <i class="now-ui-icons shopping_box"></i>
-                        <p>Post to Deliver</p>
+                        <p>Book Now</p>
                     </a>
                 </li>
                 <li class="{{ $page_name != 'My Orders'?: 'active' }}">
-                    <a href="{{ route('orders') }}">
+                    <a href="{{ '#' }}">
                         <i class="now-ui-icons shopping_basket"></i>
                         <p>My Orders</p>
                     </a>
                 </li>
             @endcan
             @canany(['rider','admin'])
-                <li class="{{ $page_name != 'Posted Orders'?: 'active' }}">
-                    <a href="{{ route('posted') }}">
-                        <i class="now-ui-icons ui-1_bell-53"></i>
-                        <p>Posted Orders</p>
-                    </a>
-                </li>
-                <li class="{{ $page_name != 'Confirmed Order'?: 'active' }}">
-                    <a href="{{ route('index') }}">
-                        <i class="now-ui-icons ui-1_check"></i>
-                        <p>Confirmed Orders</p>
-                    </a>
-                </li>
+
             @endcan
             @canany(['admin'])
                 <li class="{{ $page_name != 'User Accounts'?: 'active' }}">
