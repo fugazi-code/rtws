@@ -3,12 +3,12 @@
       Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
   -->
     <div class="logo">
-        <a href="#" class="simple-text logo-mini">
+        <a href="/" class="simple-text logo-mini">
             RTWS
         </a>
-        <a href="#" class="simple-text logo-normal" style="font-size: 11px;">
-            Rizal Two Wheels Service
-        </a>
+{{--        <a href="#" class="simple-text logo-normal" style="font-size: 9px;">--}}
+{{--            Rizal Two Wheels Delivery Service--}}
+{{--        </a>--}}
     </div>
     <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
