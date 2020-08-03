@@ -17,12 +17,14 @@ class CreateBookingsTable extends Migration
             $table->id();
             $table->string('customer_id', 200)->nullable();
             $table->string('rider_id', 200)->nullable();
+            $table->string('services', 200)->nullable();
             $table->string('status', 200)->nullable();
             $table->string('vehicle', 200)->nullable();
-            $table->text('description')->nullable();
-            $table->dateTime('pick-up')->nullable();
-            $table->dateTime('drop-off')->nullable();
-            $table->dateTime('amount')->nullable();
+            $table->text('note')->nullable();
+            $table->dateTime('schedule')->nullable();
+            $table->text('pick-up')->nullable();
+            $table->text('drop-off')->nullable();
+            $table->float('amount')->nullable();
             $table->timestamps();
         });
     }
