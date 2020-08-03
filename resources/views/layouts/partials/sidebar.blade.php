@@ -43,15 +43,15 @@
                         <p>Wallet</p>
                     </a>
                 </li>
-                <li class="{{ $page_name != 'News'?: 'active' }}">
-                    <a href="{{ '#' }}">
-                        <i class="now-ui-icons files_paper"></i>
-                        <p>News</p>
-                    </a>
-                </li>
             @endcan
             @canany(['rider','admin'])
 
+                <li class="{{ $page_name != 'Delivery'?: 'active' }}">
+                    <a href="{{ route('delivery') }}">
+                        <i class="now-ui-icons sport_user-run"></i>
+                        <p>Delivery</p>
+                    </a>
+                </li>
             @endcan
             @canany(['admin'])
                 <li class="{{ $page_name != 'User Accounts'?: 'active' }}">
@@ -61,6 +61,18 @@
                     </a>
                 </li>
             @endcan
+            <li class="{{ $page_name != 'News'?: 'active' }}">
+                <a href="{{ '#' }}">
+                    <i class="now-ui-icons files_paper"></i>
+                    <p>News</p>
+                </a>
+            </li>
+            <li class="{{ $page_name != 'Settings'?: 'active' }}">
+                <a href="{{ '#' }}">
+                    <i class="now-ui-icons loader_gear"></i>
+                    <p>Settings</p>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

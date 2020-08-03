@@ -19,6 +19,7 @@ use \App\Http\Controllers\RiderController;
 use \App\Http\Controllers\UserController;
 use App\Http\Controllers\AccountsController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\DeliveryController;
 
 Auth::routes();
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
@@ -29,6 +30,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/u/c/p', [UserController::class, 'changePassword'])->name('profile.change.pass');
 
     Route::get('/b', [BookingController::class, 'index'])->name('booking');
+
+    Route::get('/d', [DeliveryController::class, 'index'])->name('delivery');
 
     Route::get('/accounts', [AccountsController::class, 'index'])->name('accounts');
     Route::post('/accounts/fetch', [AccountsController::class, 'fetch'])->name('accounts.fetch');
