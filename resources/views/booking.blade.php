@@ -27,7 +27,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-12 mt-4">
                                 <div class="form-check">
                                     <label class="form-check-label">
                                         <input class="form-check-input" name="padala" type="checkbox" value="padala">
