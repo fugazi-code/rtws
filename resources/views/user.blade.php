@@ -109,8 +109,8 @@
                                 <div class="col-md-4 pl-1">
                                     <div class="form-group">
                                         <label>Birth Date</label>
-                                        <input type="text" class="form-control" placeholder="ZIP Code"
-                                               name="postal_code"
+                                        <input type="date" class="form-control" placeholder="Birth Date"
+                                               name="birth_date"
                                                value="{{ auth()->user()->birth_date }}">
                                     </div>
                                 </div>
