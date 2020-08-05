@@ -10,4 +10,9 @@ class DeliveryController extends Controller
     {
         return view('delivery', ['page_name' => 'Delivery']);
     }
+
+    public function store(Request $request)
+    {
+        dd($request->input());
+    }
 }

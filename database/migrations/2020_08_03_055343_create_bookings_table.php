@@ -17,7 +17,7 @@ class CreateBookingsTable extends Migration
             $table->id();
             $table->string('customer_id', 200)->nullable();
             $table->string('rider_id', 200)->nullable();
-            $table->string('services', 200)->nullable();
+            $table->string('service', 200)->nullable();
             $table->string('status', 200)->nullable();
             $table->string('vehicle', 200)->nullable();
             $table->text('note')->nullable();

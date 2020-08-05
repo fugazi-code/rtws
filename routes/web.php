@@ -30,6 +30,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/u/c/p', [UserController::class, 'changePassword'])->name('profile.change.pass');
 
     Route::get('/b', [BookingController::class, 'index'])->name('booking');
+    Route::post('/d/s', [BookingController::class, 'store'])->name('booking.submit');
 
     Route::get('/d', [DeliveryController::class, 'index'])->name('delivery');
 

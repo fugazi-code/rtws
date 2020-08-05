@@ -10,4 +10,9 @@ class BookingController extends Controller
     {
         return view('booking',['page_name' => 'Book Now']);
     }
+
+    public function store(Request $request)
+    {
+        dd($request->input());
+    }
 }
