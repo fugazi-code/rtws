@@ -25,6 +25,7 @@
     "dependencies": {
         "perfect-scrollbar": "^1.5.0",
         "popper": "^1.0.1",
+        "three-dots": "^0.2.0",
         "vue": "^2.6.11",
         "vuejs": "^3.0.1"
     }
