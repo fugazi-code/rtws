@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Booking;
 use Illuminate\Http\Request;
 
 class DeliveryController extends Controller
@@ -13,6 +14,5 @@ class DeliveryController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->input());
     }
 }

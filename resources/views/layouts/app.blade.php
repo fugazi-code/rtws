@@ -47,10 +47,7 @@
         </body>
     @endisset
     <!--   Core JS Files   -->
-    <script src="/template/assets/js/core/jquery.min.js"></script>
-    <script src="/template/assets/js/core/popper.min.js"></script>
-    <script src="/template/assets/js/core/bootstrap.min.js"></script>
-    <script src="/template/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <!--  Google Maps Plugin    -->
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
     <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
@@ -64,8 +61,6 @@
             }
         });
     </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     @yield('scripts')
     </body>
 
