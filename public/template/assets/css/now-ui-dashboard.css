@@ -5412,10 +5412,6 @@ Created using IcoMoon - icomoon.io
 
 @media screen and (max-width: 768px) {
   .nav-tabs {
-    display: inline-block;
-    width: 100%;
-    padding-left: 100px;
-    padding-right: 100px;
     text-align: center;
   }
 
