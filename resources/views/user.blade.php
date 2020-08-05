@@ -57,27 +57,43 @@
                         <form method="POST" action="{{ route('index') }}">
                             @csrf
                             <div class="row">
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Name</label>
                                         <input type="text" class="form-control" placeholder="Username"
                                                value="{{ auth()->user()->name }}" readonly>
                                     </div>
                                 </div>
-                                <div class="col-md-4 pl-1">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Email address</label>
                                         <input type="email" class="form-control" placeholder="Email"
                                                value="{{ auth()->user()->email }}" readonly>
                                     </div>
                                 </div>
-                                <div class="col-md-3 pl-1">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Primary No.</label>
                                         <input type="text" class="form-control" placeholder="Phone Number"
                                                value="{{ auth()->user()->contact }}" readonly>
                                     </div>
                                 </div>
+                                @canany(['rider', 'admin'])
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">License No</label>
+                                        <input type="email" class="form-control" placeholder="License No."
+                                               value="{{ auth()->user()->license_no }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">License No</label>
+                                        <input type="email" class="form-control" placeholder="License No."
+                                               value="{{ auth()->user()->plate_no }}" readonly>
+                                    </div>
+                                </div>
+                                @endcanany
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
@@ -98,7 +114,7 @@
                                                value="{{ auth()->user()->country }}">
                                     </div>
                                 </div>
-                                <div class="col-md-4 pl-1">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Postal Code</label>
                                         <input type="text" class="form-control" placeholder="ZIP Code"
@@ -106,7 +122,7 @@
                                                value="{{ auth()->user()->postal_code }}">
                                     </div>
                                 </div>
-                                <div class="col-md-4 pl-1">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Birth Date</label>
                                         <input type="date" class="form-control" placeholder="Birth Date"
