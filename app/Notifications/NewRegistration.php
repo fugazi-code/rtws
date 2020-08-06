@@ -47,7 +47,7 @@ class NewRegistration extends Notification
             ->cc('renier.trenuela@gmail.com')
             ->greeting('Registration successful!')
             ->line('Hi ' . $notifiable->name . ',')
-            ->line('Thank you for chossing RTWDS');
+            ->line('Thank you for choosing RTWDS');
     }
 
     /**
