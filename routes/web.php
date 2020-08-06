@@ -20,6 +20,7 @@ use \App\Http\Controllers\UserController;
 use App\Http\Controllers\AccountsController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DeliveryController;
+use App\Http\Controllers\SettingsController;
 
 Auth::routes();
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
@@ -42,4 +43,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/accounts/update/{id}', [AccountsController::class, 'update'])->name('accounts.update');
     Route::get('/accounts/delete/{id}', [AccountsController::class, 'destroy'])->name('accounts.delete');
     Route::get('/account/notify', [AccountsController::class, 'notify'])->name('profile.notify');
+
+    Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
 });

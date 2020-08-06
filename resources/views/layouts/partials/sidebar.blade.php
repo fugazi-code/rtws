@@ -68,7 +68,7 @@
                 </a>
             </li>
             <li class="{{ $page_name != 'Settings'?: 'active' }}">
-                <a href="{{ '#' }}">
+                <a href="{{ route('settings') }}">
                     <i class="now-ui-icons loader_gear"></i>
                     <p>Settings</p>
                 </a>
