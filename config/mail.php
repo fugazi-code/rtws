@@ -14,7 +14,7 @@ return [
     */
 
     //'default' => env('MAIL_MAILER', 'smtp'),
-    'default' => 'smtp',
+    'default' => env('MAIL_MAILER', 'smtp'),
     /*
     |--------------------------------------------------------------------------
     | Mailer Configurations
@@ -36,11 +36,11 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => 'smtp-relay.sendinblue.com',
-            'port' => 587,
-            'encryption' => 'tls',
-            'username' => 'renier.trenuela@gmail.com',
-            'password' => '6ghUcbGzmRkf4Oj9',
+            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+            'port' => env('MAIL_PORT', 587),
+            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+            'username' => env('MAIL_USERNAME'),
+            'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
             'auth_mode' => null,
         ],
@@ -59,7 +59,7 @@ return [
 
         'sendmail' => [
             'transport' => 'sendmail',
-            'path' => '/usr/sbin/sendmail -t -i',
+            'path' => '/usr/sbin/sendmail -bs',
         ],
 
         'log' => [
