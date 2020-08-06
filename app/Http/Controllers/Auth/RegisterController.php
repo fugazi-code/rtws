@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Gallery;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Notifications\NewRegistration;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -96,6 +97,8 @@ class RegisterController extends Controller
             'path'    => $path,
             'purpose' => 'selfie_photo',
         ]);
+
+        User::find($user->id)->notify(new NewRegistration());
 
         return $user;
     }
