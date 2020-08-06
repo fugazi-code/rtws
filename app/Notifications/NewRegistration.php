@@ -42,8 +42,8 @@ class NewRegistration extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->replyTo('renier.trenuela@gmail.com')
             ->from('rizal-two-wheels-delivery-service@do-not-reply.com')
+            ->replyTo(['renier.trenuela@gmail.com'])
             ->greeting('Registration successful!')
             ->line('Hi ' . $notifiable->name . ',')
             ->action('Notification Action', url('/'))
