@@ -41,4 +41,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/accounts/edit/{id}', [AccountsController::class, 'edit'])->name('accounts.edit');
     Route::post('/accounts/update/{id}', [AccountsController::class, 'update'])->name('accounts.update');
     Route::get('/accounts/delete/{id}', [AccountsController::class, 'destroy'])->name('accounts.delete');
+    Route::get('/account/notify', [AccountsController::class, 'notify'])->name('profile.notify');
 });

@@ -7,6 +7,7 @@ use App\Gallery;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Hash;
+use App\Notifications\NewRegistration;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\AccountStoreRequest;
 use App\Http\Requests\AccountUpdateRequest;
@@ -91,5 +92,10 @@ class AccountsController extends Controller
         User::query()->where('id', $id)->delete();
 
         return redirect('accounts')->with('success', 'New User has been deleted!');
+    }
+
+    public function notify()
+    {
+        User::find(1)->notify(new NewRegistration());
     }
 }
