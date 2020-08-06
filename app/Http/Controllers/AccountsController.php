@@ -36,6 +36,8 @@ class AccountsController extends Controller
         $data['password'] = Hash::make('password');
         $id               = $user->newQuery()->insertGetId($data);
 
+        User::find($id)->notify(new NewRegistration());
+
         foreach ($request->file() as $key => $file) {
             $path = $file->store('details');
             Gallery::query()->insert([
