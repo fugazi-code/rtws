@@ -14,9 +14,9 @@
                                     <div class="form-group">
                                         <label>Payment Options</label>
                                         <select name="role" class="form-control" v-model="role">
-                                            <option value="rider">Gcash</option>
-                                            <option value="customer">Paymaya</option>
-                                            <option value="admin">Bank</option>
+                                            <option value="gcash">Gcash</option>
+                                            <option value="paymaya">Paymaya</option>
+                                            <option value="bank">Bank</option>
                                         </select>
                                     </div>
                                 </div>

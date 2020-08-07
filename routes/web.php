@@ -45,4 +45,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/account/notify', [AccountsController::class, 'notify'])->name('profile.notify');
 
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
+    Route::get('/settings/set/payment', [SettingsController::class, 'payment'])->name('settings.blade.php');
 });
