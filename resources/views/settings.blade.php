@@ -9,32 +9,28 @@
                         <h5 class="title">{{ $page_name }}</h5>
                     </div>
                     <div class="card-body">
-                    {{--WALLET--}}
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="btn-group btn-group-toggle btn-block" data-toggle="buttons">
-                                        <label class="btn btn-info text-white active">
-                                            <input type="radio" name="balance" value="balance
-                                                   @click="setWallet('balance')" checked>
-                                            <h1><label class="text" id="balance"><b>0.00</b></label></h1>
-                                            <strong>Available Balance(&#8369;)</strong>
-                                        </label>
-                                        </div>
+                    <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>Payment Options</label>
+                                        <select name="role" class="form-control" v-model="role">
+                                            <option value="rider">Gcash</option>
+                                            <option value="customer">Paymaya</option>
+                                            <option value="admin">Bank</option>
+                                        </select>
                                     </div>
                                 </div>
-                            {{--WALLET--}}
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item active" aria-current="page">Payment Methods</li>
-                    </ol>
-                    <button type="button" class="btn btn-success btn-lg btn-block">G-Cash</button>
-                    <button type="button" class="btn btn-success btn-lg btn-block">Paymaya</button>
-                    <button type="button" class="btn btn-success btn-lg btn-block">Bank</button>
-
-                    <div class="form-group">
-                        <label for="balance"></label>
+                            </div>
+                            <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="What do you need help with?"  aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="button" type="button">Submit</button>
+                        </div>
                     </div>
-                    <p>?Help Center -- <a href="#">(rtws@gmail.com)</a></p>
-                    <a href="#">Invite Friends</a>
+                            <a href="#">*Invite Friends</a><br> 
+                            <button type="button" class="btn btn-fb"><i class="fab fa-facebook-f"></i></button>
+                            <button type="button" class="btn btn-tw"><i class="fab fa-twitter"></i></button>
+                            <button type="button" class="btn btn-gplus"><i class="fab fa-google-plus-g"></i></button>
                     </div>
                 </div>
             </div>
