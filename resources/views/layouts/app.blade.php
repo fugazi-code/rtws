@@ -46,13 +46,21 @@
         }
 
         @-webkit-keyframes spin {
-            0% { -webkit-transform: rotate(0deg); }
-            100% { -webkit-transform: rotate(360deg); }
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         /* Add animation to "page content" */
@@ -65,18 +73,30 @@
         }
 
         @-webkit-keyframes animatebottom {
-            from { bottom:-100px; opacity:0 }
-            to { bottom:0px; opacity:1 }
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+            to {
+                bottom: 0px;
+                opacity: 1
+            }
         }
 
         @keyframes animatebottom {
-            from{ bottom:-100px; opacity:0 }
-            to{ bottom:0; opacity:1 }
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+            to {
+                bottom: 0;
+                opacity: 1
+            }
         }
 
         #myDiv {
             display: none;
-            text-align: center;
+            /*text-align: center;*/
         }
     </style>
 </head>
@@ -95,38 +115,37 @@
         </div>
     </div>
     @else
-        <body style="background-image: url('/img/login-bg.jpeg'); background-size: cover; background-repeat: no-repeat ">
+        <body style="background-image: url('/img/login-bg.jpeg'); background-size: cover; background-repeat: no-repeat">
         <div class="wrapper">
             @yield('content')
         </div>
-        </body>
-    @endisset
-    <!--   Core JS Files   -->
-    <script src="{{ asset('js/app.js') }}"></script>
-    <!--  Google Maps Plugin    -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-    <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="/template/assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script>
-    <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" type="text/javascript"></script>
-    @include('layouts.partials.notification')
-    <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        @endisset
+        <!--   Core JS Files   -->
+        <script src="{{ asset('js/app.js') }}"></script>
+        <!--  Google Maps Plugin    -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+        <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+        <script src="/template/assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script>
+        <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        @include('layouts.partials.notification')
+        <script>
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            var myVar;
+
+            function myFunction() {
+                myVar = setTimeout(showPage, 3000);
             }
-        });
-        var myVar;
 
-        function myFunction() {
-            myVar = setTimeout(showPage, 3000);
-        }
-
-        function showPage() {
-            document.getElementById("loader").style.display = "none";
-            document.getElementById("myDiv").style.display = "block";
-        }
-    </script>
-    @yield('scripts')
-    </body>
+            function showPage() {
+                document.getElementById("loader").style.display = "none";
+                document.getElementById("myDiv").style.display = "block";
+            }
+        </script>
+        @yield('scripts')
+        </body>
 
 </html>
