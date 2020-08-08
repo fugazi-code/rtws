@@ -113,7 +113,7 @@
                                                 <i class="now-ui-icons location_pin"></i>
                                             </div>
                                         </div>
-                                        <input type="text" name="pick-up" class="form-control">
+                                        <input type="text" name="pick_up" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -124,7 +124,7 @@
                                                 <i class="now-ui-icons location_pin"></i>
                                             </div>
                                         </div>
-                                        <input type="text" name="drop-off" class="form-control">
+                                        <input type="text" name="drop_off" class="form-control">
                                     </div>
                                 </div>
                             </div>

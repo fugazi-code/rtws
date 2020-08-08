@@ -17,4 +17,14 @@ class Booking extends Model
         "customer_id",
         "status",
     ];
+
+    public function user()
+    {
+        return $this->hasOne('App\User', 'id', 'customer_id');
+    }
+
+    public function photo()
+    {
+        return $this->hasOne('App\Gallery', 'user_id', 'customer_id')->where('purpose', 'selfie_photo');
+    }
 }

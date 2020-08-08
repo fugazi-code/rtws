@@ -12,8 +12,8 @@ $factory->define(Booking::class, function (Faker $faker) {
         'service'     => $faker->randomElement(['pabili', 'padala', 'pa-grocery']),
         'status'      => 'pending',
         'schedule'    => $faker->dateTime,
-        'pick-up'     => $faker->address,
-        'drop-off'    => $faker->address,
+        'pick_up'     => $faker->address,
+        'drop_off'    => $faker->address,
         'amount'      => 300,
     ];
 });

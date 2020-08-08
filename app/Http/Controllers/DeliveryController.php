@@ -14,5 +14,13 @@ class DeliveryController extends Controller
 
     public function store(Request $request)
     {
+
+    }
+
+    public function fetch()
+    {
+        return [
+            'pending' => Booking::query()->where('status', 'pending')->with(['user','photo'])->get(),
+        ];
     }
 }

@@ -23,9 +23,10 @@ class CreateBookingsTable extends Migration
             $table->string('vehicle', 200)->nullable();
             $table->text('note')->nullable();
             $table->dateTime('schedule')->nullable();
-            $table->text('pick-up')->nullable();
-            $table->text('drop-off')->nullable();
+            $table->text('pick_up')->nullable();
+            $table->text('drop_off')->nullable();
             $table->float('amount')->nullable();
+            $table->float('distance')->nullable();
             $table->timestamps();
         });
     }
