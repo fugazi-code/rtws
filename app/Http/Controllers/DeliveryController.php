@@ -20,7 +20,11 @@ class DeliveryController extends Controller
     public function fetch()
     {
         return [
-            'pending' => Booking::query()->where('status', 'pending')->with(['user','photo'])->get(),
+            'pending' => Booking::query()->where('status', 'pending')->with(['customer', 'photo'])->get(),
+            'yours'   => Booking::query()->where('status', 'mine')->where('rider_id', auth()->id())->with([
+                'rider',
+                'photo',
+            ])->get(),
         ];
     }
 }

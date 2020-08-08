@@ -11,14 +11,19 @@ class Booking extends Model
         "service",
         "sub",
         "schedule",
-        "pick-up",
-        "drop-off",
+        "pick_up",
+        "drop_off",
         "amount",
         "customer_id",
         "status",
     ];
 
-    public function user()
+    public function customer()
+    {
+        return $this->hasOne('App\User', 'id', 'customer_id');
+    }
+
+    public function rider()
     {
         return $this->hasOne('App\User', 'id', 'customer_id');
     }

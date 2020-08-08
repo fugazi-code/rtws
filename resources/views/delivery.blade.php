@@ -42,10 +42,11 @@
                                                     <td class="text-left">
                                                         <div class="row">
                                                             <div class="col-md-12">
-                                                                <img v-bind:src="'/storage/' + delivery.photo.path ">
+                                                                <img v-bind:src="'/storage/' + delivery.photo.path"
+                                                                     class="avatar border-gray">
                                                             </div>
                                                             <div class="col-md-12">
-                                                                @{{ delivery.user.name }}
+                                                                @{{ delivery.customer.name }}
                                                             </div>
                                                             <div class="col-md-12">
                                                                 <strong>@{{ delivery.service }}</strong>
@@ -77,7 +78,51 @@
                                             </table>
                                         </div>
                                     </div>
-                                    <div class="tab-pane" id="yours" role="tabpanel" aria-labelledby="yours-tab">v</div>
+                                    {{--                                    Yours--}}
+                                    <div class="tab-pane" id="yours" role="tabpanel" aria-labelledby="yours-tab">
+                                        <div class="table-full-width table-responsive">
+                                            <table class="table table-responsive">
+                                                <tbody>
+                                                <tr v-for="delivery in yours">
+                                                    <td class="text-left">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <img v-bind:src="'/storage/' + delivery.photo.path"
+                                                                     class="avatar border-gray">
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                @{{ delivery.rider.name }}
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <strong>@{{ delivery.service }}</strong>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-left">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <i>Php@{{ delivery.amount }}</i>
+                                                                <hr>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <i>@{{ delivery.pick_up }}</i>
+                                                                <hr>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <i>@{{ delivery.drop_off }}</i>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="td-actions text-right">
+                                                        <a href="#" class="btn btn-info btn-round">
+                                                            <i class="now-ui-icons ui-1_send"></i> Mine
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                     <div class="tab-pane" id="completed" role="tabpanel"
                                          aria-labelledby="completed-tab">c
                                     </div>
@@ -96,7 +141,8 @@
         const e = new Vue({
             el: '#app',
             data: {
-                pending: []
+                pending: [],
+                yours: []
             },
             methods: {
                 fetch() {
@@ -106,6 +152,7 @@
                         method: 'POST',
                         success: function (value) {
                             $this.pending = value.pending;
+                            $this.yours = value.yours;
                         }
                     });
                 }
