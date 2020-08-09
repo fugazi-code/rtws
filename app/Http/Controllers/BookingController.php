@@ -21,8 +21,8 @@ class BookingController extends Controller
             "service"     => $request->get("service"),
             "sub"         => $request->get("sub"),
             "schedule"    => $request->get("schedule"),
-            "pick-up"     => $request->get("pick-up"),
-            "drop-off"    => $request->get("drop-off"),
+            "pick_up"     => $request->get("pick_up"),
+            "drop_off"    => $request->get("drop_off"),
             "amount"      => $request->get("amount"),
         ]);
 

@@ -23,7 +23,7 @@
                                            aria-controls="profile" aria-selected="false">Yours</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="completed-tab" data-toggle="tab" href="#completed"
+                                        <a class="nav-link" id="complete-tab" data-toggle="tab" href="#complete"
                                            role="tab"
                                            aria-controls="messages" aria-selected="false">Completed</a>
                                     </li>
@@ -56,7 +56,7 @@
                                                     <td class="text-left">
                                                         <div class="row">
                                                             <div class="col-md-12">
-                                                                <i>Php@{{ delivery.amount }}</i>
+                                                                <i>@{{ delivery.schedule }}</i> <i>Php@{{ delivery.amount }}</i>
                                                                 <hr>
                                                             </div>
                                                             <div class="col-md-12">
@@ -114,8 +114,8 @@
                                                         </div>
                                                     </td>
                                                     <td class="td-actions text-right">
-                                                        <a href="#" class="btn btn-warning btn-round">
-                                                            <i class="now-ui-icons gestures_tap-01"></i> Delivered
+                                                        <a v-bind:href="'/d/c/' + delivery.id" class="btn btn-warning btn-round">
+                                                            <i class="now-ui-icons gestures_tap-01"></i> Complete
                                                         </a>
                                                     </td>
                                                 </tr>
@@ -123,8 +123,50 @@
                                             </table>
                                         </div>
                                     </div>
-                                    <div class="tab-pane" id="completed" role="tabpanel"
-                                         aria-labelledby="completed-tab">c
+                                    {{--                                    complete--}}
+                                    <div class="tab-pane" id="complete" role="tabpanel" aria-labelledby="complete-tab">
+                                        <div class="table-full-width table-responsive">
+                                            <table class="table table-responsive">
+                                                <tbody>
+                                                <tr v-for="delivery in complete">
+                                                    <td class="text-left">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <img v-bind:src="'/storage/' + delivery.photo.path"
+                                                                     class="avatar border-gray">
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                @{{ delivery.rider.name }}
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <strong>@{{ delivery.service }}</strong>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-left">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <i>Php@{{ delivery.amount }}</i>
+                                                                <hr>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <i>@{{ delivery.pick_up }}</i>
+                                                                <hr>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <i>@{{ delivery.drop_off }}</i>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+{{--                                                    <td class="td-actions text-right">--}}
+{{--                                                        <a v-bind:href="'/d/c/' + delivery.id" class="btn btn-warning btn-round">--}}
+{{--                                                            <i class="now-ui-icons gestures_tap-01"></i> Completed--}}
+{{--                                                        </a>--}}
+{{--                                                    </td>--}}
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -142,7 +184,8 @@
             el: '#app',
             data: {
                 pending: [],
-                yours: []
+                yours: [],
+                complete: []
             },
             methods: {
                 fetch() {
@@ -153,6 +196,7 @@
                         success: function (value) {
                             $this.pending = value.pending;
                             $this.yours = value.yours;
+                            $this.complete = value.complete;
                         }
                     });
                 }
