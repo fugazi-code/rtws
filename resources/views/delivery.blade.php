@@ -69,7 +69,7 @@
                                                         </div>
                                                     </td>
                                                     <td class="td-actions text-right">
-                                                        <a href="#" class="btn btn-info btn-round">
+                                                        <a v-bind:href="'/d/m/' + delivery.id" class="btn btn-info btn-round">
                                                             <i class="now-ui-icons ui-1_send"></i> Mine
                                                         </a>
                                                     </td>
@@ -114,8 +114,8 @@
                                                         </div>
                                                     </td>
                                                     <td class="td-actions text-right">
-                                                        <a href="#" class="btn btn-info btn-round">
-                                                            <i class="now-ui-icons ui-1_send"></i> Mine
+                                                        <a href="#" class="btn btn-warning btn-round">
+                                                            <i class="now-ui-icons gestures_tap-01"></i> Delivered
                                                         </a>
                                                     </td>
                                                 </tr>

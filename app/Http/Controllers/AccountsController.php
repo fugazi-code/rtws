@@ -80,7 +80,7 @@ class AccountsController extends Controller
         unset($data['_token']);
         User::query()->where('id', $id)->update($data);
 
-        return redirect('accounts')->with('success', 'New User has been updated!');
+        return redirect('accounts')->with('success', 'User has been updated!');
     }
 
     public function destroy($id)
