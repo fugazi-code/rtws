@@ -24,7 +24,7 @@
     <link href="/template/assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet"/>
     <link href="/css/main.css" rel="stylesheet"/>
     <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet"/>
-
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     @yield('css')
     <style>
         /* Center the loader */

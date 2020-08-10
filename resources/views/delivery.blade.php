@@ -43,7 +43,7 @@
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <img v-bind:src="'/storage/' + delivery.photo.path"
-                                                                     class="avatar border-gray">
+                                                                     class="avatar border-gray delivery-photo">
                                                             </div>
                                                             <div class="col-md-12">
                                                                 @{{ delivery.customer.name }}
@@ -88,7 +88,7 @@
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <img v-bind:src="'/storage/' + delivery.photo.path"
-                                                                     class="avatar border-gray">
+                                                                     class="avatar border-gray delivery-photo">
                                                             </div>
                                                             <div class="col-md-12">
                                                                 @{{ delivery.rider.name }}
@@ -133,7 +133,7 @@
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <img v-bind:src="'/storage/' + delivery.photo.path"
-                                                                     class="avatar border-gray">
+                                                                     class="avatar border-gray delivery-photo">
                                                             </div>
                                                             <div class="col-md-12">
                                                                 @{{ delivery.rider.name }}
@@ -194,9 +194,9 @@
                         url: '{{ route('delivery.fetch') }}',
                         method: 'POST',
                         success: function (value) {
-                            $this.pending = value.pending;
-                            $this.yours = value.yours;
-                            $this.complete = value.complete;
+                            $this.pending = value.pending.data;
+                            $this.yours = value.yours.data;
+                            $this.complete = value.complete.data;
                         }
                     });
                 }

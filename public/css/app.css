@@ -1,5 +1,15 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
+body {
+  font-family: "Roboto", sans-serif !important;
+  font-size: 12px !important;
+}
+
+.delivery-photo {
+  max-width: 80px;
+  max-height: 80px;
+}
+
 /*!
  * Bootstrap v4.5.0 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors

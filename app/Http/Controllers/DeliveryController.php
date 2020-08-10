@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Booking;
-use Illuminate\Http\Request;
+use League\Fractal;
+use App\Transformers\DateTransformer;
 
 class DeliveryController extends Controller
 {
@@ -12,25 +13,12 @@ class DeliveryController extends Controller
         return view('delivery', ['page_name' => 'Delivery']);
     }
 
-    public function fetch()
+    public function fetch(Booking $booking)
     {
         return [
-            'pending'  => Booking::query()
-                                 ->where('status', 'pending')
-                                 ->with(['customer', 'photo'])
-                                 ->orderBy('created_at', 'desc')
-                                 ->get(),
-            'yours'    => Booking::query()
-                                 ->where('status', 'accepted')
-                                 ->where('rider_id', auth()->id())
-                                 ->with(['rider', 'photo',])
-                                 ->orderBy('created_at', 'desc')
-                                 ->get(),
-            'complete' => Booking::query()
-                                 ->where('status', 'complete')
-                                 ->where('rider_id', auth()->id())
-                                 ->with(['rider', 'photo',])
-                                 ->orderBy('created_at', 'desc')->get(),
+            'pending'  => fractal($booking->pending()->get()->toArray(), new DateTransformer()),
+            'yours'    => fractal($booking->yours()->get()->toArray(), new DateTransformer()),
+            'complete' => fractal($booking->complete()->get()->toArray(), new DateTransformer()),
         ];
     }
 

@@ -32,4 +32,30 @@ class Booking extends Model
     {
         return $this->hasOne('App\Gallery', 'user_id', 'customer_id')->where('purpose', 'selfie_photo');
     }
+
+    public function pending()
+    {
+        return self::query()
+                   ->with(['customer', 'photo'])
+                   ->where('status', 'pending')
+                   ->orderBy('created_at', 'desc');
+    }
+
+    public function yours()
+    {
+        return self::query()
+                   ->where('status', 'accepted')
+                   ->where('rider_id', auth()->id())
+                   ->with(['rider', 'photo',])
+                   ->orderBy('created_at', 'desc');
+    }
+
+    public function complete()
+    {
+        return self::query()
+                   ->where('status', 'complete')
+                   ->where('rider_id', auth()->id())
+                   ->with(['rider', 'photo',])
+                   ->orderBy('created_at', 'desc');
+    }
 }

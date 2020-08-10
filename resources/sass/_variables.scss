@@ -17,3 +17,13 @@ $yellow: #ffed4a;
 $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
+
+body {
+    font-family: 'Roboto', sans-serif !important;
+    font-size: 12px !important;
+}
+
+.delivery-photo {
+    max-width: 80px;
+    max-height: 80px;
+}

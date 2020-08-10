@@ -15,6 +15,7 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.1",
+        "league/fractal": "^0.19.2",
         "spatie/fractalistic": "^2.9",
         "spatie/laravel-fractal": "^5.7",
         "yajra/laravel-datatables": "1.5"
