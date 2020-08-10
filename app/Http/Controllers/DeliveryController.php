@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Booking;
-use League\Fractal;
-use App\Transformers\DateTransformer;
+use App\Transformers\DeliveryFetchTransformer;
 
 class DeliveryController extends Controller
 {
@@ -16,9 +15,9 @@ class DeliveryController extends Controller
     public function fetch(Booking $booking)
     {
         return [
-            'pending'  => fractal($booking->pending()->get()->toArray(), new DateTransformer()),
-            'yours'    => fractal($booking->yours()->get()->toArray(), new DateTransformer()),
-            'complete' => fractal($booking->complete()->get()->toArray(), new DateTransformer()),
+            'pending'  => fractal($booking->pending()->get()->toArray(), new DeliveryFetchTransformer()),
+            'yours'    => fractal($booking->yours()->get()->toArray(), new DeliveryFetchTransformer()),
+            'complete' => fractal($booking->complete()->get()->toArray(), new DeliveryFetchTransformer()),
         ];
     }
 

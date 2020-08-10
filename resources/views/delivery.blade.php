@@ -49,7 +49,9 @@
                                                                 @{{ delivery.customer.name }}
                                                             </div>
                                                             <div class="col-md-12">
-                                                                <strong>@{{ delivery.service }}</strong>
+                                                                <label class="badge badge-info text-white">
+                                                                    <strong>@{{ delivery.service }}</strong>
+                                                                </label>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -94,7 +96,9 @@
                                                                 @{{ delivery.rider.name }}
                                                             </div>
                                                             <div class="col-md-12">
-                                                                <strong>@{{ delivery.service }}</strong>
+                                                                <label class="badge badge-info  text-white">
+                                                                    <strong>@{{ delivery.service }}</strong>
+                                                                </label>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -139,7 +143,9 @@
                                                                 @{{ delivery.rider.name }}
                                                             </div>
                                                             <div class="col-md-12">
-                                                                <strong>@{{ delivery.service }}</strong>
+                                                                <label class="badge badge-info text-white">
+                                                                    <strong>@{{ delivery.service }}</strong>
+                                                                </label>
                                                             </div>
                                                         </div>
                                                     </td>
