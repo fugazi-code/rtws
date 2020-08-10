@@ -12,8 +12,10 @@
                     <div class="row">
                                 <div class="col">
                                     <div class="form-group">
+                                    <form method="POST" action="{{ route('settings.blade.php') }}">
+                                    @csrf
                                         <label>Payment Options</label>
-                                        <select name="role" class="form-control" v-model="role">
+                                        <select name="payment_type" class="form-control" v-model="payment_type">
                                             <option value="gcash">Gcash</option>
                                             <option value="paymaya">Paymaya</option>
                                             <option value="bank">Bank</option>
