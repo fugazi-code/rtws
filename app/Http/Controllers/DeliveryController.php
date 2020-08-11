@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Booking;
+use App\PubNub\PubNubConnect;
+use App\Events\DeliveryChanges;
+use App\Callbacks\DeliveryCallback;
 use App\Transformers\DeliveryFetchTransformer;
 
 class DeliveryController extends Controller
@@ -23,6 +26,10 @@ class DeliveryController extends Controller
 
     public function mine($id)
     {
+        $pubnub = new PubNubConnect('pubnub_onboarding_channel');
+        $pubnub->setListener(new DeliveryCallback());
+        $pubnub->message("Mine pressed by nice");
+
         Booking::query()
                ->where('id', $id)
                ->update([
@@ -35,6 +42,10 @@ class DeliveryController extends Controller
 
     public function complete($id)
     {
+        $pubnub = new PubNubConnect('pubnub_onboarding_channel');
+        $pubnub->setListener(new DeliveryCallback());
+        $pubnub->message("Mine pressed by user_id");
+
         Booking::query()
                ->where('id', $id)
                ->update([

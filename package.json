@@ -23,8 +23,11 @@
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
+        "laravel-echo": "^1.8.1",
         "perfect-scrollbar": "^1.5.0",
         "popper": "^1.0.1",
+        "pusher-js": "^7.0.0",
+        "socket.io-client": "^2.3.0",
         "three-dots": "^0.2.0",
         "vue": "^2.6.11",
         "vuejs": "^3.0.1"

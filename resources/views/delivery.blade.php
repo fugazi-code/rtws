@@ -191,7 +191,7 @@
             data: {
                 pending: [],
                 yours: [],
-                complete: []
+                complete: [],
             },
             methods: {
                 fetch() {
@@ -205,10 +205,38 @@
                             $this.complete = value.complete.data;
                         }
                     });
-                }
+                },
             },
             mounted() {
+                const uuid = PubNub.generateUUID();
+                const pubnub = new PubNub({
+                    publishKey: '{{ env('PUB_NUB_PUBLISH_KEY') }}',
+                    subscribeKey: '{{ env('PUB_NUB_SUBSCRIBE_KEY') }}',
+                    uuid: uuid
+                });
+
+                pubnub.subscribe({
+                    channels: ['pubnub_onboarding_channel'],
+                    withPresence: true
+                });
+
+                pubnub.addListener({
+                    message: function(event) {
+                        this.fetch();
+                        //console.log(event.message);
+                    },
+                    presence: function(event) {
+                       // console.log(event);
+                    }
+                });
                 this.fetch();
+                // export default (request) => {
+                //     const kvstore = require('kvstore');
+                //     const xhr = require('xhr');
+                //
+                //     console.log('request',request); // Log the request envelope passed
+                //     return request.ok(); // Return a promise when you're done
+                // }
             }
         });
     </script>

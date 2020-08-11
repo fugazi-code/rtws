@@ -145,6 +145,8 @@
                 document.getElementById("myDiv").style.display = "block";
             }
         </script>
+
+        <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.21.7.min.js"></script>
         @yield('scripts')
         </body>
 
