@@ -211,6 +211,7 @@
                 },
             },
             mounted() {
+                var $this = this;
                 const uuid = PubNub.generateUUID();
                 const pubnub = new PubNub({
                     publishKey: '{{ env('PUB_NUB_PUBLISH_KEY') }}',
@@ -225,7 +226,7 @@
 
                 pubnub.addListener({
                     message: function (event) {
-                        this.fetch();
+                        $this.this.fetch();
                         //console.log(event.message);
                     },
                     presence: function (event) {
