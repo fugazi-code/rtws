@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Booking;
 use Illuminate\Http\Request;
 use App\PubNub\PubNubConnect;
-use App\Callbacks\DeliveryCallback;
 
 class BookingController extends Controller
 {
@@ -30,7 +29,6 @@ class BookingController extends Controller
 
 
         $pubnub = new PubNubConnect('pubnub_onboarding_channel');
-        $pubnub->setListener(new DeliveryCallback());
         $pubnub->message("New Book!");
 
         return redirect()->back()->with('success', 'Book has been submitted!');
