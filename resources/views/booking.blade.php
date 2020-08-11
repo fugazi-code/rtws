@@ -141,6 +141,9 @@
                             <div class="col-md-12 mt-4">
                                 <button type="submit" class="btn btn-round btn-success">Book Now!</button>
                             </div>
+                            <div class="col-md-12">
+                                <div id='map' style='width: 400px; height: 300px;'></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -168,6 +171,13 @@
                 setSub(value) {
                     this.sub = value;
                 }
+            },
+            mounted() {
+                mapboxgl.accessToken = '{{ env('MAP_BOX_TOKEN') }}';
+                var map = new mapboxgl.Map({
+                    container: 'map',
+                    style: 'mapbox://styles/mapbox/streets-v11'
+                });
             }
         })
     </script>

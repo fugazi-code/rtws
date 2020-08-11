@@ -11,14 +11,11 @@ class PubNubConnect
 
     public $pubnub;
 
-    public $channel;
-
-    public function __construct($channel)
+    public function __construct()
     {
         $this->pnconf = new PNConfiguration();
         $this->pubnub = new PubNub($this->pnconf);
         $this->initialize();
-        $this->channel = $channel;
     }
 
     public function initialize()
@@ -39,7 +36,7 @@ class PubNubConnect
     {
         $this->pubnub
             ->publish()
-            ->channel($this->channel)
+            ->channel(env('PUB_NUB_CHANNEL'))
             ->message([
                 "message" => $message,
             ])

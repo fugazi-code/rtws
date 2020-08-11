@@ -28,7 +28,7 @@ class BookingController extends Controller
         ]);
 
 
-        $pubnub = new PubNubConnect('pubnub_onboarding_channel');
+        $pubnub = new PubNubConnect();
         $pubnub->message("New Book!");
 
         return redirect()->back()->with('success', 'Book has been submitted!');

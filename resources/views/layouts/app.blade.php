@@ -120,6 +120,9 @@
             @yield('content')
         </div>
         @endisset
+        <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js'></script>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css' rel='stylesheet' />
+        <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.21.7.min.js"></script>
         <!--   Core JS Files   -->
         <script src="{{ asset('js/app.js') }}"></script>
         <!--  Google Maps Plugin    -->
@@ -146,7 +149,6 @@
             }
         </script>
 
-        <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.21.7.min.js"></script>
         @yield('scripts')
         </body>
 

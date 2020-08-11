@@ -32,7 +32,7 @@
                     </a>
                 </li>
                 <li class="{{ $page_name != 'Manage Drivers'?: 'active' }}">
-                    <a href="{{ '#' }}">
+                    <a href="{{ route('manage.driver') }}">
                         <i class="now-ui-icons shopping_delivery-fast"></i>
                         <p>Manage Drivers</p>
                     </a>

@@ -26,8 +26,7 @@ class DeliveryController extends Controller
 
     public function mine($id)
     {
-        $pubnub = new PubNubConnect('pubnub_onboarding_channel');
-        $pubnub->setListener(new DeliveryCallback());
+        $pubnub = new PubNubConnect();
         $pubnub->message("Reserved!");
 
         Booking::query()
@@ -42,8 +41,7 @@ class DeliveryController extends Controller
 
     public function complete($id)
     {
-        $pubnub = new PubNubConnect('pubnub_onboarding_channel');
-        $pubnub->setListener(new DeliveryCallback());
+        $pubnub = new PubNubConnect();
         $pubnub->message("Delivered!");
 
         Booking::query()
