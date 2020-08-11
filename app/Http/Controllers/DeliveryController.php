@@ -28,7 +28,7 @@ class DeliveryController extends Controller
     {
         $pubnub = new PubNubConnect('pubnub_onboarding_channel');
         $pubnub->setListener(new DeliveryCallback());
-        $pubnub->message("Mine pressed by nice");
+        $pubnub->message("Reserved!");
 
         Booking::query()
                ->where('id', $id)
@@ -44,7 +44,7 @@ class DeliveryController extends Controller
     {
         $pubnub = new PubNubConnect('pubnub_onboarding_channel');
         $pubnub->setListener(new DeliveryCallback());
-        $pubnub->message("Mine pressed by user_id");
+        $pubnub->message("Delivered!");
 
         Booking::query()
                ->where('id', $id)
