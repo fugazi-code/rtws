@@ -42,7 +42,7 @@
                                                     <td class="text-left">
                                                         <div class="row">
                                                             <div class="col-md-12">
-                                                                <img v-bind:src="'/storage/' + delivery.photo.path"
+                                                                <img v-bind:src="'/storage/'+ delivery.photo.path"
                                                                      class="avatar border-gray delivery-photo">
                                                             </div>
                                                             <div class="col-md-12">
@@ -58,7 +58,8 @@
                                                     <td class="text-left">
                                                         <div class="row">
                                                             <div class="col-md-12">
-                                                                <i>@{{ delivery.schedule }}</i> <i>Php@{{ delivery.amount }}</i>
+                                                                <i>@{{ delivery.schedule }}</i> <i>Php@{{
+                                                                    delivery.amount }}</i>
                                                                 <hr>
                                                             </div>
                                                             <div class="col-md-12">
@@ -71,7 +72,8 @@
                                                         </div>
                                                     </td>
                                                     <td class="td-actions text-right">
-                                                        <a v-bind:href="'/d/m/' + delivery.id" class="btn btn-info btn-round">
+                                                        <a v-bind:href="'/d/m/' + delivery.id"
+                                                           class="btn btn-info btn-round">
                                                             <i class="now-ui-icons ui-1_send"></i> Mine
                                                         </a>
                                                     </td>
@@ -118,7 +120,8 @@
                                                         </div>
                                                     </td>
                                                     <td class="td-actions text-right">
-                                                        <a v-bind:href="'/d/c/' + delivery.id" class="btn btn-warning btn-round">
+                                                        <a v-bind:href="'/d/c/' + delivery.id"
+                                                           class="btn btn-warning btn-round">
                                                             <i class="now-ui-icons gestures_tap-01"></i> Complete
                                                         </a>
                                                     </td>
@@ -164,11 +167,11 @@
                                                             </div>
                                                         </div>
                                                     </td>
-{{--                                                    <td class="td-actions text-right">--}}
-{{--                                                        <a v-bind:href="'/d/c/' + delivery.id" class="btn btn-warning btn-round">--}}
-{{--                                                            <i class="now-ui-icons gestures_tap-01"></i> Completed--}}
-{{--                                                        </a>--}}
-{{--                                                    </td>--}}
+                                                    {{--                                                    <td class="td-actions text-right">--}}
+                                                    {{--                                                        <a v-bind:href="'/d/c/' + delivery.id" class="btn btn-warning btn-round">--}}
+                                                    {{--                                                            <i class="now-ui-icons gestures_tap-01"></i> Completed--}}
+                                                    {{--                                                        </a>--}}
+                                                    {{--                                                    </td>--}}
                                                 </tr>
                                                 </tbody>
                                             </table>
@@ -221,12 +224,12 @@
                 });
 
                 pubnub.addListener({
-                    message: function(event) {
+                    message: function (event) {
                         this.fetch();
                         //console.log(event.message);
                     },
-                    presence: function(event) {
-                       // console.log(event);
+                    presence: function (event) {
+                        // console.log(event);
                     }
                 });
                 this.fetch();
