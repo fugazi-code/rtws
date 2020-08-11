@@ -88,8 +88,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">License No</label>
-                                        <input type="email" class="form-control" placeholder="License No."
+                                        <label for="exampleInputEmail1">Plate No</label>
+                                        <input type="email" class="form-control" placeholder="Plate No."
                                                value="{{ auth()->user()->plate_no }}" readonly>
                                     </div>
                                 </div>
