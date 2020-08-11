@@ -226,7 +226,7 @@
 
                 pubnub.addListener({
                     message: function (event) {
-                        $this.this.fetch();
+                        $this.fetch();
                         //console.log(event.message);
                     },
                     presence: function (event) {
