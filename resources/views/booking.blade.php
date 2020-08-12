@@ -142,7 +142,7 @@
                                 <button type="submit" class="btn btn-round btn-success">Book Now!</button>
                             </div>
                             <div class="col-md-12">
-                                <div id='map' style='width: 400px; height: 300px;'></div>
+                                <div id='map'></div>
                             </div>
                         </div>
                     </div>
