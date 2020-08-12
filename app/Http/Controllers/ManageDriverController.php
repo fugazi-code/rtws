@@ -15,7 +15,7 @@ class ManageDriverController extends Controller
 
     public function fetch()
     {
-        $booking = Booking::with('customer')
+        $booking = Booking::with('customer', 'rider')
                           ->where('customer_id', auth()->id())
                           ->orderByDesc('id')
                           ->get()

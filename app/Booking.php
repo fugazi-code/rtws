@@ -16,6 +16,7 @@ class Booking extends Model
         "amount",
         "customer_id",
         "status",
+        "ref_no",
     ];
 
     public function customer()
@@ -25,7 +26,7 @@ class Booking extends Model
 
     public function rider()
     {
-        return $this->hasOne('App\User', 'id', 'customer_id');
+        return $this->hasOne('App\User', 'id', 'rider_id');
     }
 
     public function photo()
@@ -46,7 +47,7 @@ class Booking extends Model
         return self::query()
                    ->where('status', 'accepted')
                    ->where('rider_id', auth()->id())
-                   ->with(['rider', 'photo',])
+                   ->with(['rider', 'photo', 'customer'])
                    ->orderBy('created_at', 'desc');
     }
 
@@ -55,7 +56,7 @@ class Booking extends Model
         return self::query()
                    ->where('status', 'complete')
                    ->where('rider_id', auth()->id())
-                   ->with(['rider', 'photo',])
+                   ->with(['rider', 'photo', 'customer'])
                    ->orderBy('created_at', 'desc');
     }
 }

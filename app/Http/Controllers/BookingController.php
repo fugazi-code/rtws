@@ -28,6 +28,7 @@ class BookingController extends Controller
             "pick_up"     => $request->get("pick_up"),
             "drop_off"    => $request->get("drop_off"),
             "amount"      => $request->get("amount"),
+            "ref_no"      => hash('adler32', $request->get("schedule")),
         ]);
 
         return redirect()->back()->with('success', 'Book has been submitted!');

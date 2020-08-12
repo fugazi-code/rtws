@@ -41,17 +41,26 @@
                                                 <tr v-for="delivery in pending">
                                                     <td class="text-left">
                                                         <div class="row">
-                                                            <div class="col-md-12">
-                                                                <img v-bind:src="'/storage/'+ delivery.photo.path"
+                                                            <div class="col-md-12" v-if="delivery.photo">
+                                                                <img v-bind:src="'/storage/' + delivery.photo.path"
                                                                      class="avatar border-gray delivery-photo">
                                                             </div>
-                                                            <div class="col-md-12">
-                                                                @{{ delivery.customer.name }}
+                                                            <div class="col-md-12 row justify-content-center">
+                                                                <div class="col-md-auto">
+                                                                    @{{ delivery.customer.name }}
+                                                                </div>
                                                             </div>
-                                                            <div class="col-md-12">
-                                                                <label class="badge badge-info text-white">
-                                                                    <strong>@{{ delivery.service }}</strong>
-                                                                </label>
+                                                            <div class="col-md-12 row justify-content-center">
+                                                                <div class="col-md-auto">
+                                                                    @{{ delivery.customer.contact}}
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 row justify-content-center">
+                                                                <div class="col-md-auto">
+                                                                    <label class="badge badge-info  text-white">
+                                                                        <strong>@{{ delivery.service }}</strong>
+                                                                    </label>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -90,17 +99,26 @@
                                                 <tr v-for="delivery in yours">
                                                     <td class="text-left">
                                                         <div class="row">
-                                                            <div class="col-md-12">
+                                                            <div class="col-md-12" v-if="delivery.photo">
                                                                 <img v-bind:src="'/storage/' + delivery.photo.path"
                                                                      class="avatar border-gray delivery-photo">
                                                             </div>
-                                                            <div class="col-md-12">
-                                                                @{{ delivery.rider.name }}
+                                                            <div class="col-md-12 row justify-content-center">
+                                                                <div class="col-md-auto">
+                                                                    @{{ delivery.customer.name }}
+                                                                </div>
                                                             </div>
-                                                            <div class="col-md-12">
-                                                                <label class="badge badge-info  text-white">
-                                                                    <strong>@{{ delivery.service }}</strong>
-                                                                </label>
+                                                            <div class="col-md-12 row justify-content-center">
+                                                                <div class="col-md-auto">
+                                                                    @{{ delivery.customer.contact}}
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 row justify-content-center">
+                                                                <div class="col-md-auto">
+                                                                    <label class="badge badge-info  text-white">
+                                                                        <strong>@{{ delivery.service }}</strong>
+                                                                    </label>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -138,17 +156,26 @@
                                                 <tr v-for="delivery in complete">
                                                     <td class="text-left">
                                                         <div class="row">
-                                                            <div class="col-md-12">
+                                                            <div class="col-md-12" v-if="delivery.photo">
                                                                 <img v-bind:src="'/storage/' + delivery.photo.path"
                                                                      class="avatar border-gray delivery-photo">
                                                             </div>
-                                                            <div class="col-md-12">
-                                                                @{{ delivery.rider.name }}
+                                                            <div class="col-md-12 row justify-content-center">
+                                                                <div class="col-md-auto">
+                                                                    @{{ delivery.customer.name }}
+                                                                </div>
                                                             </div>
-                                                            <div class="col-md-12">
-                                                                <label class="badge badge-info text-white">
-                                                                    <strong>@{{ delivery.service }}</strong>
-                                                                </label>
+                                                            <div class="col-md-12 row justify-content-center">
+                                                                <div class="col-md-auto">
+                                                                    @{{ delivery.customer.contact}}
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 row justify-content-center">
+                                                                <div class="col-md-auto">
+                                                                    <label class="badge badge-info  text-white">
+                                                                        <strong>@{{ delivery.service }}</strong>
+                                                                    </label>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -220,7 +247,7 @@
                 });
 
                 pubnub.subscribe({
-                    channels: ['pubnub_onboarding_channel'],
+                    channels: ['{{ env('PUB_NUB_CHANNEL') }}'],
                     withPresence: true
                 });
 
@@ -234,13 +261,6 @@
                     }
                 });
                 this.fetch();
-                // export default (request) => {
-                //     const kvstore = require('kvstore');
-                //     const xhr = require('xhr');
-                //
-                //     console.log('request',request); // Log the request envelope passed
-                //     return request.ok(); // Return a promise when you're done
-                // }
             }
         });
     </script>
