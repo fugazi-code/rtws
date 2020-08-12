@@ -25,4 +25,11 @@ class ManageDriverController extends Controller
             'booking' => fractal($booking, new BookingFetchTransformer()),
         ];
     }
+
+    public function cancel(Request $request)
+    {
+        Booking::find($request->book_id)->update(['status' => 'cancelled']);
+
+        return redirect()->back()->with('success', 'Book has been cancelled!');
+    }
 }
