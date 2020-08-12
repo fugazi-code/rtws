@@ -120,8 +120,6 @@
             @yield('content')
         </div>
         @endisset
-        <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js'></script>
-        <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css' rel='stylesheet' />
         <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.21.7.min.js"></script>
         <!--   Core JS Files   -->
         <script src="{{ asset('js/app.js') }}"></script>
@@ -130,6 +128,8 @@
         <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
         <script src="/template/assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script>
         <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css' rel='stylesheet' />
+
         @include('layouts.partials.notification')
         <script>
             $.ajaxSetup({

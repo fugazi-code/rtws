@@ -160,6 +160,14 @@
                 service: 'padala',
                 vehicle: 'motorcycle',
                 sub: '',
+                dp: {
+                    lat: 0,
+                    long: 0,
+                },
+                pu: {
+                    lat: 0,
+                    long: 0,
+                },
             },
             methods: {
                 setService(value) {
@@ -173,10 +181,36 @@
                 }
             },
             mounted() {
-                mapboxgl.accessToken = '{{ env('MAP_BOX_TOKEN') }}';
+                var $this = this;
+
                 var map = new mapboxgl.Map({
                     container: 'map',
-                    style: 'mapbox://styles/mapbox/streets-v11'
+                    style: 'mapbox://styles/mapbox/streets-v11',
+                    center: [-74.5, 40], // starting position
+                    zoom: 9, // starting zoom
+                });
+                var geolocate = new mapboxgl.GeolocateControl({
+                    positionOptions: {
+                        enableHighAccuracy: true
+                    },
+                    trackUserLocation: true,
+                    showUserLocation: true
+                });
+
+                var marker = new mapboxgl.Marker({
+                    draggable: true
+                });
+
+                map.addControl(geolocate);
+
+                map.on('load', function () {
+                    geolocate.trigger();
+                });
+
+                geolocate.on('geolocate', function (e) {
+                    $this.pu.lat = e.coords.latitude;
+                    $this.pu.long = e.coords.longitude;
+                    marker.setLngLat([$this.pu.long, $this.pu.lat]).addTo(map);
                 });
             }
         })
