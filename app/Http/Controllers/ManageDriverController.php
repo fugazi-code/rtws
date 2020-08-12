@@ -15,7 +15,11 @@ class ManageDriverController extends Controller
 
     public function fetch()
     {
-        $booking = Booking::with('customer')->where('customer_id', auth()->id())->get()->toArray();
+        $booking = Booking::with('customer')
+                          ->where('customer_id', auth()->id())
+                          ->orderByDesc('id')
+                          ->get()
+                          ->toArray();
 
         return [
             'booking' => fractal($booking, new BookingFetchTransformer()),

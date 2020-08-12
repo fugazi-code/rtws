@@ -12,11 +12,16 @@
                         <div class="list-group">
                             <a href="#" class="list-group-item list-group-item-action"  v-for="book in books">
                                 <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">Order ID: @{{ book.id }}</h5>
+                                    <h5 class="mb-1">#@{{ book.id }} Order No.
+                                        <span v-if="book.status == 'pending'" class="badge badge-info">Looking for a Rider</span>
+                                        <span v-else class="badge badge-info">@{{ book.status }}</span>
+                                    </h5>
                                     <small>@{{ book.created_at }}</small>
                                 </div>
-                                <p class="mb-1">Schedule: @{{ book.schedule }}</p>
-                                <small>Donec id elit non mi porta.</small>
+                                <p class="mb-1">Scheduled pick-up is @{{ book.schedule }}</p>
+                                <p class="mb-1">Amount would be Php@{{ book.amount }}</p>
+                                <small>@{{ book.pick_up }} to @{{ book.drop_off }}</small>
+                                <p class="mb-1"><button class="btn btn-sm btn-round btn-danger">Cancel Order</button></p>
                             </a>
                         </div>
                     </div>

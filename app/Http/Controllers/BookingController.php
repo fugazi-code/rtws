@@ -15,6 +15,9 @@ class BookingController extends Controller
 
     public function store(Request $request)
     {
+        $pubnub = new PubNubConnect();
+        $pubnub->message("New Book!");
+
         Booking::create([
             "status"      => "pending",
             "customer_id" => auth()->id(),
@@ -26,10 +29,6 @@ class BookingController extends Controller
             "drop_off"    => $request->get("drop_off"),
             "amount"      => $request->get("amount"),
         ]);
-
-
-        $pubnub = new PubNubConnect();
-        $pubnub->message("New Book!");
 
         return redirect()->back()->with('success', 'Book has been submitted!');
     }
