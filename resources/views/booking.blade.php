@@ -182,7 +182,9 @@
             },
             mounted() {
                 var $this = this;
-
+                if (!mapboxgl.supported()) {
+                    alert('Your browser does not support Mapbox GL');
+                }
                 var map = new mapboxgl.Map({
                     container: 'map',
                     style: 'mapbox://styles/mapbox/streets-v11',
@@ -206,7 +208,7 @@
                 map.on('load', function () {
                     geolocate.trigger();
                 });
-                map.resize();
+
                 geolocate.on('geolocate', function (e) {
                     $this.pu.lat = e.coords.latitude;
                     $this.pu.long = e.coords.longitude;
