@@ -100,7 +100,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12 row mt-4">
+                            <div class="row mt-4">
                                 <div class="col-md-12">
                                     <label>Schedule Pick-Up</label>
                                     <input type="datetime-local" name="schedule" class="form-control">
@@ -128,9 +128,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4 mt-2">
-                                <label>Amount</label>
-                                <input type="number" name="amount" class="form-control">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Amount</label>
+                                    <input type="number" name="amount" class="form-control">
+                                </div>
                             </div>
                             {{--                        <div class="row">--}}
                             {{--                            <div class="col-md-12 mt-4">--}}
@@ -138,12 +140,13 @@
                             {{--                                <textarea name="note" class="form-control" placeholder="(Optional)"></textarea>--}}
                             {{--                            </div>--}}
                             {{--                        </div>--}}
-                            <div class="col-md-12 mt-4">
-                                <button type="submit" class="btn btn-round btn-success">Book Now!</button>
+                            <div class="row mt-2 justify-content-center">
+                                <div class="col-md-auto">
+                                    <button type="submit" class="btn btn-round btn-success">Book Now!</button>
+                                </div>
                             </div>
-                            <div class="col-md-12">
-                                <div id='mapid' style="width: 100%; height: 200px"></div>
-                            </div>
+
+                            <div id='mapid' style="width: 100%; height: 500px;"></div>
                         </div>
                     </div>
                 </div>
@@ -182,15 +185,32 @@
             },
             mounted() {
                 var $this = this;
-                var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+                var map = L.map('mapid');
+
                 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-                    attribution: '',
                     maxZoom: 18,
                     id: 'mapbox/streets-v11',
                     tileSize: 512,
                     zoomOffset: -1,
                     accessToken: '{{ env('MAP_BOX_TOKEN') }}'
-                }).addTo(mymap);
+                }).addTo(map);
+
+                map.on('dblclick', function (ev) {
+                });
+
+                map.on('locationfound', function (ev) {
+                    L.marker(ev.latlng).addTo(map);
+                    map.setView(ev.latlng, 18);
+                });
+
+                map.locate();
+
+                $(window).on("resize", function () {
+                    $("#mapid").height($(window).height());
+                    map.invalidateSize();
+                }).trigger("resize");
+
+                $("#mapid").trigger("resize");
             }
         })
     </script>
