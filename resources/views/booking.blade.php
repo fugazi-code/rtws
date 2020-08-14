@@ -142,7 +142,7 @@
                                 <button type="submit" class="btn btn-round btn-success">Book Now!</button>
                             </div>
                             <div class="col-md-12">
-                                <div id='map' style="width: 100%; height: 200px"></div>
+                                <div id='mapid' style="width: 100%; height: 200px"></div>
                             </div>
                         </div>
                     </div>
@@ -182,38 +182,15 @@
             },
             mounted() {
                 var $this = this;
-                if (!mapboxgl.supported()) {
-                    alert('Your browser does not support Mapbox GL');
-                }
-                var map = new mapboxgl.Map({
-                    container: 'map',
-                    style: 'mapbox://styles/mapbox/streets-v11',
-                    center: [-74.5, 40], // starting position
-                    zoom: 9, // starting zoom
-                });
-                var geolocate = new mapboxgl.GeolocateControl({
-                    positionOptions: {
-                        enableHighAccuracy: true
-                    },
-                    trackUserLocation: true,
-                    showUserLocation: true
-                });
-
-                var marker = new mapboxgl.Marker({
-                    draggable: true
-                });
-
-                map.addControl(geolocate);
-
-                map.on('load', function () {
-                    geolocate.trigger();
-                });
-
-                geolocate.on('geolocate', function (e) {
-                    $this.pu.lat = e.coords.latitude;
-                    $this.pu.long = e.coords.longitude;
-                    marker.setLngLat([$this.pu.long, $this.pu.lat]).addTo(map);
-                });
+                var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+                L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+                    attribution: '',
+                    maxZoom: 18,
+                    id: 'mapbox/streets-v11',
+                    tileSize: 512,
+                    zoomOffset: -1,
+                    accessToken: '{{ env('MAP_BOX_TOKEN') }}'
+                }).addTo(mymap);
             }
         })
     </script>
