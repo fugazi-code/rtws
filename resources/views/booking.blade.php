@@ -221,6 +221,7 @@
             },
             mounted() {
                 var $this = this;
+                $this.L = L;
                 $this.map = L.map('mapid');
 
                 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -235,7 +236,7 @@
                 });
 
                 $this.map.on('locationfound', function (ev) {
-                    L.marker(ev.latlng).addTo($this.map);
+                    $this.L.marker(ev.latlng).addTo($this.map);
                     $this.map.setView(ev.latlng, 18);
                 });
 
