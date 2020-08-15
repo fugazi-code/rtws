@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    <!--suppress ALL -->
     <style>
         .btn-info:not(:disabled):not(.disabled).active {
             background-color: #ca8aea !important;
@@ -100,7 +101,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mt-4">
+                            <div class="row">
                                 <div class="col-md-12">
                                     <label>Schedule Pick-Up</label>
                                     <input type="datetime-local" name="schedule" class="form-control">
@@ -134,21 +135,17 @@
                                     <input type="number" name="amount" class="form-control">
                                 </div>
                             </div>
-                            {{--                        <div class="row">--}}
-                            {{--                            <div class="col-md-12 mt-4">--}}
-                            {{--                                <label>Note to Rider</label>--}}
-                            {{--                                <textarea name="note" class="form-control" placeholder="(Optional)"></textarea>--}}
-                            {{--                            </div>--}}
-                            {{--                        </div>--}}
                             <div class="row mt-2 justify-content-center">
                                 <div class="col-md-auto">
                                     <button type="submit" class="btn btn-round btn-success">Book Now!</button>
                                 </div>
                                 <div class="col-md-auto">
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary" @click="mapMdl">Launch demo modal </button>
+                                    <button type="button" class="btn btn-primary" @click="mapMdl">Launch demo modal
+                                    </button>
                                 </div>
                             </div>
+                            <div style="width: 640px; height: 480px" id="mapContainer"></div>
                         </div>
                     </div>
                 </div>
@@ -156,7 +153,7 @@
         </form>
 
         <!-- Modal -->
-        <div class="modal fade" id="mapModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="mapModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -166,11 +163,6 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div id="mapid" style="width: 100%; height: 100vh"></div>
-                            </div>
-                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -183,6 +175,10 @@
 @endsection
 
 @section('scripts')
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"
+            type="text/javascript" charset="utf-8"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"
+            type="text/javascript" charset="utf-8"></script>
     <script>
         const e = new Vue({
             el: '#app',
@@ -213,34 +209,23 @@
                 mapMdl() {
                     var $this = this;
                     $('#mapModal').modal('show');
-                    $(window).on("resize", function () {
-                        $("#mapid").height($(window).height()-40);
-                        $this.map.invalidateSize();
-                    }).trigger("resize");
                 }
             },
             mounted() {
                 var $this = this;
-                $this.L = L;
-                $this.map = L.map('mapid');
-
-                L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-                    maxZoom: 18,
-                    id: 'mapbox/streets-v11',
-                    tileSize: 512,
-                    zoomOffset: -1,
-                    accessToken: '{{ env('MAP_BOX_TOKEN') }}'
-                }).addTo($this.map);
-
-                $this.map.on('dblclick', function (ev) {
+                var platform = new H.service.Platform({
+                    'apikey': 'kxXAYfG62rJp16jamgZYxEOZPPorATWu5X2Oklun3_k'
                 });
 
-                $this.map.on('locationfound', function (ev) {
-                    $this.L.marker(ev.latlng).addTo($this.map);
-                    $this.map.setView(ev.latlng, 18);
-                });
+                var defaultLayers = platform.createDefaultLayers();
 
-                $this.map.locate();
+                var map = new H.Map(
+                    document.getElementById('mapContainer'),
+                    defaultLayers.vector.normal.map,
+                    {
+                        zoom: 10,
+                        center: {lat: 52.5, lng: 13.4}
+                    });
             }
         })
     </script>
