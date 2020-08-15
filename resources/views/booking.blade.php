@@ -145,7 +145,6 @@
                                     </button>
                                 </div>
                             </div>
-                            <div style="width: 640px; height: 480px" id="mapContainer"></div>
                         </div>
                     </div>
                 </div>
@@ -163,6 +162,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        <div id="map"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -175,10 +175,8 @@
 @endsection
 
 @section('scripts')
-    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"
-            type="text/javascript" charset="utf-8"></script>
-    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"
-            type="text/javascript" charset="utf-8"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
     <script>
         const e = new Vue({
             el: '#app',
@@ -213,20 +211,19 @@
             },
             mounted() {
                 var $this = this;
-                var platform = new H.service.Platform({
-                    'apikey': 'kxXAYfG62rJp16jamgZYxEOZPPorATWu5X2Oklun3_k'
-                });
-
-                var defaultLayers = platform.createDefaultLayers();
-
-                var map = new H.Map(
-                    document.getElementById('mapContainer'),
-                    defaultLayers.vector.normal.map,
-                    {
-                        zoom: 10,
-                        center: {lat: 52.5, lng: 13.4}
-                    });
             }
-        })
+        });
+        function initMap() {
+            mapboxgl.accessToken = 'pk.eyJ1IjoicmVuaWVyLXRyZW51ZWxhIiwiYSI6ImNrZHBsenB5dDBkcWMyenA4eTkzc3N1MTcifQ.LC1B128n0WQ9yd7bRIAxKg';
+            var map = new mapboxgl.Map({
+                container: 'map', // container id
+                style: 'mapbox://styles/mapbox/streets-v11',
+                center: [-74.5, 40], // starting position
+                zoom: 9 // starting zoom
+            });
+
+// Add zoom and rotation controls to the map.
+            map.addControl(new mapboxgl.NavigationControl());
+        }
     </script>
 @endsection
