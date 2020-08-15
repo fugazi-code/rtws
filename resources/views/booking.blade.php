@@ -144,14 +144,41 @@
                                 <div class="col-md-auto">
                                     <button type="submit" class="btn btn-round btn-success">Book Now!</button>
                                 </div>
+                                <div class="col-md-auto">
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary" @click="mapMdl">Launch demo modal </button>
+                                </div>
                             </div>
-
-                            <div id='mapid' style="width: 100%; height: 500px;"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </form>
+
+        <!-- Modal -->
+        <div class="modal fade" id="mapModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="mapid" style="width: 100%; height: 100vh"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
@@ -163,6 +190,7 @@
                 service: 'padala',
                 vehicle: 'motorcycle',
                 sub: '',
+                map: null,
                 dp: {
                     lat: 0,
                     long: 0,
@@ -181,11 +209,19 @@
                 },
                 setSub(value) {
                     this.sub = value;
+                },
+                mapMdl() {
+                    var $this = this;
+                    $('#mapModal').modal('show');
+                    $(window).on("resize", function () {
+                        $("#mapid").height($(window).height()-40);
+                        $this.map.invalidateSize();
+                    }).trigger("resize");
                 }
             },
             mounted() {
                 var $this = this;
-                var map = L.map('mapid');
+                $this.map = L.map('mapid');
 
                 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
                     maxZoom: 18,
@@ -193,24 +229,17 @@
                     tileSize: 512,
                     zoomOffset: -1,
                     accessToken: '{{ env('MAP_BOX_TOKEN') }}'
-                }).addTo(map);
+                }).addTo($this.map);
 
-                map.on('dblclick', function (ev) {
+                $this.map.on('dblclick', function (ev) {
                 });
 
-                map.on('locationfound', function (ev) {
-                    L.marker(ev.latlng).addTo(map);
-                    map.setView(ev.latlng, 18);
+                $this.map.on('locationfound', function (ev) {
+                    L.marker(ev.latlng).addTo($this.map);
+                    $this.map.setView(ev.latlng, 18);
                 });
 
-                map.locate();
-
-                $(window).on("resize", function () {
-                    $("#mapid").height($(window).height());
-                    map.invalidateSize();
-                }).trigger("resize");
-
-                $("#mapid").trigger("resize");
+                $this.map.locate();
             }
         })
     </script>
