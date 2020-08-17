@@ -2,7 +2,15 @@
 
 @section('content')
     <!--suppress ALL -->
-    <div id="map" style="width: 100vw; height: 100vh;"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <input class="form-control">
+        </div>
+        <div class="col-md-12">
+            <div id="map" style="width: 100vw; height: 100vh;"></div>
+        </div>
+    </div>
+
 @endsection
 
 @section('scripts')
@@ -16,22 +24,28 @@
 
     <script type="text/javascript">
         var map = L.map('map').fitWorld();
+        var layer = null;
         L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/512/{z}/{x}/{y}?title=true&access_token={accessToken}', {
             accessToken: 'pk.eyJ1IjoicmVuaWVyLXRyZW51ZWxhIiwiYSI6ImNrZHhya2l3aTE3OG0ycnBpOWxlYjV3czUifQ.4hVvT7_fiVshoSa9P3uAew',
             maxZoom: 20,
         }).addTo(map);
 
         map.locate({setView: true, maxZoom: 28});
-
+        // var draggable = new L.Draggable($L);
+        // draggable.enable();
         function onLocationFound(e) {
             var radius = e.accuracy;
-            L.marker(e.latlng).addTo(map)
+            layer = L.marker(e.latlng).addTo(map)
+            layer.addTo(map);
             L.circle(e.latlng, radius).addTo(map);
         }
 
         function onChangeMarkerLocation(e) {
-            L.marker(e.latlng).addTo(map)
+            layer.remove();
+            layer = L.marker(e.latlng).addTo(map)
+
         }
+
         map.on('locationfound', onLocationFound);
         map.on('dblclick', onChangeMarkerLocation);
     </script>

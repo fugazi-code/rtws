@@ -117,8 +117,8 @@
     }
 
     function showPage() {
-        document.getElementById("loader").style.display = "none";
-        document.getElementById("myDiv").style.display = "block";
+        document.getElementById("map").style.display = "none";
+        document.getElementById("map").style.display = "block";
     }
 </script>
 @yield('scripts')
