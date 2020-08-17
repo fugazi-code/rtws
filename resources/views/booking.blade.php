@@ -106,13 +106,13 @@
                                     <label>Schedule Pick-Up</label>
                                     <input type="datetime-local" name="schedule" class="form-control">
                                 </div>
-                                <div class="col-md-12 mt-2">
+                                <div class="col-md-12">
                                     <label>Pick-Up</label>
                                     <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
+                                        <div class="input-group-prepend" @click="mapPickUp">
+                                            <span class="input-group-text">
                                                 <i class="now-ui-icons location_pin"></i>
-                                            </div>
+                                            </span>
                                         </div>
                                         <input type="text" name="pick_up" class="form-control">
                                     </div>
@@ -136,13 +136,8 @@
                                 </div>
                             </div>
                             <div class="row mt-2 justify-content-center">
-                                <div class="col-md-auto">
-                                    <button type="submit" class="btn btn-round btn-success">Book Now!</button>
-                                </div>
-                                <div class="col-md-auto">
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary" @click="mapMdl">Launch demo modal
-                                    </button>
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-block btn-round btn-success">Book Now!</button>
                                 </div>
                             </div>
                         </div>
@@ -150,37 +145,10 @@
                 </div>
             </div>
         </form>
-
-        <!-- Modal -->
-        <div class="modal fade" id="mapModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div id="map" style="width: 100%; height: 200px;"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 @endsection
 
 @section('scripts')
-    <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
     <script>
         const e = new Vue({
             el: '#app',
@@ -211,23 +179,14 @@
                 mapMdl() {
                     var $this = this;
                     $('#mapModal').modal('show');
+                },
+                mapPickUp()
+                {
+                    window.location='{{ route('manage.map') }}'
                 }
             },
             mounted() {
                 var $this = this;
-                mapboxgl.accessToken = 'pk.eyJ1IjoicmVuaWVyLXRyZW51ZWxhIiwiYSI6ImNrZHhya2l3aTE3OG0ycnBpOWxlYjV3czUifQ.4hVvT7_fiVshoSa9P3uAew';
-                if (!mapboxgl.supported()) {
-                    alert('Your browser does not support Mapbox GL');
-                }
-                var map = new mapboxgl.Map({
-                    container: 'map', // container id
-                    style: 'mapbox://styles/mapbox/streets-v11',
-                    center: [-74.5, 40], // starting position
-                    zoom: 9 // starting zoom
-                });
-
-// Add zoom and rotation controls to the map.
-                map.addControl(new mapboxgl.NavigationControl());
             }
         });
     </script>

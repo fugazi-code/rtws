@@ -32,4 +32,9 @@ class ManageDriverController extends Controller
 
         return redirect()->back()->with('success', 'Book has been cancelled!');
     }
+
+    public function map()
+    {
+        return view('map');
+    }
 }
