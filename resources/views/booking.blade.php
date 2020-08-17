@@ -216,6 +216,9 @@
             mounted() {
                 var $this = this;
                 mapboxgl.accessToken = 'pk.eyJ1IjoicmVuaWVyLXRyZW51ZWxhIiwiYSI6ImNrZHhya2l3aTE3OG0ycnBpOWxlYjV3czUifQ.4hVvT7_fiVshoSa9P3uAew';
+                if (!mapboxgl.supported()) {
+                    alert('Your browser does not support Mapbox GL');
+                }
                 var map = new mapboxgl.Map({
                     container: 'map', // container id
                     style: 'mapbox://styles/mapbox/streets-v11',
