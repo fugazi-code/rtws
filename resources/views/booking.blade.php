@@ -152,7 +152,7 @@
         </form>
 
         <!-- Modal -->
-        <div class="modal fade" id="mapModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="mapModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -162,7 +162,11 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div id="map"></div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="map" style="width: 100%; height: 200px;"></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -211,19 +215,17 @@
             },
             mounted() {
                 var $this = this;
-            }
-        });
-        function initMap() {
-            mapboxgl.accessToken = 'pk.eyJ1IjoicmVuaWVyLXRyZW51ZWxhIiwiYSI6ImNrZHBsenB5dDBkcWMyenA4eTkzc3N1MTcifQ.LC1B128n0WQ9yd7bRIAxKg';
-            var map = new mapboxgl.Map({
-                container: 'map', // container id
-                style: 'mapbox://styles/mapbox/streets-v11',
-                center: [-74.5, 40], // starting position
-                zoom: 9 // starting zoom
-            });
+                mapboxgl.accessToken = 'pk.eyJ1IjoicmVuaWVyLXRyZW51ZWxhIiwiYSI6ImNrZHhya2l3aTE3OG0ycnBpOWxlYjV3czUifQ.4hVvT7_fiVshoSa9P3uAew';
+                var map = new mapboxgl.Map({
+                    container: 'map', // container id
+                    style: 'mapbox://styles/mapbox/streets-v11',
+                    center: [-74.5, 40], // starting position
+                    zoom: 9 // starting zoom
+                });
 
 // Add zoom and rotation controls to the map.
-            map.addControl(new mapboxgl.NavigationControl());
-        }
+                map.addControl(new mapboxgl.NavigationControl());
+            }
+        });
     </script>
 @endsection

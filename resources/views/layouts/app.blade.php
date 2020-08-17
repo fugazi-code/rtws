@@ -4,8 +4,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
-          name='viewport'/>
+    <meta content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no' name='viewport'/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>
         RTWS
