@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.app-map')
 
 @section('content')
     <!--suppress ALL -->
-    <div id="map" style="width: 200px; height: 200px;"></div>
+    <div id="map" style="width: 100vw; height: 100vh;"></div>
 @endsection
 
 @section('scripts')
@@ -18,20 +18,21 @@
         var map = L.map('map').fitWorld();
         L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/512/{z}/{x}/{y}?title=true&access_token={accessToken}', {
             accessToken: 'pk.eyJ1IjoicmVuaWVyLXRyZW51ZWxhIiwiYSI6ImNrZHhya2l3aTE3OG0ycnBpOWxlYjV3czUifQ.4hVvT7_fiVshoSa9P3uAew',
-            maxZoom: 18,
+            maxZoom: 20,
         }).addTo(map);
 
-        map.locate({setView: true, maxZoom: 16});
+        map.locate({setView: true, maxZoom: 28});
 
         function onLocationFound(e) {
             var radius = e.accuracy;
-
             L.marker(e.latlng).addTo(map)
-                .bindPopup("You are within " + radius + " meters from this point").openPopup();
-
             L.circle(e.latlng, radius).addTo(map);
         }
 
+        function onChangeMarkerLocation(e) {
+            L.marker(e.latlng).addTo(map)
+        }
         map.on('locationfound', onLocationFound);
+        map.on('dblclick', onChangeMarkerLocation);
     </script>
 @endsection

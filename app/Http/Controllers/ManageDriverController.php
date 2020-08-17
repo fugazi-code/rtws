@@ -35,6 +35,6 @@ class ManageDriverController extends Controller
 
     public function map()
     {
-        return view('map');
+        return view('map', ['page_name' => 'Manage Driver']);
     }
 }

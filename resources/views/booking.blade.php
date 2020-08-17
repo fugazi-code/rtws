@@ -120,7 +120,7 @@
                                 <div class="col-md-12">
                                     <label>Drop-Off</label>
                                     <div class="input-group">
-                                        <div class="input-group-prepend">
+                                        <div class="input-group-prepend" @click="mapDropOff">
                                             <div class="input-group-text">
                                                 <i class="now-ui-icons location_pin"></i>
                                             </div>
@@ -181,6 +181,10 @@
                     $('#mapModal').modal('show');
                 },
                 mapPickUp()
+                {
+                    window.location='{{ route('manage.map') }}'
+                },
+                mapDropOff()
                 {
                     window.location='{{ route('manage.map') }}'
                 }
