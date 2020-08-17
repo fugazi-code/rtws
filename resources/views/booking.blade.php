@@ -58,7 +58,7 @@
                             </div>
                             {{--                            SUB-CATEG--}}
                             <div class="row">
-                                <div class="col-md-12" v-if="service == 'padala'">
+                                <div class="col-md-12" v-if="form.service == 'padala'">
                                     <div class="btn-group btn-group-toggle btn-block" data-toggle="buttons">
                                         <label class="btn btn-info text-white active">
                                             <input type="radio" name="sub" value="less 10kgs"
@@ -72,7 +72,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="col-md-12" v-if="service == 'pabili'">
+                                <div class="col-md-12" v-if="form.service == 'pabili'">
                                     <div class="btn-group btn-group-toggle btn-block" data-toggle="buttons">
                                         <label class="btn btn-info text-white active">
                                             <input type="radio" name="sub" value="less 1k"
@@ -86,7 +86,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="col-md-12" v-if="service == 'pa-grocery'">
+                                <div class="col-md-12" v-if="form.service == 'pa-grocery'">
                                     <div class="btn-group btn-group-toggle btn-block" data-toggle="buttons">
                                         <label class="btn btn-info text-white active">
                                             <input type="radio" name="sub" value="less 2k"
@@ -104,28 +104,23 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label>Schedule Pick-Up</label>
-                                    <input type="datetime-local" name="schedule" class="form-control">
+                                    <input type="datetime-local" name="schedule" class="form-control"
+                                           v-model="form.schedule_pickup">
                                 </div>
                                 <div class="col-md-12">
-                                    <label>Pick-Up</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend" @click="mapPickUp">
-                                            <span class="input-group-text">
+                                    <label>Pick-Up / Drop-Off</label>
+                                    <div class="row">
+                                        <div class="col-sm-auto">
+                                            <button type="button" class="btn btn-sm btn-info" @click="mapPickUp">
                                                 <i class="now-ui-icons location_pin"></i>
-                                            </span>
+                                            </button>
                                         </div>
-                                        <input type="text" name="pick_up" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <label>Drop-Off</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend" @click="mapDropOff">
-                                            <div class="input-group-text">
-                                                <i class="now-ui-icons location_pin"></i>
-                                            </div>
+                                        <div class="col-sm-4 mt-2">
+                                            <input class="form-control" v-model="form.pu" placeholder="Latitude..." readonly>
                                         </div>
-                                        <input type="text" name="drop_off" class="form-control">
+                                        <div class="col-sm-4 mt-2">
+                                            <input class="form-control" v-model="form.dp" placeholder="Longtitude..." readonly>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -153,40 +148,29 @@
         const e = new Vue({
             el: '#app',
             data: {
-                service: 'padala',
-                vehicle: 'motorcycle',
-                sub: '',
-                map: null,
-                dp: {
-                    lat: 0,
-                    long: 0,
-                },
-                pu: {
-                    lat: 0,
-                    long: 0,
-                },
+                form: {!! $form !!}
             },
             methods: {
                 setService(value) {
-                    this.service = value;
+                    this.form.service = value;
                 },
                 setVehicle(value) {
-                    this.vehicle = value;
+                    this.form.vehicle = value;
                 },
                 setSub(value) {
-                    this.sub = value;
+                    this.form.sub = value;
                 },
                 mapMdl() {
                     var $this = this;
                     $('#mapModal').modal('show');
                 },
-                mapPickUp()
-                {
-                    window.location='{{ route('manage.map') }}'
+                mapPickUp() {
+                    this.form.setup = 'pu'
+                    window.location = '/m/m?' + $.param(this.form)
                 },
-                mapDropOff()
-                {
-                    window.location='{{ route('manage.map') }}'
+                mapDropOff() {
+                    this.form.setup = 'dp'
+                    window.location = '/m/m?' + $.param(this.form)
                 }
             },
             mounted() {

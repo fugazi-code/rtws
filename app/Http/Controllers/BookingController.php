@@ -10,11 +10,27 @@ class BookingController extends Controller
 {
     public function index()
     {
-        return view('booking', ['page_name' => 'Book Now']);
+        if (session()->exists('form')) {
+            $form = session('form');
+            session()->forget('form');
+        } else {
+            $form = [
+                'service'         => 'padala',
+                'vehicle'         => 'motorcycle',
+                'sub'             => '',
+                'schedule_pickup' => '',
+                'dp'              => '',
+                'pu'              => '',
+                'kilometers'      => '',
+            ];
+        }
+
+        return view('booking', ['page_name' => 'Book Now', 'form' => collect($form)]);
     }
 
     public function store(Request $request)
     {
+        session()->forget('form');
         $pubnub = new PubNubConnect();
         $pubnub->message("New Book!");
 
@@ -32,5 +48,24 @@ class BookingController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Book has been submitted!');
+    }
+
+    public function map(Request $request)
+    {
+        session(['form' => $request->input()]);
+
+        return view('map', ['page_name' => 'Booking']);
+    }
+
+    public function locationStore(Request $request)
+    {
+        $location = $request->input();
+        $form     = session('form');
+        $form['dp'] = $location['toLatLng'];
+        $form['pu'] = $location['fromLatLng'];
+        $form['kilometers'] = $location['kilometers'];
+
+        session()->forget('form');
+        session(['form' => $form]);
     }
 }

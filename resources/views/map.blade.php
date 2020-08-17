@@ -2,9 +2,12 @@
 
 @section('content')
     <!--suppress ALL -->
+    <div class="from-icon">
+        <i class="fa fa-fb"></i>
+    </div>
     <div class="row">
         <div class="col-md-12">
-            <input class="form-control">
+            <button type="button" class="btn btn-block btn-primary" onclick="confirmLocation()">Confirm</button>
         </div>
         <div class="col-md-12">
             <div id="map" style="width: 100vw; height: 100vh;"></div>
@@ -30,23 +33,77 @@
             maxZoom: 20,
         }).addTo(map);
 
+        var LeafIcon = L.Icon.extend({
+            options: {
+                iconSize: [95, 95],
+                shadowSize: [50, 64],
+                iconAnchor: [22, 94],
+                shadowAnchor: [4, 62],
+                popupAnchor: [-3, -76]
+            }
+        });
+
+        var fromIcon = new LeafIcon({iconUrl: '/img/from-marker.png'});
+        var toIcon = new LeafIcon({iconUrl: '/img/to-marker.png'});
+
         map.locate({setView: true, maxZoom: 28});
-        // var draggable = new L.Draggable($L);
-        // draggable.enable();
+
+        var fromMarker = null;
+        var toMarker = null;
+
+        var fromLatLng = null;
+        var toLatLng = null;
+
+        var kilometers = null;
+
         function onLocationFound(e) {
             var radius = e.accuracy;
-            layer = L.marker(e.latlng).addTo(map)
-            layer.addTo(map);
+
+            fromLatLng = e.latlng;
+            toLatLng = e.latlng;
+
+            fromMarker = L.marker(e.latlng, {'icon': fromIcon, draggable: true}).addTo(map)
+            fromMarker.addTo(map);
+
+            toMarker = L.marker(e.latlng, {'icon': toIcon, draggable: true}).addTo(map)
+            toMarker.addTo(map);
+
             L.circle(e.latlng, radius).addTo(map);
+
+            fromMarker.on('move', function (e) {
+                fromLatLng = e.latlng
+                this.bindPopup("Position is " + e.latlng).openPopup()
+                distance()
+            });
+
+            toMarker.on('move', function (e) {
+                toLatLng = e.latlng
+                this.bindPopup("Position is " + e.latlng).openPopup()
+                distance()
+            });
         }
 
-        function onChangeMarkerLocation(e) {
-            layer.remove();
-            layer = L.marker(e.latlng).addTo(map)
+        function distance() {
+            meter = map.distance(fromLatLng, toLatLng);
+            kilometers = meter / 100;
+        }
 
+        function confirmLocation() {
+            var $this = this;
+            $.ajax({
+                url: '{{ route('booking.location.store') }}',
+                method: 'POST',
+                data: {
+                    fromLatLng: this.fromLatLng.lat + ',' + this.fromLatLng.lng,
+                    toLatLng: this.toLatLng.lat + ',' + this.toLatLng.lng,
+                    kilometers: this.kilometers
+                },
+                success: function (value) {
+                    window.location = '{{ route('booking') }}';
+                }
+            });
         }
 
         map.on('locationfound', onLocationFound);
-        map.on('dblclick', onChangeMarkerLocation);
     </script>
 @endsection
