@@ -10,20 +10,18 @@ class BookingController extends Controller
 {
     public function index()
     {
-        if (session()->exists('form')) {
-            $form = session('form');
-            session()->forget('form');
-        } else {
-            $form = [
-                'service'         => 'padala',
-                'vehicle'         => 'motorcycle',
-                'sub'             => '',
-                'schedule_pickup' => '',
-                'dp'              => '',
-                'pu'              => '',
-                'kilometers'      => '',
-            ];
-        }
+        $form = [
+            'service'         => 'padala',
+            'vehicle'         => 'motorcycle',
+            'sub'             => '',
+            'schedule_pickup' => '',
+            'dp'              => ['name' => '', 'lat' => '0', 'lng' => '0'],
+            'pu'              => ['name' => '', 'lat' => '0', 'lng' => '0'],
+            'kilometers'      => '',
+            'setup'           => null,
+        ];
+
+        $form = ! session()->exists('form') ?: session('form');
 
         return view('booking', ['page_name' => 'Book Now', 'form' => collect($form)]);
     }
@@ -54,18 +52,31 @@ class BookingController extends Controller
     {
         session(['form' => $request->input()]);
 
-        return view('map', ['page_name' => 'Booking']);
+        return view('map', ['form' => collect(session('form'))]);
     }
 
     public function locationStore(Request $request)
     {
-        $location = $request->input();
-        $form     = session('form');
-        $form['dp'] = $location['toLatLng'];
-        $form['pu'] = $location['fromLatLng'];
-        $form['kilometers'] = $location['kilometers'];
+        $form = session('form');
+
+        if ($form['setup'] == 'dp') {
+            $form['dp']['name'] = $request->name;
+            $form['dp']['lat']  = $request->lat;
+            $form['dp']['lng']  = $request->lng;
+        } else {
+            $form['pu']['name'] = $request->name;
+            $form['pu']['lat']  = $request->lat;
+            $form['pu']['lng']  = $request->lng;
+        }
+
+        $form['kilometers'] = $request->kilometers;
 
         session()->forget('form');
         session(['form' => $form]);
+    }
+
+    public function matrix(Request $request)
+    {
+        dd($request->input());
     }
 }

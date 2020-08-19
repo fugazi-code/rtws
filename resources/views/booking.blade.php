@@ -108,19 +108,23 @@
                                            v-model="form.schedule_pickup">
                                 </div>
                                 <div class="col-md-12">
-                                    <label>Pick-Up / Drop-Off</label>
-                                    <div class="row">
-                                        <div class="col-sm-auto">
-                                            <button type="button" class="btn btn-sm btn-info" @click="mapPickUp">
-                                                <i class="now-ui-icons location_pin"></i>
-                                            </button>
+                                    <label>Pick-Up</label>
+                                    <div class="input-group" @click="mapPickUp">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-user-circle"></i></div>
                                         </div>
-                                        <div class="col-sm-4 mt-2">
-                                            <input class="form-control" v-model="form.pu" placeholder="Latitude..." readonly>
+                                        <input type="text" v-model="form.pu.name" class="form-control"
+                                               placeholder="Pick-Up">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <label>Drop-Off</label>
+                                    <div class="input-group" @click="mapDropOff">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-user-circle"></i></div>
                                         </div>
-                                        <div class="col-sm-4 mt-2">
-                                            <input class="form-control" v-model="form.dp" placeholder="Longtitude..." readonly>
-                                        </div>
+                                        <input type="text" v-model="form.dp.name" class="form-control"
+                                               placeholder="Drop-Off">
                                     </div>
                                 </div>
                             </div>
@@ -144,6 +148,13 @@
 @endsection
 
 @section('scripts')
+    <!--suppress ALL -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+          integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+            integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+            crossorigin=""></script>
     <script>
         const e = new Vue({
             el: '#app',
@@ -171,11 +182,50 @@
                 mapDropOff() {
                     this.form.setup = 'dp'
                     window.location = '/m/m?' + $.param(this.form)
+                },
+                matrix() {
+                    var $this = this;
+                    $.ajax({
+                        url: '{{ route('booking.matrix') }}',
+                        method: 'POST',
+                        data: $this.form,
+                        success: function (value) {
+
+                        }
+                    })
                 }
             },
             mounted() {
                 var $this = this;
+                if ($this.form.pu.name != null && $this.form.dp.name != null) {
+                    kilometers = getDistance(
+                        [$this.form.pu.lat, $this.form.pu.lng],
+                        [$this.form.dp.lat, $this.form.dp.lng]
+                    );
+                    $this.form.kilometers = kilometers;
+                    $this.matrix();
+                }
             }
         });
+
+        function getDistance(origin, destination) {
+            // return distance in meters
+            var lat1 = toRadian(origin[0]),
+                lon1 = toRadian(origin[1]),
+                lat2 = toRadian(destination[0]),
+                lon2 = toRadian(destination[1]);
+
+            var deltaLat = lat2 - lat1;
+            var deltaLon = lon2 - lon1;
+
+            var a = Math.pow(Math.sin(deltaLat / 2), 2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(deltaLon / 2), 2);
+            var c = 2 * Math.asin(Math.sqrt(a));
+            var EARTH_RADIUS = 6371;
+            return (c * EARTH_RADIUS * 1000)/1000;
+        }
+
+        function toRadian(degree) {
+            return degree * Math.PI / 180;
+        }
     </script>
 @endsection
