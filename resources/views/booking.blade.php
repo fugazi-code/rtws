@@ -124,12 +124,12 @@
                                 </div>
                             </div>
                             <div class="row mt-3">
-                                <div class="col-xs-6">
+                                <div class="col-sm-6">
                                     <label>Schedule Pick-Up</label>
                                     <input type="datetime-local" name="schedule" class="form-control"
                                            v-model="form.schedule_pickup">
                                 </div>
-                                <div class="col-xs-6">
+                                <div class="col-sm-6">
                                     <label>Amount</label>
                                     <input type="number" name="amount" class="form-control">
                                 </div>
