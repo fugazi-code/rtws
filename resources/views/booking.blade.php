@@ -57,47 +57,32 @@
                                 </div>
                             </div>
                             {{--                            SUB-CATEG--}}
-                            <div class="row">
+                            <div class="row mt-2">
                                 <div class="col-md-12" v-if="form.service == 'padala'">
-                                    <div class="btn-group btn-group-toggle btn-block" data-toggle="buttons">
-                                        <label class="btn btn-info text-white active">
-                                            <input type="radio" name="sub" value="less 10kgs"
-                                                   @click="setSub('less 10kgs')" checked>
-                                            <strong> less 10kgs</strong>
-                                        </label>
-                                        <label class="btn btn-info text-white">
-                                            <input type="radio" name="sub" value="above 10kgs"
-                                                   @click="setSub('above 10kgs')">
-                                            <strong> above 10kgs</strong>
-                                        </label>
+                                    <label>Weight (kg.)</label>
+                                    <div class="input-group" @click="mapDropOff">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-user-circle"></i></div>
+                                        </div>
+                                        <input type="number" name="weight" class="form-control" placeholder="Drop-Off">
                                     </div>
                                 </div>
                                 <div class="col-md-12" v-if="form.service == 'pabili'">
-                                    <div class="btn-group btn-group-toggle btn-block" data-toggle="buttons">
-                                        <label class="btn btn-info text-white active">
-                                            <input type="radio" name="sub" value="less 1k"
-                                                   @click="setSub('lessk 1k')" checked>
-                                            <strong> less 1k</strong>
-                                        </label>
-                                        <label class="btn btn-info text-white">
-                                            <input type="radio" name="sub" value="above 1k"
-                                                   @click="setSub('above 1k')">
-                                            <strong> above 1k</strong>
-                                        </label>
+                                    <label>Budget</label>
+                                    <div class="input-group" @click="mapDropOff">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-user-circle"></i></div>
+                                        </div>
+                                        <input type="text" name="budget" class="form-control" placeholder="Drop-Off">
                                     </div>
                                 </div>
                                 <div class="col-md-12" v-if="form.service == 'pa-grocery'">
-                                    <div class="btn-group btn-group-toggle btn-block" data-toggle="buttons">
-                                        <label class="btn btn-info text-white active">
-                                            <input type="radio" name="sub" value="less 2k"
-                                                   @click="setSub('less 2k')" checked>
-                                            <strong> less 2k</strong>
-                                        </label>
-                                        <label class="btn btn-info text-white">
-                                            <input type="radio" name="sub" value="above 2k"
-                                                   @click="setSub('above 2k')">
-                                            <strong> above 2k</strong>
-                                        </label>
+                                    <label>Budget</label>
+                                    <div class="input-group" @click="mapDropOff">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fa fa-user-circle"></i></div>
+                                        </div>
+                                        <input type="text" name="budget" class="form-control" placeholder="Drop-Off">
                                     </div>
                                 </div>
                             </div>
@@ -108,7 +93,7 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fa fa-user-circle"></i></div>
                                         </div>
-                                        <input type="text" v-model="form.pu.name" class="form-control"
+                                        <input type="text" v-model="form.pu.name" name="pick_up" class="form-control"
                                                placeholder="Pick-Up">
                                     </div>
                                 </div>
@@ -118,7 +103,7 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text"><i class="fa fa-user-circle"></i></div>
                                         </div>
-                                        <input type="text" v-model="form.dp.name" class="form-control"
+                                        <input type="text" v-model="form.dp.name" name="drop_off" class="form-control"
                                                placeholder="Drop-Off">
                                     </div>
                                 </div>
@@ -130,7 +115,7 @@
                                            v-model="form.schedule_pickup">
                                 </div>
                                 <div class="col-sm-6">
-                                    <label>Amount</label>
+                                    <label>Delivery Feed</label>
                                     <input type="number" name="amount" class="form-control">
                                 </div>
                             </div>

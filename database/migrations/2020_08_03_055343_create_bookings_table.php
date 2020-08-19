@@ -23,10 +23,15 @@ class CreateBookingsTable extends Migration
             $table->string('status', 200)->nullable();
             $table->string('vehicle', 200)->nullable();
             $table->text('note')->nullable();
+            $table->text('exact_address')->nullable();
+            $table->string('receiver_name', 200)->nullable();
+            $table->string('receiver_phone', 200)->nullable();
             $table->dateTime('schedule')->nullable();
             $table->text('pick_up')->nullable();
             $table->text('drop_off')->nullable();
             $table->float('amount')->nullable();
+            $table->float('budget')->nullable();
+            $table->float('weight')->nullable();
             $table->float('distance')->nullable();
             $table->timestamps();
         });

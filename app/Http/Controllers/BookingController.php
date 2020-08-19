@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Booking;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\PubNub\PubNubConnect;
 
@@ -17,7 +18,7 @@ class BookingController extends Controller
                 'service'         => 'padala',
                 'vehicle'         => 'motorcycle',
                 'sub'             => '',
-                'schedule_pickup' => '',
+                'schedule_pickup' => Carbon::now(),
                 'dp'              => ['name' => '', 'lat' => '0', 'lng' => '0'],
                 'pu'              => ['name' => '', 'lat' => '0', 'lng' => '0'],
                 'kilometers'      => '',
@@ -44,6 +45,8 @@ class BookingController extends Controller
             "pick_up"     => $request->get("pick_up"),
             "drop_off"    => $request->get("drop_off"),
             "amount"      => $request->get("amount"),
+            "weight"      => $request->get("weight"),
+            "budget"      => $request->get("budget"),
             "ref_no"      => hash('adler32', $request->get("schedule")),
         ]);
 

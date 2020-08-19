@@ -17,6 +17,8 @@ class Booking extends Model
         "customer_id",
         "status",
         "ref_no",
+        "weight",
+        "budget",
     ];
 
     public function customer()
