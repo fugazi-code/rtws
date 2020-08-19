@@ -10,18 +10,20 @@ class BookingController extends Controller
 {
     public function index()
     {
-        $form = [
-            'service'         => 'padala',
-            'vehicle'         => 'motorcycle',
-            'sub'             => '',
-            'schedule_pickup' => '',
-            'dp'              => ['name' => '', 'lat' => '0', 'lng' => '0'],
-            'pu'              => ['name' => '', 'lat' => '0', 'lng' => '0'],
-            'kilometers'      => '',
-            'setup'           => null,
-        ];
-
-        $form = ! session()->exists('form') ?: session('form');
+        if (session()->exists('form')) {
+            $form = session('form');
+        } else {
+            $form = [
+                'service'         => 'padala',
+                'vehicle'         => 'motorcycle',
+                'sub'             => '',
+                'schedule_pickup' => '',
+                'dp'              => ['name' => '', 'lat' => '0', 'lng' => '0'],
+                'pu'              => ['name' => '', 'lat' => '0', 'lng' => '0'],
+                'kilometers'      => '',
+                'setup'           => null,
+            ];
+        }
 
         return view('booking', ['page_name' => 'Book Now', 'form' => collect($form)]);
     }
