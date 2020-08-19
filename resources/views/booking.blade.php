@@ -101,12 +101,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label>Schedule Pick-Up</label>
-                                    <input type="datetime-local" name="schedule" class="form-control"
-                                           v-model="form.schedule_pickup">
-                                </div>
+                            <div class="row mt-3">
                                 <div class="col-md-12">
                                     <label>Pick-Up</label>
                                     <div class="input-group" @click="mapPickUp">
@@ -128,8 +123,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-4">
+                            <div class="row mt-3">
+                                <div class="col-xs-6">
+                                    <label>Schedule Pick-Up</label>
+                                    <input type="datetime-local" name="schedule" class="form-control"
+                                           v-model="form.schedule_pickup">
+                                </div>
+                                <div class="col-xs-6">
                                     <label>Amount</label>
                                     <input type="number" name="amount" class="form-control">
                                 </div>
