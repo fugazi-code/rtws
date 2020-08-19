@@ -39,8 +39,9 @@
         // Start adding controls as follow... L.controlName().addTo(map);
 
         // Control 1: This add the OpenStreetMap background tile
-        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png?title=true&access_token={accessToken}', {
+        L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/512/{z}/{x}/{y}?title=true&access_token={accessToken}', {
             attribution: '',
+            maxZoom: 20,
             accessToken: 'pk.eyJ1IjoicmVuaWVyLXRyZW51ZWxhIiwiYSI6ImNrZHhya2l3aTE3OG0ycnBpOWxlYjV3czUifQ.4hVvT7_fiVshoSa9P3uAew',
         }).addTo(map);
 
