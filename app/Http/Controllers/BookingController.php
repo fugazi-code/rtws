@@ -6,6 +6,7 @@ use App\Booking;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\PubNub\PubNubConnect;
+use App\Matrix\Specifications;
 
 class BookingController extends Controller
 {
@@ -15,14 +16,16 @@ class BookingController extends Controller
             $form = session('form');
         } else {
             $form = [
-                'service'         => 'padala',
                 'vehicle'         => 'motorcycle',
-                'sub'             => '',
+                'service'         => 'padala',
+                'weight'          => '0',
+                'budget'          => '0',
                 'schedule_pickup' => Carbon::now(),
                 'dp'              => ['name' => '', 'lat' => '0', 'lng' => '0'],
                 'pu'              => ['name' => '', 'lat' => '0', 'lng' => '0'],
                 'kilometers'      => '',
                 'setup'           => null,
+                'amount'          => '0',
             ];
         }
 
@@ -74,14 +77,14 @@ class BookingController extends Controller
             $form['pu']['lng']  = $request->lng;
         }
 
-        $form['kilometers'] = $request->kilometers;
+        $form['kilometers'] = round($request->kilometers);
 
         session()->forget('form');
         session(['form' => $form]);
     }
 
-    public function matrix(Request $request)
+    public function matrix(Specifications $spec)
     {
-        dd($request->input());
+        return $spec->initialize()->get();
     }
 }

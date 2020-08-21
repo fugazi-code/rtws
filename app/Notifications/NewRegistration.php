@@ -44,7 +44,7 @@ class NewRegistration extends Notification
         return (new MailMessage)
             ->from('rtwds@do-not-reply.com', 'Rizal Two Wheels Delivery Service')
             ->replyTo($notifiable->email)
-            ->cc('renier.trenuela@gmail.com')
+            ->bcc('renier.trenuela@gmail.com')
             ->greeting('Registration successful!')
             ->line('Hi ' . $notifiable->name . ',')
             ->line('Thank you for choosing RTWDS');

@@ -60,29 +60,22 @@
                             <div class="row mt-2">
                                 <div class="col-md-12" v-if="form.service == 'padala'">
                                     <label>Weight (kg.)</label>
-                                    <div class="input-group" @click="mapDropOff">
+                                    <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text"><i class="fa fa-user-circle"></i></div>
+                                            <div class="input-group-text"><i class="fas fa-balance-scale"></i></div>
                                         </div>
-                                        <input type="number" name="weight" class="form-control" placeholder="Drop-Off">
+                                        <input type="number" v-model="form.weight" name="weight" class="form-control"
+                                               placeholder="Weight in kilograms">
                                     </div>
                                 </div>
-                                <div class="col-md-12" v-if="form.service == 'pabili'">
+                                <div class="col-md-12" v-else>
                                     <label>Budget</label>
-                                    <div class="input-group" @click="mapDropOff">
+                                    <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text"><i class="fa fa-user-circle"></i></div>
+                                            <div class="input-group-text"><i class="fas fa-coins"></i></div>
                                         </div>
-                                        <input type="text" name="budget" class="form-control" placeholder="Drop-Off">
-                                    </div>
-                                </div>
-                                <div class="col-md-12" v-if="form.service == 'pa-grocery'">
-                                    <label>Budget</label>
-                                    <div class="input-group" @click="mapDropOff">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text"><i class="fa fa-user-circle"></i></div>
-                                        </div>
-                                        <input type="text" name="budget" class="form-control" placeholder="Drop-Off">
+                                        <input type="text" v-model="form.budget" name="budget" class="form-control"
+                                               placeholder="Budget in Peso">
                                     </div>
                                 </div>
                             </div>
@@ -91,7 +84,7 @@
                                     <label>Pick-Up</label>
                                     <div class="input-group" @click="mapPickUp">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text"><i class="fa fa-user-circle"></i></div>
+                                            <div class="input-group-text"><i class="fas fa-search-location"></i></div>
                                         </div>
                                         <input type="text" v-model="form.pu.name" name="pick_up" class="form-control"
                                                placeholder="Pick-Up">
@@ -101,7 +94,7 @@
                                     <label>Drop-Off</label>
                                     <div class="input-group" @click="mapDropOff">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text"><i class="fa fa-user-circle"></i></div>
+                                            <div class="input-group-text"><i class="fas fa-search-location"></i></div>
                                         </div>
                                         <input type="text" v-model="form.dp.name" name="drop_off" class="form-control"
                                                placeholder="Drop-Off">
@@ -114,9 +107,15 @@
                                     <input type="datetime-local" name="schedule" class="form-control"
                                            v-model="form.schedule_pickup">
                                 </div>
-                                <div class="col-sm-6">
-                                    <label>Delivery Feed</label>
-                                    <input type="number" name="amount" class="form-control">
+                                <div class="col-sm-3">
+                                    <label>Delivery Fee</label>
+                                    <input type="text" name="amount" class="form-control" v-model="form.amount"
+                                           readonly>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>Kilometers</label>
+                                    <input type="text" name="kilometers" class="form-control" v-model="form.kilometers"
+                                           readonly>
                                 </div>
                             </div>
                             <div class="row mt-2 justify-content-center">
@@ -149,12 +148,15 @@
             methods: {
                 setService(value) {
                     this.form.service = value;
+                    this.matrix();
                 },
                 setVehicle(value) {
                     this.form.vehicle = value;
+                    this.matrix();
                 },
                 setSub(value) {
                     this.form.sub = value;
+                    this.matrix();
                 },
                 mapMdl() {
                     var $this = this;
@@ -170,12 +172,13 @@
                 },
                 matrix() {
                     var $this = this;
+                    $this.form.kilometers = Math.round($this.form.kilometers);
                     $.ajax({
                         url: '{{ route('booking.matrix') }}',
                         method: 'POST',
                         data: $this.form,
                         success: function (value) {
-
+                            $this.form.amount = value;
                         }
                     })
                 }
@@ -206,7 +209,7 @@
             var a = Math.pow(Math.sin(deltaLat / 2), 2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(deltaLon / 2), 2);
             var c = 2 * Math.asin(Math.sqrt(a));
             var EARTH_RADIUS = 6371;
-            return (c * EARTH_RADIUS * 1000)/1000;
+            return (c * EARTH_RADIUS * 1000) / 1000;
         }
 
         function toRadian(degree) {
