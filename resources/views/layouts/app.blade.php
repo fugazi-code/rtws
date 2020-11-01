@@ -7,7 +7,7 @@
     <meta content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no' name='viewport'/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>
-        RTWS
+        {{ env('APP_NAME') }}
     </title>
 
     <!-- CSS only -->

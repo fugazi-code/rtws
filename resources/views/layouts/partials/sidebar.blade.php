@@ -4,7 +4,7 @@
   -->
     <div class="logo">
         <a href="/" class="simple-text logo-mini">
-            RTWS
+            {{ env('APP_NAME') }}
         </a>
 {{--        <a href="#" class="simple-text logo-normal" style="font-size: 9px;">--}}
 {{--            Rizal Two Wheels Delivery Service--}}

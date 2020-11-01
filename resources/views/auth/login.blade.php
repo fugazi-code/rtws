@@ -9,7 +9,7 @@
     <div class="row justify-content-center mt-5">
         <div class="col-md-8">
             <div class="card login-form">
-                <div class="card-header">{{ __('RTWS | Sign In') }}</div>
+                <div class="card-header">{{ __('BROOM EXPRESS | Sign In') }}</div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
