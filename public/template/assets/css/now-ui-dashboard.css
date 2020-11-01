@@ -1298,8 +1298,8 @@ fieldset[disabled] .btn-link.active {
 }
 
 .form-control {
-  background-color: transparent;
-  border: 1px solid #E3E3E3;
+  background-color: var(--white);
+  border: 1px solid var(--gray-dark);
   border-radius: 30px;
   color: #2c2c2c;
   line-height: normal;
