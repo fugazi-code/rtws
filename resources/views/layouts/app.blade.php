@@ -114,11 +114,11 @@
         </div>
     </div>
     @else
-        <!-- <body style="background-image: url('/img/login-bg.jpeg'); background-size: cover; background-repeat: no-repeat"> -->
-        <body style="background-color: gold;">
+        <body style="background-image: url('/img/logo.png'); background-size: cover; background-repeat: no-repeat opacity:0.4;">
+       <!--  <body style="background-image: url(/img/logo.png);" style="width: 35px;"> --> 
 
         <div class="wrapper">
-             <!-- <center><img src="img/logo.png" style="height:75px; width:170px; margin-top: 60px; margin-bottom: -35px;"></center> -->
+           <!--   <center><img src="img/logo.png" style="height:75px; width:170px; margin-top: 60px; margin-bottom: -35px;"></center> -->
             @yield('content')
         </div>
         @endisset

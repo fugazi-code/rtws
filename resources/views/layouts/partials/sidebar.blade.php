@@ -1,4 +1,4 @@
-<div class="sidebar" data-color="blue">
+<div class="sidebar" data-color="yellow">
     <!--
       Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
   -->
@@ -7,7 +7,7 @@
             {{ env('APP_NAME') }}
         </a>
 {{--        <a href="#" class="simple-text logo-normal" style="font-size: 9px;">--}}
-{{--            Rizal Two Wheels Delivery Service--}}
+{{--            Broom Express --}}
 {{--        </a>--}}
     </div>
     <div class="sidebar-wrapper" id="sidebar-wrapper">
