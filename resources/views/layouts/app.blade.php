@@ -118,7 +118,7 @@
         <body style="background-color: #ffff00">
 
         <div class="wrapper">
-             <center><img src="img/logo.png" style="height:75px; width:170px; margin-top: 90px; margin-bottom: -35px;"></center>
+             <center><img src="img/logo.png" style="height:75px; width:170px; margin-top: 60px; margin-bottom: -35px;"></center>
             @yield('content')
         </div>
         @endisset

@@ -536,7 +536,7 @@ fieldset[disabled] .navbar .navbar-nav>a.btn.active {
 }
 
 .btn-primary {
-  background-color: #f96332;
+  background-color: #6610f2;
   color: #FFFFFF;
 }
 
@@ -1299,7 +1299,7 @@ fieldset[disabled] .btn-link.active {
 
 .form-control {
   background-color: var(--white);
-  border: 1px solid var(--gray-dark);
+  border: 1px solid black;
   border-radius: 30px;
   color: #2c2c2c;
   line-height: normal;
@@ -4185,7 +4185,7 @@ Created using IcoMoon - icomoon.io
   background: #141E30;
   /* fallback for old browsers */
   background: -webkit-gradient(linear, left top, right top, from(#0c2646), color-stop(60%, #204065), to(#2a5788));
-  background: linear-gradient(to right, #0c2646 0%, #204065 60%, #2a5788 100%);
+  background-color: #ffff00;
   position: relative;
   overflow: hidden;
 }
@@ -5285,7 +5285,7 @@ Created using IcoMoon - icomoon.io
     width: 22px;
     height: 1px;
     border-radius: 1px;
-    background: #FFFFFF;
+    background: #343a40;
   }
 
   .navbar-toggler-bar+.navbar-toggler-bar {

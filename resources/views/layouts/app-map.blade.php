@@ -8,7 +8,7 @@
           name='viewport'/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>
-        RTWS
+        BEX
     </title>
 
     <!-- CSS only -->
