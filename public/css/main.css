@@ -7,9 +7,10 @@
     color: #1f1b1b !important;
 }
 
-
 .sidebar[data-color="blue"]:after, .off-canvas-sidebar[data-color="blue"]:after  {
     background: #aa41f9 !important;
 }
 
-   
+.bg-green {
+    background-color: #1e7e34;
+}

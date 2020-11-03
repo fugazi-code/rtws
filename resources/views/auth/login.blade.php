@@ -75,6 +75,14 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-12">
+        </div>
+        <div class="col-md-auto">
+            <a target="_blank" href="{{ asset('apk/broomexp.apk') }}" class="btn btn-lg bg-green">
+                <i class="fab fa-android"></i>
+                Download our App for Android
+            </a>
+        </div>
     </div>
 </div>
 @endsection

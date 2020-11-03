@@ -4,10 +4,10 @@
     <!--suppress ALL -->
     <div class="row">
         <div class="col-md-12">
-            <div id="map" style="width: 100vw; height: 95vh"></div>
+            <button type="button" class="btn btn-block btn-primary" onclick="confirmLocation()">Confirm</button>
         </div>
         <div class="col-md-12">
-            <button type="button" class="btn btn-block btn-primary" onclick="confirmLocation()">Confirm</button>
+            <div id="map" style="width: 100vw; height: 95vh"></div>
         </div>
     </div>
 @endsection
