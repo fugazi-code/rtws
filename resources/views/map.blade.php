@@ -54,16 +54,24 @@
 
         var results = new L.LayerGroup().addTo(map);
 
-        var name = null, latlng = null;
+        var name = null, latlng = null, marker = null;
         searchControl.on('results', function (data) {
             results.clearLayers();
+            console.log(data);
             for (var i = data.results.length - 1; i >= 0; i--) {
-                console.log(data.results[i]);
                 name = data.results[i].text;
                 latlng = data.results[i].latlng;
-                results.addLayer(L.marker(data.results[i].latlng));
+                marker = L.marker(data.results[i].latlng, {
+                    draggable: true
+                });
+                results.addLayer(marker);
             }
+            marker.on('dragend', function (e) {
+                latlng = marker.getLatLng();
+                console.log(latlng);
+            });
         });
+
 
         function confirmLocation() {
             $.ajax({
@@ -77,7 +85,7 @@
                 success: function (value) {
                     window.location = '{{ route('booking') }}';
                 }
-            })
+            });
         }
     </script>
 @endsection
