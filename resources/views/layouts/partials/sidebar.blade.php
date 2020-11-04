@@ -18,7 +18,7 @@
                     <p>My Profile</p>
                 </a>
             </li>
-            @canany(['customer'])
+            @canany(['customer', 'superadmin'])
                 <li class="{{ $page_name != 'Book Now'?: 'active' }}">
                     <a href="{{ route('booking') }}">
                         <i class="now-ui-icons shopping_box"></i>
@@ -44,7 +44,7 @@
 {{--                    </a>--}}
 {{--                </li>--}}
             @endcan
-            @canany(['rider','customer'])
+            @canany(['rider','customer', 'superadmin'])
 {{--                <li class="{{ $page_name != 'Settings'?: 'active' }}">--}}
 {{--                    <a href="{{ route('settings') }}">--}}
 {{--                        <i class="now-ui-icons loader_gear"></i>--}}
@@ -52,7 +52,7 @@
 {{--                    </a>--}}
 {{--                </li>--}}
             @endcan
-            @canany(['rider'])
+            @canany(['rider', 'superadmin'])
                 <li class="{{ $page_name != 'Delivery'?: 'active' }}">
                     <a href="{{ route('delivery') }}">
                         <i class="now-ui-icons sport_user-run"></i>

@@ -77,7 +77,7 @@
         </div>
         <div class="col-md-12">
         </div>
-        <div class="col-md-auto">
+        <div class="col-md-auto col-md-12">
             <a href="{{ asset('apk/broomexp.apk') }}" class="btn btn-lg bg-green">
                 <i class="fab fa-android"></i>
                 Download our App for Android
