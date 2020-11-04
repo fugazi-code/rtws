@@ -75,6 +75,9 @@
         }).on('select', function (ev) {
             latlng = ev.latlng;
             name = ev.feature.innerText
+            if (marker != undefined) {
+                map.removeLayer(marker);
+            };
             marker = L.marker(ev.latlng, {
                 draggable: true
             }).addTo(map);
