@@ -73,6 +73,47 @@ class Specifications
             }
         }
 
+        if ($this->vehicle == 'car') {
+            if ($this->service == 'padala') {
+                if ($this->weight <= 5) {
+                    $this->fee         = 9;
+                    $this->initial_fee = 70;
+                }
+                if ($this->weight <= 10 && $this->weight > 5) {
+                    $this->fee         = 10;
+                    $this->initial_fee = 80;
+                }
+                if ($this->weight <= 20 && $this->weight > 10) {
+                    $this->fee         = 11;
+                    $this->initial_fee = 90;
+                }
+                if ($this->weight > 20) {
+                    $this->fee         = 11;
+                    $this->initial_fee = 110;
+                }
+            }
+            if ($this->service == 'pabili') {
+                $this->fee = 13;
+                if ($this->budget < 1500) {
+                    $this->initial_fee = 100;
+                }
+                if ($this->budget > 1501) {
+                    $this->initial_fee = 120;
+                }
+            }
+            if ($this->service == 'pa-grocery') {
+                $this->fee = 16;
+                if ($this->budget < 1500) {
+                    $this->initial_fee = 200;
+                }
+                if ($this->budget <= 3000 && $this->budget > 1500) {
+                    $this->initial_fee = 250;
+                }
+                if ($this->budget > 3000) {
+                    $this->initial_fee = 300;
+                }
+            }
+        }
         return $this;
     }
 
