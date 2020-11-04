@@ -114,7 +114,7 @@
         </div>
     </div>
     @else
-        <body style="background-image: url('/img/logo.png'); background-size: cover; background-repeat: no-repeat opacity:0.4;">
+        <body style="background-image: url('/img/logo1.png'); background-size: contain; background-repeat: no-repeat; background-color: #ffff99; background-position: center;">
        <!--  <body style="background-image: url(/img/logo.png);" style="width: 35px;"> --> 
 
         <div class="wrapper">
