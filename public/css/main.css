@@ -14,3 +14,7 @@
 .bg-green {
     background-color: #1e7e34;
 }
+
+.form-control {
+    border: 1px solid #0000001a;
+}
