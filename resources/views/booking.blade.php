@@ -57,28 +57,6 @@
                                 </div>
                             </div>
                             {{--                            SUB-CATEG--}}
-                            <div class="row mt-2">
-                                <div class="col-md-12" v-if="form.service == 'padala'">
-                                    <label>Weight (kg.)</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text"><i class="fas fa-balance-scale"></i></div>
-                                        </div>
-                                        <input type="number" v-model="form.weight" name="weight" class="form-control"
-                                               placeholder="Weight in kilograms">
-                                    </div>
-                                </div>
-                                <div class="col-md-12" v-else>
-                                    <label>Budget</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text"><i class="fas fa-coins"></i></div>
-                                        </div>
-                                        <input type="text" v-model="form.budget" name="budget" class="form-control"
-                                               placeholder="Budget in Peso">
-                                    </div>
-                                </div>
-                            </div>
                             <div class="row mt-3">
                                 <div class="col-md-12">
                                     <label>Pick-Up</label>
@@ -101,7 +79,29 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mt-3">
+                            <div class="row mt-2">
+                                <div class="col-md-12" v-if="form.service == 'padala'">
+                                    <label>Weight (kg.)</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fas fa-balance-scale"></i></div>
+                                        </div>
+                                        <input type="number" v-model="form.weight" name="weight" class="form-control"
+                                               placeholder="Weight in kilograms" @keyup="matrix()">
+                                    </div>
+                                </div>
+                                <div class="col-md-12" v-else>
+                                    <label>Budget</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fas fa-coins"></i></div>
+                                        </div>
+                                        <input type="text" v-model="form.budget" name="budget" class="form-control"
+                                               placeholder="Budget in Peso">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
                                 <div class="col-sm-6">
                                     <label>Schedule Pick-Up</label>
                                     <input type="datetime-local" name="schedule" class="form-control"

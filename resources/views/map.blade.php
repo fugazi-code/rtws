@@ -78,17 +78,18 @@
             if (marker != undefined) {
                 map.removeLayer(marker);
             };
+
             marker = L.marker(ev.latlng, {
                 draggable: true
             }).addTo(map);
 
-            map.setZoom(16);
-
             marker.on('dragend', function (event) {
                 var position = marker.getLatLng();
                 latlng = marker.getLatLng();
-                name = marker.getLatLng()
+                name = marker.getLatLng();
             });
+
+            map.setView(ev.latlng, 16);
         }).addTo(map);
 
         function confirmLocation() {
