@@ -21,7 +21,7 @@ class AccountsController extends Controller
 
     public function fetch()
     {
-        return DataTables::of(User::all())->make(true);
+        return DataTables::of(User::query()->whereNotIn('role', ['superadmin']))->make(true);
     }
 
     public function signup()
