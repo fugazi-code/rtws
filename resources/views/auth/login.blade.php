@@ -99,10 +99,5 @@
 
 @section('scripts')
     <script>
-        $(document).ready(function () {
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                $('#btn-dl').attr('hidden', 'hidden');
-            }
-        });
     </script>
 @endsection
