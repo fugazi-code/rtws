@@ -100,9 +100,8 @@
 @section('scripts')
     <script>
         $(document).ready(function () {
-            $('#btn-dl').attr('hidden', 'hidden');
             if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                $('#btn-dl').removeAttr('hidden', 'hidden');
+                $('#btn-dl').attr('hidden', 'hidden');
             }
         });
     </script>
