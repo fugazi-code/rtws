@@ -37,7 +37,7 @@
             margin: -75px 0 0 -75px;
             border: 16px solid #f3f3f3;
             border-radius: 50%;
-            border-top: 16px solid #3498db;
+            border-top: 16px solid var(--yellow);
             width: 120px;
             height: 120px;
             -webkit-animation: spin 2s linear infinite;
@@ -114,7 +114,7 @@
         </div>
     </div>
     @else
-        <body style="background-image: url('/img/logo.png'); background-size: cover; background-repeat: no-repeat opacity:0.4;">
+        <body style="background-image: url('/img/logo1.png'); background-size: contain; background-repeat: no-repeat; background-color: #ffff99; background-position: center;">
        <!--  <body style="background-image: url(/img/logo.png);" style="width: 35px;"> --> 
 
         <div class="wrapper">
