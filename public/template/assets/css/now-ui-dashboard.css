@@ -4078,17 +4078,17 @@ Created using IcoMoon - icomoon.io
 
 .sidebar[data-color="orange"]:after,
 .off-canvas-sidebar[data-color="orange"]:after {
-  background: #f96332;
+  background: #f9e432;
 }
 
 .sidebar[data-color="orange"] .nav li.active>a:not([data-toggle="collapse"]),
 .off-canvas-sidebar[data-color="orange"] .nav li.active>a:not([data-toggle="collapse"]) {
-  color: #f96332;
+  color: #f9e432;
 }
 
 .sidebar[data-color="orange"] .nav li.active>a:not([data-toggle="collapse"]) i,
 .off-canvas-sidebar[data-color="orange"] .nav li.active>a:not([data-toggle="collapse"]) i {
-  color: #f96332;
+  color: #f9e432;
 }
 
 .sidebar[data-color="red"]:after,
@@ -5965,7 +5965,7 @@ Created using IcoMoon - icomoon.io
     padding-bottom: 45px;
     background: #141E30;
     background: -webkit-gradient(linear, left top, right top, from(#0c2646), color-stop(60%, #204065), to(#2a5788));
-    background: linear-gradient(to right, #744401 0%, var(--yellow) 60%, #744401 100%);
+    background: linear-gradient(to right, #f9e432 0%, #f9e432 60%, #f9e432 100%);
     position: relative;
     overflow: hidden;
 }
