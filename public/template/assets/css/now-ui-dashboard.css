@@ -2252,7 +2252,7 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
 }
 
 .navbar a:not(.btn):not(.dropdown-item) {
-  color: #FFFFFF;
+  color: var(--dark);
 }
 
 .navbar a.dropdown-item {
