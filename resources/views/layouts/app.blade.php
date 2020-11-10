@@ -114,10 +114,10 @@
         </div>
     </div>
     @else
-        <body style="background-image: url('/img/logo1.png'); background-size: contain; background-repeat: no-repeat; background-color: #ffff99; background-position: center;">
-       <!--  <body style="background-image: url(/img/logo.png);" style="width: 35px;"> --> 
-
-        <div class="wrapper">
+        <body onload="myFunction()" style="background-image: url('/img/logo1.png'); background-size: contain; background-repeat: no-repeat; background-color: #ffff99; background-position: center;">
+       <!--  <body style="background-image: url(/img/logo.png);" style="width: 35px;"> -->
+       <div id="loader"></div>
+        <div class="wrapper animate-bottom" style="display:none;" id="myDiv">
            <!--   <center><img src="img/logo.png" style="height:75px; width:170px; margin-top: 60px; margin-bottom: -35px;"></center> -->
             @yield('content')
         </div>
