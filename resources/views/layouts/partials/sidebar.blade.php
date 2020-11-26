@@ -20,7 +20,7 @@
             </li>
             @canany(['customer', 'superadmin'])
                 <li class="{{ $page_name != 'Book Now'?: 'active' }}">
-                    <a href="{{ route('booking') }}">
+                    <a href="{{ route('book') }}">
                         <i class="now-ui-icons shopping_box"></i>
                         <p>Book Now</p>
                     </a>
@@ -31,26 +31,28 @@
                         <p>Book History</p>
                     </a>
                 </li>
-                <li class="{{ $page_name != 'Manage Drivers'?: 'active' }}">
+                <li class="{{ $page_name != 'Manage Riders'?: 'active' }}">
                     <a href="{{ route('manage.driver') }}">
                         <i class="now-ui-icons shopping_delivery-fast"></i>
                         <p>My Bookings</p>
                     </a>
                 </li>
-{{--                <li class="{{ $page_name != 'Wallet'?: 'active' }}">--}}
-{{--                    <a href="{{ '#' }}">--}}
-{{--                        <i class="now-ui-icons shopping_credit-card"></i>--}}
-{{--                        <p>Wallet</p>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
             @endcan
-            @canany(['rider','customer', 'superadmin'])
-{{--                <li class="{{ $page_name != 'Settings'?: 'active' }}">--}}
-{{--                    <a href="{{ route('settings') }}">--}}
-{{--                        <i class="now-ui-icons loader_gear"></i>--}}
-{{--                        <p>Settings</p>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
+            @canany(['rider', 'superadmin'])
+                <li class="{{ $page_name != 'Wallet'?: 'active' }}">
+                    <a href="{{ route('wallet') }}">
+                        <i class="now-ui-icons shopping_credit-card"></i>
+                        <p>Wallet</p>
+                    </a>
+                </li>
+            @endcan
+            @canany(['customer', 'superadmin'])
+                <li class="{{ $page_name != 'Settings'?: 'active' }}">
+                    <a href="{{ route('settings') }}">
+                        <i class="now-ui-icons loader_gear"></i>
+                        <p>Settings</p>
+                    </a>
+                </li>
             @endcan
             @canany(['rider', 'superadmin'])
                 <li class="{{ $page_name != 'Delivery'?: 'active' }}">

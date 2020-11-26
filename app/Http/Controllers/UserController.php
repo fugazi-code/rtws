@@ -20,7 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user', ['page_name' => 'My Profile']);
+        return view('auth.profile');
     }
 
     /**

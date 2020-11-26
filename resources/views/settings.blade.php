@@ -16,9 +16,7 @@
                                     @csrf
                                         <label>Payment Options</label>
                                         <select name="payment_type" class="form-control" v-model="payment_type">
-                                            <option value="gcash">Gcash</option>
-                                            <option value="paymaya">Paymaya</option>
-                                            <option value="bank">Bank</option>
+                                            <option value="gcash" selected>Gcash</option> d
                                         </select>
                                     </div>
                                 </div>
@@ -29,7 +27,7 @@
                                 <button class="button" type="button">Submit</button>
                         </div>
                     </div>
-                            <a href="#">*Invite Friends</a><br> 
+                            <a href="#">*Invite Friends</a><br>
                             <button type="button" class="btn btn-fb"><i class="fab fa-facebook-f"></i></button>
                             <button type="button" class="btn btn-tw"><i class="fab fa-twitter"></i></button>
                             <button type="button" class="btn btn-gplus"><i class="fab fa-google-plus-g"></i></button>

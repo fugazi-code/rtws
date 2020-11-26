@@ -10,7 +10,7 @@ class ManageDriverController extends Controller
 {
     public function index()
     {
-        return view('manage_driver', ['page_name' => 'Manage Driver']);
+        return view('manage_driver', ['page_name' => 'Manage Riders']);
     }
 
     public function fetch()

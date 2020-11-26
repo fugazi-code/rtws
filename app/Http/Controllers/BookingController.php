@@ -29,7 +29,7 @@ class BookingController extends Controller
             ];
         }
 
-        return view('booking', ['page_name' => 'Book Now', 'form' => collect($form)]);
+        return view('auth.book_now', ['form' => collect($form)]);
     }
 
     public function store(Request $request)
@@ -60,7 +60,7 @@ class BookingController extends Controller
     {
         session(['form' => $request->input()]);
 
-        return view('map', ['form' => collect(session('form'))]);
+        return view('auth.map', ['form' => collect(session('form'))]);
     }
 
     public function locationStore(Request $request)

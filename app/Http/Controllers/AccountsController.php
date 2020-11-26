@@ -16,7 +16,7 @@ class AccountsController extends Controller
 {
     public function index()
     {
-        return view('accounts', ['page_name' => 'User Accounts']);
+        return view('auth.accounts');
     }
 
     public function fetch()
@@ -24,9 +24,9 @@ class AccountsController extends Controller
         return DataTables::of(User::query()->whereNotIn('role', ['superadmin']))->make(true);
     }
 
-    public function signup()
+    public function signUp()
     {
-        return view('account-signup', ['page_name' => 'Sign Up']);
+        return view('auth.accounts_add');
     }
 
     public function store(AccountStoreRequest $request, User $user, Gallery $gallery)
@@ -55,7 +55,7 @@ class AccountsController extends Controller
         $gallery = Gallery::query()->where('user_id', $id)->get();
         $user    = User::query()->where('id', $id)->get()[0];
 
-        return view('account-edit', ['page_name' => 'Edit User', 'gallery' => $gallery, 'user' => $user]);
+        return view('auth.accounts_edit', ['gallery' => $gallery, 'user' => $user]);
     }
 
     public function update(AccountUpdateRequest $request, $id)

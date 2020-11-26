@@ -15,13 +15,11 @@ class SettingsController extends Controller
     public function settings(Request $request)
     {
         Settings::create([
-           
-            "id" => auth()->id(),
-            "payment_type"=> $request->get("payment_type"),
-            
+            "id"           => auth()->id(),
+            "payment_type" => $request->get("payment_type"),
         ]);
 
-        return redirect()->back()->with('success', 'Payment options has been submitted!');
+        return redirect()->back()->with('success', 'Payment options has been updated!');
     }
 }
 

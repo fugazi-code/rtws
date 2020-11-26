@@ -1,8 +1,11 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+//font-awesome
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
+//coreui
+@import "~@coreui/coreui/scss/coreui";
+
+//coreui
+@import "~@coreui/chartjs/dist/css/coreui-chartjs.css";
 
 // Variables
 @import 'variables';
-
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';

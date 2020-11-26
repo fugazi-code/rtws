@@ -39,7 +39,6 @@
                                     </div>
                                 </div>
                             </form>
-                            </p>
                             <p class="description">
                                 {{ auth()->user()->email }} <br>
                                 {{ auth()->user()->contact }} <br>

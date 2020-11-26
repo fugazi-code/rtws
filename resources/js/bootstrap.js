@@ -25,6 +25,13 @@ window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+window.Vue = require('vue');
+
+require('@coreui/coreui/dist/js/coreui.bundle.min');
+require('@coreui/icons/js/svgxuse.min');
+require('@coreui/utils/dist/coreui-utils');
+window.Chart = require('@coreui/chartjs/dist/js/coreui-chartjs.bundle');
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -38,3 +45,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     host: window.location.hostname + ':6001',
 // });
 
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});

@@ -18,3 +18,11 @@
 .form-control {
     border: 1px solid #0000001a;
 }
+
+.sidebar .nav i, .off-canvas-sidebar .nav i {
+    color: rgb(0 0 0);
+}
+
+.sidebar .nav li>a, .off-canvas-sidebar .nav li>a {
+    color: #000000;
+}
