@@ -3,5 +3,5 @@
 use App\Http\Controllers\WalletController;
 
 Route::get('/wallet', [WalletController::class, 'index'])->name('wallet');
-Route::post('/wallet/pay', [WalletController::class, 'pay'])->name('wallet.pay');
-Route::get('/wallet/redirect', [WalletController::class, 'redirect'])->name('wallet.redirect');
+Route::get('/wallet/top-up', [WalletController::class, 'formTopUp'])->name('wallet.top-up');
+Route::post('/wallet/top-up/send', [WalletController::class, 'sendTopUp'])->name('wallet.top-up.send');
