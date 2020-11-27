@@ -28,8 +28,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/u/p', [UserController::class, 'profilePicUpload'])->name('profile.pic.upload');
     Route::post('/u/c/p', [UserController::class, 'changePassword'])->name('profile.change.pass');
 
-    Route::get('/d', [DeliveryController::class, 'index'])->name('delivery');
-
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
     Route::get('/settings/set/payment', [SettingsController::class, 'payment_type'])->name('settings.blade.php');
 });

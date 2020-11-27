@@ -17,7 +17,7 @@ class DeliveryController extends Controller
      */
     public function index()
     {
-        return view('delivery', ['page_name' => 'Delivery']);
+        return view('auth.delivery');
     }
 
     /**
@@ -56,7 +56,7 @@ class DeliveryController extends Controller
 
     /***
      * Completes a Booking.
-     * 
+     *
      * @param $id
      * @return mixed
      */
