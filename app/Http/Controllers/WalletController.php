@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\TopUp;
 use App\Wallet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use GuzzleHttp\Client;
 use Yajra\DataTables\DataTables;
-use function MongoDB\BSON\toJSON;
+use App\Notifications\TopUpRequest;
+use Illuminate\Support\Facades\Notification;
 
 class WalletController extends Controller
 {
@@ -39,6 +40,9 @@ class WalletController extends Controller
         $wallet_id = $wallet->id();
 
         $topUp->send($request, $path, $wallet_id);
+
+        Notification::route('mail', User::query()->whereIn('role', ['admin', 'superadmin'])->pluck('email'))
+                    ->notify(new TopUpRequest(auth()->user()->name));
 
         return redirect('wallet')->with('success', 'Your Top-Up request has been sent!');
     }

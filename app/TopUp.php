@@ -22,4 +22,14 @@ class TopUp extends Model
     {
         return $this::hasOne('App\User', 'id', 'approved_by');
     }
+
+    public function requestor()
+    {
+        return $this::hasOne('App\User', 'id', 'request_by');
+    }
+
+    public static function countPending()
+    {
+        return (new static())->newQuery()->where('status', 'pending')->count();
+    }
 }

@@ -2,24 +2,25 @@
 
 namespace App\Notifications;
 
-use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewRegistration extends Notification
+class TopUpRequest extends Notification
 {
     use Queueable;
+
+    public $name;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($name)
     {
-        //
+        $this->name = $name;
     }
 
     /**
@@ -43,11 +44,11 @@ class NewRegistration extends Notification
     {
         return (new MailMessage)
             ->from('bex@do-not-reply.com', 'Broom Express')
-            ->replyTo($notifiable->email)
+            ->replyTo($notifiable->routes['mail']->toArray())
             ->bcc('renier.trenuela@gmail.com')
-            ->greeting('Registration successful!')
-            ->line('Hi ' . $notifiable->name . ',')
-            ->line('Thank you for choosing RTWDS');
+            ->greeting('New Top-Up! ' . $this->name)
+            ->line('Hi,')
+            ->line('Top-Up Request made by ' . $this->name);
     }
 
     /**

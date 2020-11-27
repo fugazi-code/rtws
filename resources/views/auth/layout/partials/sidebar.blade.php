@@ -63,11 +63,11 @@
                     </div>
                     User Accounts
                 </a>
-                <a class="c-sidebar-nav-link" href="{{ route('accounts') }}">
+                <a class="c-sidebar-nav-link" href="{{ route('topup.requests') }}">
                     <div class="c-sidebar-nav-icon">
                         <i class="fas fa-coins"></i>
                     </div>
-                    Top-Up Requests <span class="badge badge-info">0</span>
+                    Top-Up Requests <span class="badge badge-info">{{ \App\TopUp::countPending() }}</span>
                 </a>
         @endcan
         <a class="c-sidebar-nav-link" href="index.html">
