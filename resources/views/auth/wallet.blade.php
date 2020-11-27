@@ -14,8 +14,12 @@
                             <div class="jumbotron jumbotron-fluid">
                                 <div class="container">
                                     <h1 class="display-3 text-center">{{ $current }}</h1>
-                                    <p class="lead text-center"><a href="{{ route('wallet.top-up') }}"
-                                                                   class="btn btn-primary">Request Top-up</a></p>
+                                    <p class="lead text-center">
+                                        <a href="{{ route('wallet.top-up') }}"
+                                           class="btn btn-primary btn-square">
+                                            Request Top-up
+                                        </a>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -61,7 +65,8 @@
                         {data: 'amount', name: 'amount', title: 'Amount'},
                         {
                             data: function (value) {
-                                return '<ul id="imgl-' + value.id + '" class="lightgallery list-unstyled row">' +
+                                return '<ul id="imgl-' + value.id + '" class="lightgallery list-unstyled row"' +
+                                    'style="margin-top: -3px; margin-bottom: -1rem;">' +
                                     '<li class="col-xs-6 col-sm-4 col-md-3" data-src="/storage/' + value.receipt + '">' +
                                     '<a href=""  class="btn btn-sm btn-square btn-info">' +
                                     'View' +
