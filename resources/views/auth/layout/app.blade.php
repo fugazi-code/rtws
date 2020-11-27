@@ -63,6 +63,7 @@
     </div>
 </div>
 @include('layouts.partials.notification')
+<script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.21.7.min.js"></script>
 <script src="{{ asset('js/map.js') }}"></script>
 @yield('script')
 </body>
