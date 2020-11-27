@@ -19,6 +19,10 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-12"></div>
+                        <div class="col-md-12">
+                            <table id="top-up-table" class="table table-bordered" width="100%" nowrap></table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -39,6 +43,56 @@
             },
             mounted() {
                 var $this = this;
+
+                $this.dt = $('#top-up-table').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    scrollX: true,
+                    responsive: true,
+                    lengthChange: false,
+                    order: [[3, 'desc']],
+                    pageLength: 5,
+                    ajax: {
+                        url: "{{ route('wallet.table') }}",
+                        method: "POST",
+                    },
+                    columns: [
+                        {data: 'status', name: 'status', title: 'Status'},
+                        {data: 'amount', name: 'amount', title: 'Amount'},
+                        {
+                            data: function (value) {
+                                return '<ul id="imgl-' + value.id + '" class="lightgallery list-unstyled row">' +
+                                    '<li class="col-xs-6 col-sm-4 col-md-3" data-src="/storage/' + value.receipt + '">' +
+                                    '<a href=""  class="btn btn-sm btn-square btn-info">' +
+                                    'View' +
+                                    '</a>' +
+                                    '</li>' +
+                                    '</ul>'
+                            }, name: 'receipt', title: 'Receipt'
+                        },
+                        {
+                            data: function (value) {
+                                if (value.approver != null) {
+                                    return value.approver.name
+                                }
+                                return "N/A"
+                            }, name: 'approver.name', title: 'Approved By'
+                        },
+                        {data: 'created_at', name: 'created_at', title: 'Created At'},
+                    ],
+                    drawCallback: function () {
+                        $('table .btn').on('click', function () {
+                            let data = $(this).parent().parent().parent();
+                            let hold = $this.dt.row(data).data();
+                            $this.overview = hold;
+                            console.log(hold);
+                        });
+
+                        $('.lightgallery').each(function (e, val) {
+                            $('#' + val.id).lightGallery();
+                        });
+                    }
+                });
             }
         })
     </script>

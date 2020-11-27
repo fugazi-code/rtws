@@ -24,22 +24,9 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{{ asset('theme/coreui/src/assets/favicon/ms-icon-144x144.png') }}">
     <meta name="theme-color" content="#ffffff">
+    <link href="{{ asset('vendor/lightgallery/dist/css/lightgallery.css') }}" rel="stylesheet">
     <!-- Main styles for this application-->
     <link href="{{ asset('theme/coreui/src/scss/style.scss') }}" rel="stylesheet">
-    <!-- Global site tag (gtag.js) - Google Analytics-->
-    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        // Shared ID
-        gtag('config', 'UA-118965717-3');
-        // Bootstrap ID
-        gtag('config', 'UA-118965717-5');
-    </script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -65,6 +52,10 @@
 @include('layouts.partials.notification')
 <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.21.7.min.js"></script>
 <script src="{{ asset('js/map.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/picturefill/2.3.1/picturefill.min.js"></script>
+<script src="{{ asset('vendor/lightgallery/dist/js/lightgallery-all.min.js') }}"></script>
+<script src="{{ asset('vendor/lightgallery/lib/jquery.mousewheel.min.js') }}"></script>
+
 @yield('script')
 </body>
 </html>

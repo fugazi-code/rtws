@@ -28,4 +28,9 @@ class Wallet extends Model
     {
         return number_format($this::where('user_id', auth()->user()->id)->get()[0]->current, 2);
     }
+
+    public function id()
+    {
+        return $this::where('user_id', auth()->user()->id)->get()[0]->id;
+    }
 }

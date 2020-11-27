@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\TopUp;
 use App\Wallet;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Yajra\DataTables\DataTables;
+use function MongoDB\BSON\toJSON;
 
 class WalletController extends Controller
 {
@@ -30,8 +33,27 @@ class WalletController extends Controller
         return view('auth.topup_form');
     }
 
-    public function sendTopUp(Request $request, TopUp $topUp)
+    public function sendTopUp(Request $request, TopUp $topUp, Wallet $wallet)
     {
-        dd($request->input());
+        $path      = $request->file('receipt')->store('receipt');
+        $wallet_id = $wallet->id();
+
+        $topUp->send($request, $path, $wallet_id);
+
+        return redirect('wallet')->with('success', 'Your Top-Up request has been sent!');
+    }
+
+    public function table()
+    {
+        $model = TopUp::with(['approver'])->where('request_by', auth()->user()->id)->selectRaw('top_ups.*');
+
+        return DataTables::of($model)
+                         ->setTransformer(function ($value) {
+                             $hold               = $value->toArray();
+                             $hold['created_at'] = Carbon::parse($value->created_at)->format('F j, Y');
+
+                             return $hold;
+                         })
+                         ->make(true);
     }
 }
