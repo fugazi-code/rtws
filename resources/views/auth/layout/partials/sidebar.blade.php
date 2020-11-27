@@ -37,7 +37,7 @@
             </a>
             @endcan
             @canany(['rider', 'superadmin'])
-            <a class="c-sidebar-nav-link" href="index.html">
+            <a class="c-sidebar-nav-link" href="{{ route('delivery.fetch') }}">
                 <div class="c-sidebar-nav-icon">
                     <i class="fas fa-book-reader"></i>
                 </div> Look For Bookings
