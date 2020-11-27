@@ -44,7 +44,7 @@
             </a>
             @endcan
             @canany(['rider', 'superadmin'])
-            <a class="c-sidebar-nav-link" href="index.html">
+            <a class="c-sidebar-nav-link" href="{{ route('wallet') }}">
                 <div class="c-sidebar-nav-icon">
                     <i class="fas fa-wallet"></i>
                 </div> My Wallet

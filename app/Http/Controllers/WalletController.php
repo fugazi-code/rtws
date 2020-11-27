@@ -14,7 +14,7 @@ class WalletController extends Controller
      */
     public function index()
     {
-        return view('wallet', ['page_name' => 'Wallet']);
+        return view('auth.wallet');
     }
 
     /**

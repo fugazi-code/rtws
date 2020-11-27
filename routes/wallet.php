@@ -1,5 +1,6 @@
 <?php
-use \App\Http\Controllers\WalletController;
+
+use App\Http\Controllers\WalletController;
 
 Route::get('/wallet', [WalletController::class, 'index'])->name('wallet');
 Route::post('/wallet/pay', [WalletController::class, 'pay'])->name('wallet.pay');
