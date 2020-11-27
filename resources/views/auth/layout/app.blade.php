@@ -62,6 +62,7 @@
         </footer>
     </div>
 </div>
+@include('layouts.partials.notification')
 <script src="{{ asset('js/map.js') }}"></script>
 @yield('script')
 </body>
