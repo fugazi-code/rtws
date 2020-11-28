@@ -32,4 +32,12 @@ class TopUp extends Model
     {
         return (new static())->newQuery()->where('status', 'pending')->count();
     }
+
+    public function updateStatus($request)
+    {
+        $model         = $this::find($request->id);
+        $model->status = $request->status;
+        $model->approved_by = auth()->id();
+        $model->save();
+    }
 }

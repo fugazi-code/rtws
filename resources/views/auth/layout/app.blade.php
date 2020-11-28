@@ -49,13 +49,12 @@
         </footer>
     </div>
 </div>
-@include('layouts.partials.notification')
+@include('auth.layout.partials.notification')
 <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.21.7.min.js"></script>
 <script src="{{ asset('js/map.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/picturefill/2.3.1/picturefill.min.js"></script>
 <script src="{{ asset('vendor/lightgallery/dist/js/lightgallery-all.min.js') }}"></script>
 <script src="{{ asset('vendor/lightgallery/lib/jquery.mousewheel.min.js') }}"></script>
-
 @yield('script')
 </body>
 </html>

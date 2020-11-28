@@ -19,4 +19,18 @@ class TopUpController extends Controller
 
         return DataTables::of($model)->make(true);
     }
+
+    public function edit($id)
+    {
+        $topup = TopUp::find($id);
+
+        return view('auth.topup_edit', compact('topup'));
+    }
+
+    public function update(Request $request, TopUp $topup)
+    {
+        $topup->updateStatus($request);
+
+        return redirect()->route('topup.requests')->with('success', 'Top-Up update successful!');
+    }
 }

@@ -47,7 +47,12 @@
                         method: "POST",
                     },
                     columns: [
-                        {data: 'status', name: 'status', title: 'Status'},
+                        {data: 'id', name: 'id', title: 'ID'},
+                        {
+                            data: function (value) {
+                                return '<a href="/topup/edit/' + value.id + '" class="btn btn-link">' + value.status + '</a>'
+                            }, name: 'status', title: 'Status'
+                        },
                         {data: 'amount', name: 'amount', title: 'Amount'},
                         {
                             data: function (value) {
