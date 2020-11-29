@@ -33,4 +33,14 @@ class Wallet extends Model
     {
         return $this::where('user_id', auth()->user()->id)->get()[0]->id;
     }
+
+    public function deposit($requester, $value)
+    {
+        return $this::newQuery()->where('user_id', $requester)->increment('current', $value);
+    }
+
+    public function withdraw($requester, $value)
+    {
+        return $this::newQuery()->where('user_id', $requester)->decrement('current', $value);
+    }
 }

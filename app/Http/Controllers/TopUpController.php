@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\TopUp;
+use App\Wallet;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -15,7 +16,7 @@ class TopUpController extends Controller
 
     public function table()
     {
-        $model = TopUp::with(['approver','requestor'])->selectRaw('top_ups.*');
+        $model = TopUp::with(['approver', 'requestor'])->selectRaw('top_ups.*');
 
         return DataTables::of($model)->make(true);
     }
@@ -27,8 +28,20 @@ class TopUpController extends Controller
         return view('auth.topup_edit', compact('topup'));
     }
 
-    public function update(Request $request, TopUp $topup)
+    public function update(Request $request, TopUp $topup, Wallet $wallet)
     {
+        $requester = $topup->getRequester($request->id);
+        $amount    = $topup->getAmount($request->id);
+
+        if (($topup->isStatusApproved($request->id) && $request->status == 'approved')
+            || ($topup->isStatusDenied($request->id) && $request->status == 'denied')) {
+            return redirect()->route('topup.requests')->with('warning', 'Status is the same!');
+        } elseif ($request->status == 'approved') {
+            $wallet->deposit($requester, $amount);
+        } elseif ($topup->isStatusApproved($request->id) && $request->status == 'denied') {
+            $wallet->withdraw($requester, $amount);
+        }
+
         $topup->updateStatus($request);
 
         return redirect()->route('topup.requests')->with('success', 'Top-Up update successful!');

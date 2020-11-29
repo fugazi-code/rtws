@@ -35,9 +35,29 @@ class TopUp extends Model
 
     public function updateStatus($request)
     {
-        $model         = $this::find($request->id);
-        $model->status = $request->status;
+        $model              = $this::find($request->id);
+        $model->status      = $request->status;
         $model->approved_by = auth()->id();
         $model->save();
+    }
+
+    public function isStatusApproved($id)
+    {
+        return $this::newQuery()->where('id', $id)->where('status', 'approved')->count() == 1;
+    }
+
+    public function isStatusDenied($id)
+    {
+        return $this::newQuery()->where('id', $id)->where('status', 'denied')->count() == 1;
+    }
+
+    public function getRequester($id)
+    {
+        return $this::newQuery()->where('id', $id)->pluck('request_by')[0];
+    }
+
+    public function getAmount($id)
+    {
+        return $this::newQuery()->where('id', $id)->pluck('amount')[0];
     }
 }

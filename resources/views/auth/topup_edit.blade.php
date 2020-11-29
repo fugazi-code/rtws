@@ -17,7 +17,6 @@
                                 <div class="form-group">
                                     <label>Status of ID {{ $topup->id }}</label>
                                     <select name="status" class="form-control">
-                                        <option value="pending" @if($topup->status == 'pending') selected @endif>Pending</option>
                                         <option value="approved" @if($topup->status == 'approved') selected @endif>Approved</option>
                                         <option value="denied" @if($topup->status == 'denied') selected @endif>Denied</option>
                                     </select>
