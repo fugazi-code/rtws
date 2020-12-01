@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Booking;
 use Carbon\Carbon;
+use Faker\Factory;
 use Illuminate\Http\Request;
 use App\PubNub\PubNubConnect;
 use App\Matrix\Specifications;
@@ -35,8 +36,11 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         session()->forget('form');
-        $pubnub = new PubNubConnect();
-        $pubnub->message("New Book!");
+        $schedule = $request->get("schedule");
+
+        if (! $schedule) {
+            $schedule = Factory::create()->bankAccountNumber;
+        }
 
         Booking::create([
             "status"      => "pending",
@@ -50,8 +54,11 @@ class BookingController extends Controller
             "amount"      => $request->get("amount"),
             "weight"      => $request->get("weight"),
             "budget"      => $request->get("budget"),
-            "ref_no"      => hash('adler32', $request->get("schedule")),
+            "ref_no"      => strtoupper(hash('adler32', $schedule)),
         ]);
+
+        $pubnub = new PubNubConnect();
+        $pubnub->message("New Book!");
 
         return redirect()->back()->with('success', 'Book has been submitted!');
     }

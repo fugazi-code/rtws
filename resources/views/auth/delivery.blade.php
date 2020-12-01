@@ -75,6 +75,11 @@
                                             </a>
                                         </div>
                                     </div>
+                                    <div class="row mt-3 justify-content-center" v-if="pending.length == 0">
+                                        <div class="col-auto">
+                                            <h3>No Bookings Available.</h3>
+                                        </div>
+                                    </div>
                                 </div>
                                 {{--                                    Yours--}}
                                 <div class="tab-pane" id="yours" role="tabpanel" aria-labelledby="yours-tab">
@@ -116,6 +121,11 @@
                                                class="btn btn-success btn-square">
                                                 <i class="fas fa-check"></i> Done
                                             </a>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3 justify-content-center" v-if="yours.length == 0">
+                                        <div class="col-auto">
+                                            <h3>You haven't pick a booking.</h3>
                                         </div>
                                     </div>
                                 </div>

@@ -13,3 +13,40 @@ html:not([dir=rtl]) .c-sidebar-nav-icon:first-child {
 button, input {
     overflow: auto !important;
 }
+
+.list-group {
+    border-radius: 0 !important;
+}
+
+.c-header-yellow {
+    background-color: #ece155;
+}
+
+.c-header .c-header-toggler {
+    color: rgb(255 255 255) !important;
+    border-color: rgb(255 255 255) !important;
+}
+
+.c-header .c-header-nav .c-header-nav-link, .c-header .c-header-nav .c-header-nav-btn {
+    color: rgb(255 255 255) !important;
+    text-shadow: 0 0 2px #00000029 !important;
+}
+
+.card-header {
+    text-align: center;
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: white;
+    text-shadow: 0 0 1px #0000006b;
+    background-color: #ece154;
+}
+
+.card {
+    border-top: 0 !important;
+    border-radius: 0 !important;
+}
+
+.card-header:first-child {
+    border-radius: 0 !important;
+}
+

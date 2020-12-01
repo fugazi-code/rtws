@@ -20,13 +20,12 @@
                                           class="badge badge-danger">Cancelled</span>
                                     <span v-else class="badge badge-info">@{{ book.status }}</span>
                                 </h5>
-                                <small>@{{ book.created_at }}</small>
+                                <small>Php @{{ book.amount }}</small>
                             </div>
-                            <p class="mb-1">Scheduled pick-up is @{{ book.schedule }}</p>
-                            <p class="mb-1">Amount would be Php@{{ book.amount }}</p>
-                            <p class="mb-1">@{{ book.pick_up }} to @{{ book.drop_off }}</p>
-                            <p v-if="book.rider" class="mb-1">Your rider is @{{ book.rider.name }} / @{{
-                                book.rider.contact }}</p>
+                            <p class="mb-1"><strong>Schedule</strong> @{{ book.schedule }}</p>
+                            <p v-if="book.rider" class="mb-1"><strong>Rider</strong> @{{ book.rider.name }}
+                                (@{{  book.rider.contact }})</p>
+                            <p class="mb-1">@{{ book.pick_up }} <strong>to</strong> @{{ book.drop_off }}</p>
                             <form method="POST" action="{{ route('request.cancel') }}">
                                 @csrf
                                 <p class="mb-1" v-if="book.status == 'pending'">

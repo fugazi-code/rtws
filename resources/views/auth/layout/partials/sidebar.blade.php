@@ -24,14 +24,14 @@
                     Book Now
                 </a>
             @endcan
-            @canany(['customer', 'superadmin'])
-                <a class="c-sidebar-nav-link" href="index.html">
-                    <div class="c-sidebar-nav-icon">
-                        <i class="fas fa-history"></i>
-                    </div>
-                    My History
-                </a>
-            @endcan
+{{--            @canany(['customer', 'superadmin'])--}}
+{{--                <a class="c-sidebar-nav-link" href="index.html">--}}
+{{--                    <div class="c-sidebar-nav-icon">--}}
+{{--                        <i class="fas fa-history"></i>--}}
+{{--                    </div>--}}
+{{--                    My History--}}
+{{--                </a>--}}
+{{--            @endcan--}}
             @canany(['customer', 'superadmin'])
                 <a class="c-sidebar-nav-link" href="{{ route('request.status') }}">
                     <div class="c-sidebar-nav-icon">
