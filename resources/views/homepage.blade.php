@@ -82,7 +82,7 @@
                     <div class="home-thumb">
                          <h1 class="wow fadeInUp" data-wow-delay="0.6s">Broom Express</h1>
                          <p class="wow fadeInUp" data-wow-delay="0.8s">The Broom Express is a local group of company that provides on same day delivery by connecting users with delivery drivers on its mobile and web application.</p>
-                         <a href="https://broomexp.com/" class="wow fadeInUp section-btn btn btn-success smoothScroll" data-wow-delay="1s">Download Our App Now</a>
+                         <a href="https://broomexp.com/" class="wow fadeInUp section-btn btn btn-success smoothScroll" data-wow-delay="1s">Book Now</a>
                     </div>
                </div>
 
