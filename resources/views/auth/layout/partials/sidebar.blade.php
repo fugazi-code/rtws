@@ -9,7 +9,7 @@
     </div>
     <ul class="c-sidebar-nav">
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="/">
+            <a class="c-sidebar-nav-link" href="{{ route('p.index') }}">
                 <div class="c-sidebar-nav-icon">
                     <i class="fas fa-user-circle"></i>
                 </div>

@@ -12,7 +12,6 @@ class BookingController extends Controller
 {
     public function index()
     {
-        dd(Booking::all())
         if (session()->exists('form')) {
             $form = session('form');
         } else {

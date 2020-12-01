@@ -52,7 +52,7 @@
                         </div>
                         <!-- User Information-->
                         <div class="col-md-8 col-auto">
-                            <form method="POST" action="{{ route('index') }}">
+                            <form method="POST" action="{{ route('p.store') }}">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-4">

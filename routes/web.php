@@ -24,7 +24,7 @@ Auth::routes();
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function () {
-    Route::resource('/', 'UserController');
+    Route::resource('/p', 'UserController');
     Route::post('/u/p', [UserController::class, 'profilePicUpload'])->name('profile.pic.upload');
     Route::post('/u/c/p', [UserController::class, 'changePassword'])->name('profile.change.pass');
 
