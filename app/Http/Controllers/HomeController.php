@@ -13,16 +13,18 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // Eto method na ito. Nirerequire ka niya na nakalogin
+        // comment lang para hindi mabasa
+        //$this->middleware('auth');
     }
 
     /**
-     * Show the application dashboard.
+     * Name sa loob ng view func ay galing sa homepage.blade.php
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
     {
-        return view('home');
+        return view('homepage');
     }
 }
