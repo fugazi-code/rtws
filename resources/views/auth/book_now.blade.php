@@ -21,12 +21,12 @@
                                             <div class="form-check form-check-inline mr-1">
                                                 <input class="form-check-input" v-model="form.vehicle"
                                                        id="inline-radio1" type="radio" value="motorcycle"
-                                                       name="inline-radios">
+                                                       name="vehicle">
                                                 <label class="form-check-label" for="inline-radio1">Motorcycle</label>
                                             </div>
                                             <div class="form-check form-check-inline mr-1">
                                                 <input class="form-check-input" v-model="form.vehicle"
-                                                       id="inline-radio2" type="radio" value="car" name="inline-radios">
+                                                       id="inline-radio2" type="radio" value="car" name="vehicle">
                                                 <label class="form-check-label" for="inline-radio2">Car</label>
                                             </div>
                                         </div>
@@ -40,20 +40,20 @@
                                             <div class="form-check form-check-inline mr-1">
                                                 <input class="form-check-input" v-model="form.service"
                                                        id="inline-radio1" type="radio" value="padala"
-                                                       name="inline-radios2">
-                                                <label class="form-check-label" for="inline-radio1">padala</label>
+                                                       name="service">
+                                                <label class="form-check-label">padala</label>
                                             </div>
                                             <div class="form-check form-check-inline mr-1">
                                                 <input class="form-check-input" v-model="form.service"
                                                        id="inline-radio2" type="radio" value="pabili"
-                                                       name="inline-radios2">
-                                                <label class="form-check-label" for="inline-radio2">pabili</label>
+                                                       name="service">
+                                                <label class="form-check-label">pabili</label>
                                             </div>
                                             <div class="form-check form-check-inline mr-1">
                                                 <input class="form-check-input" v-model="form.service"
                                                        id="inline-radio2" type="radio" value="grocery"
-                                                       name="inline-radios2">
-                                                <label class="form-check-label" for="inline-radio2">grocery</label>
+                                                       name="service">
+                                                <label class="form-check-label">grocery</label>
                                             </div>
                                         </div>
                                     </div>

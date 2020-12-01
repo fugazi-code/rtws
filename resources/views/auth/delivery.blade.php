@@ -35,173 +35,125 @@
                                 {{--                                Available--}}
                                 <div class="tab-pane active" id="available" role="tabpanel"
                                      aria-labelledby="available-tab">
-                                    <div class="table-full-width table-responsive">
-                                        <table class="table table-responsive">
-                                            <tbody>
-                                            <tr v-for="delivery in pending">
-                                                <td class="text-left">
-                                                    <div class="row">
-                                                        <div class="col-md-12" v-if="delivery.photo">
-                                                            <img v-bind:src="'/storage/' + delivery.photo.path"
-                                                                 class="avatar border-gray delivery-photo">
-                                                        </div>
-                                                        <div class="col-md-12 row justify-content-center">
-                                                            <div class="col-md-auto">
-                                                                @{{ delivery.customer.name }}
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12 row justify-content-center">
-                                                            <div class="col-md-auto">
-                                                                @{{ delivery.customer.contact}}
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12 row justify-content-center">
-                                                            <div class="col-md-auto">
-                                                                <label class="badge badge-info  text-white">
-                                                                    <strong>@{{ delivery.service }}</strong>
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="text-left">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <i>@{{ delivery.schedule }}</i> <i>Php@{{
-                                                                delivery.amount }}</i>
-                                                            <hr>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <i>@{{ delivery.pick_up }}</i>
-                                                            <hr>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <i>@{{ delivery.drop_off }}</i>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="td-actions text-right">
-                                                    <a v-bind:href="'/d/m/' + delivery.id"
-                                                       class="btn btn-info btn-round">
-                                                        <i class="now-ui-icons ui-1_send"></i> Mine
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
+                                    <div class="row mt-3" v-for="delivery in pending">
+                                        <div class="col-4 col-md-2 justify-content-center row">
+                                            <div class="col-auto">
+                                                <img v-if="delivery.photo"
+                                                     v-bind:src="'/storage/' + delivery.photo.path"
+                                                     class="img-fluid">
+                                            </div>
+                                            <div class="col-auto">
+                                                <label class="badge badge-info text-white">
+                                                    <strong>@{{ delivery.service }}</strong>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-md-8">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <strong>@{{ delivery.customer.name }}</strong>
+                                                    @{{ delivery.customer.contact}}
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <i>Php @{{ delivery.amount }}</i>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <i>@{{ delivery.schedule }}</i>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <strong>From:</strong> <i>@{{ delivery.pick_up }}</i>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <strong>To:</strong> <i>@{{ delivery.drop_off }}</i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <a v-bind:href="'/d/m/' + delivery.id"
+                                               class="btn btn-info btn-square">
+                                                <i class="fas fa-bullseye"></i> Mine
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                                 {{--                                    Yours--}}
                                 <div class="tab-pane" id="yours" role="tabpanel" aria-labelledby="yours-tab">
-                                    <div class="table-full-width table-responsive">
-                                        <table class="table table-responsive">
-                                            <tbody>
-                                            <tr v-for="delivery in yours">
-                                                <td class="text-left">
-                                                    <div class="row">
-                                                        <div class="col-md-12" v-if="delivery.photo">
-                                                            <img v-bind:src="'/storage/' + delivery.photo.path"
-                                                                 class="avatar border-gray delivery-photo">
-                                                        </div>
-                                                        <div class="col-md-12 row justify-content-center">
-                                                            <div class="col-md-auto">
-                                                                @{{ delivery.customer.name }}
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12 row justify-content-center">
-                                                            <div class="col-md-auto">
-                                                                @{{ delivery.customer.contact}}
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12 row justify-content-center">
-                                                            <div class="col-md-auto">
-                                                                <label class="badge badge-info  text-white">
-                                                                    <strong>@{{ delivery.service }}</strong>
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="text-left">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <i>Php@{{ delivery.amount }}</i>
-                                                            <hr>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <i>@{{ delivery.pick_up }}</i>
-                                                            <hr>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <i>@{{ delivery.drop_off }}</i>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="td-actions text-right">
-                                                    <a v-bind:href="'/d/c/' + delivery.id"
-                                                       class="btn btn-warning btn-round">
-                                                        <i class="now-ui-icons gestures_tap-01"></i> Complete
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
+                                    <div class="row mt-3" v-for="delivery in yours">
+                                        <div class="col-4 col-md-2 justify-content-center row">
+                                            <div class="col-auto">
+                                                <img v-if="delivery.photo"
+                                                     v-bind:src="'/storage/' + delivery.photo.path"
+                                                     class="img-fluid">
+                                            </div>
+                                            <div class="col-auto">
+                                                <label class="badge badge-info text-white">
+                                                    <strong>@{{ delivery.service }}</strong>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-md-8">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <strong>@{{ delivery.customer.name }}</strong>
+                                                    @{{ delivery.customer.contact}}
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <i>Php @{{ delivery.amount }}</i>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <i>@{{ delivery.schedule }}</i>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <strong>From:</strong> <i>@{{ delivery.pick_up }}</i>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <strong>To:</strong> <i>@{{ delivery.drop_off }}</i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <a v-bind:href="'/d/c/' + delivery.id"
+                                               class="btn btn-success btn-square">
+                                                <i class="fas fa-check"></i> Done
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                                 {{--                                    complete--}}
                                 <div class="tab-pane" id="complete" role="tabpanel" aria-labelledby="complete-tab">
-                                    <div class="table-full-width table-responsive">
-                                        <table class="table table-responsive">
-                                            <tbody>
-                                            <tr v-for="delivery in complete">
-                                                <td class="text-left">
-                                                    <div class="row">
-                                                        <div class="col-md-12" v-if="delivery.photo">
-                                                            <img v-bind:src="'/storage/' + delivery.photo.path"
-                                                                 class="avatar border-gray delivery-photo">
-                                                        </div>
-                                                        <div class="col-md-12 row justify-content-center">
-                                                            <div class="col-md-auto">
-                                                                @{{ delivery.customer.name }}
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12 row justify-content-center">
-                                                            <div class="col-md-auto">
-                                                                @{{ delivery.customer.contact}}
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12 row justify-content-center">
-                                                            <div class="col-md-auto">
-                                                                <label class="badge badge-info  text-white">
-                                                                    <strong>@{{ delivery.service }}</strong>
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="text-left">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <i>Php@{{ delivery.amount }}</i>
-                                                            <hr>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <i>@{{ delivery.pick_up }}</i>
-                                                            <hr>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <i>@{{ delivery.drop_off }}</i>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                {{--                                                    <td class="td-actions text-right">--}}
-                                                {{--                                                        <a v-bind:href="'/d/c/' + delivery.id" class="btn btn-warning btn-round">--}}
-                                                {{--                                                            <i class="now-ui-icons gestures_tap-01"></i> Completed--}}
-                                                {{--                                                        </a>--}}
-                                                {{--                                                    </td>--}}
-                                            </tr>
-                                            </tbody>
-                                        </table>
+                                    <div class="row mt-3" v-for="delivery in complete">
+                                        <div class="col-4 col-md-2 justify-content-center row">
+                                            <div class="col-auto">
+                                                <img v-if="delivery.photo"
+                                                     v-bind:src="'/storage/' + delivery.photo.path"
+                                                     class="img-fluid">
+                                            </div>
+                                            <div class="col-auto">
+                                                <label class="badge badge-info text-white">
+                                                    <strong>@{{ delivery.service }}</strong>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-md-8">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <strong>@{{ delivery.customer.name }}</strong>
+                                                    @{{ delivery.customer.contact}}
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <i>Php @{{ delivery.amount }}</i>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <i>@{{ delivery.schedule }}</i>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <strong>From:</strong> <i>@{{ delivery.pick_up }}</i>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <strong>To:</strong> <i>@{{ delivery.drop_off }}</i>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
