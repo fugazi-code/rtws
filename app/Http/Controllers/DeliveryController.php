@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Wallet;
 use App\Booking;
+use App\Commission;
 use App\PubNub\PubNubConnect;
 use App\Events\DeliveryChanges;
 use App\Callbacks\DeliveryCallback;
@@ -41,17 +43,21 @@ class DeliveryController extends Controller
      * @param $id
      * @return mixed
      */
-    public function mine($id)
+    public function mine($id, Booking $booking)
     {
-        $pubnub = new PubNubConnect();
-        $pubnub->message("Reserved!");
+        if (! $booking->isAlreadyAccepted($id)) {
+            $pubnub = new PubNubConnect();
+            $pubnub->message("Reserved!");
 
-        Booking::query()->where('id', $id)->update([
+            Booking::query()->where('id', $id)->update([
                 'status'   => 'accepted',
                 'rider_id' => auth()->id(),
             ]);
 
-        return redirect()->back()->with('success', 'Request is yours now!');
+            return redirect()->back()->with('success', 'Request is yours now!');
+        }
+
+        return redirect()->back()->with('error', 'Booking has already been reserved!');
     }
 
     /***
@@ -60,15 +66,24 @@ class DeliveryController extends Controller
      * @param $id
      * @return mixed
      */
-    public function complete($id)
+    public function complete($id, Booking $booking, Wallet $wallet, Commission $commission)
     {
-        $pubnub = new PubNubConnect();
-        $pubnub->message("Delivered!");
+        $booking = $booking->where('id', $id)->first();
+
+        $comm = $booking->amount * .15;
+
+        $wallet = $wallet->where('user_id', $booking->rider_id)->first();
+
+        $commission->store($booking->id, $wallet->id, $booking->rider_id, $wallet->current, $comm);
+        $wallet->withdraw($booking->rider_id, $comm);
 
         Booking::query()->where('id', $id)->update([
-                'status'   => 'complete',
-                'rider_id' => auth()->id(),
-            ]);
+            'status'   => 'complete',
+            'rider_id' => auth()->id(),
+        ]);
+
+        $pubnub = new PubNubConnect();
+        $pubnub->message("Delivered!");
 
         return redirect()->back()->with('success', 'Request is yours now!');
     }

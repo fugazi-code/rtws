@@ -24,14 +24,14 @@
                     Book Now
                 </a>
             @endcan
-{{--            @canany(['customer', 'superadmin'])--}}
-{{--                <a class="c-sidebar-nav-link" href="index.html">--}}
-{{--                    <div class="c-sidebar-nav-icon">--}}
-{{--                        <i class="fas fa-history"></i>--}}
-{{--                    </div>--}}
-{{--                    My History--}}
-{{--                </a>--}}
-{{--            @endcan--}}
+            {{--            @canany(['customer', 'superadmin'])--}}
+            {{--                <a class="c-sidebar-nav-link" href="index.html">--}}
+            {{--                    <div class="c-sidebar-nav-icon">--}}
+            {{--                        <i class="fas fa-history"></i>--}}
+            {{--                    </div>--}}
+            {{--                    My History--}}
+            {{--                </a>--}}
+            {{--            @endcan--}}
             @canany(['customer', 'superadmin'])
                 <a class="c-sidebar-nav-link" href="{{ route('request.status') }}">
                     <div class="c-sidebar-nav-icon">
@@ -46,6 +46,11 @@
                         <i class="fas fa-book-reader"></i>
                     </div>
                     Look For Bookings
+                    @if(\App\Wallet::noFunds())
+                        <span class="badge badge-warning">
+                            No Funds
+                        </span>
+                    @endif
                 </a>
             @endcan
             @canany(['rider', 'superadmin'])
@@ -69,13 +74,13 @@
                     </div>
                     Top-Up Requests <span class="badge badge-info">{{ \App\TopUp::countPending() }}</span>
                 </a>
-        @endcan
-        <a class="c-sidebar-nav-link" href="index.html">
-            <div class="c-sidebar-nav-icon">
-                <i class="fas fa-cog"></i>
-            </div>
-            Settings
-        </a>
+            @endcan
+            <a class="c-sidebar-nav-link" href="index.html">
+                <div class="c-sidebar-nav-icon">
+                    <i class="fas fa-cog"></i>
+                </div>
+                Settings
+            </a>
         </li>
     </ul>
     <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent"

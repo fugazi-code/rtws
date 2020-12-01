@@ -61,4 +61,9 @@ class Booking extends Model
                    ->with(['rider', 'photo', 'customer'])
                    ->orderBy('created_at', 'desc');
     }
+
+    public function isAlreadyAccepted($id)
+    {
+        return $this::query()->where('id', $id)->where('status', 'accepted')->count() > 0;
+    }
 }

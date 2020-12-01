@@ -43,4 +43,9 @@ class Wallet extends Model
     {
         return $this::newQuery()->where('user_id', $requester)->decrement('current', $value);
     }
+
+    public static function noFunds()
+    {
+        return (new static())->newQuery()->where('user_id', auth()->id())->pluck('current')[0] <= 0;
+    }
 }
