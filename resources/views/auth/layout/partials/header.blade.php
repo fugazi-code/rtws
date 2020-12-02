@@ -15,6 +15,11 @@
         </div>
     </button>
     <ul class="c-header-nav ml-auto mr-4">
+        <li class="c-header-nav-item">
+            <a class="c-header-nav-link" href="{{ route(\Illuminate\Support\Facades\Route::currentRouteName()) }}">
+                <div class="c-icon"><i class="fas fa-sync-alt"></i></div>
+            </a>
+        </li>
         <li class="c-header-nav-item dropdown">
             <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <div class="c-icon"><i class="fas fa-bell"></i></div>
@@ -24,9 +29,11 @@
                     <strong>Notifications</strong>
                 </div>
                 <a class="dropdown-item" href="#">
-                    <svg class="c-icon mr-2">
-                        <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-bell"></use>
-                    </svg> Updates<span class="badge badge-info ml-auto">42</span></a>
+{{--                    <svg class="c-icon mr-2">--}}
+{{--                       --}}
+{{--                    </svg> --}}
+                    Updates<span class="badge badge-info ml-auto">42</span>
+                </a>
             </div>
         </li>
         <li class="c-header-nav-item dropdown">
