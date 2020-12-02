@@ -4,10 +4,8 @@
             <i class="fas fa-bars"></i>
         </div>
     </button>
-    <a class="c-header-brand d-lg-none" href="/">
-        <div class="c-icon c-icon-lg">
-            BEX
-        </div>
+    <a class="c-header-brand d-lg-none" href="{{ route('p.index') }}">
+        BEX
     </a>
     <button class="c-header-toggler c-class-toggler mfs-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">
         <div class="c-icon c-icon-lg">

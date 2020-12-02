@@ -1,4 +1,4 @@
-/*!
+@import url(https://fonts.googleapis.com/css2?family=Pacifico&family=VT323&display=swap);/*!
  * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
@@ -26033,6 +26033,7 @@ input {
   color: white;
   text-shadow: 0 0 1px #0000006b;
   background-color: #ece154;
+  font-family: "Pacifico", cursive;
 }
 
 .card {
@@ -26042,5 +26043,46 @@ input {
 
 .card-header:first-child {
   border-radius: 0 !important;
+}
+
+.c-sidebar .c-sidebar-nav-link.c-active .c-sidebar-nav-icon,
+.c-sidebar .c-active.c-sidebar-nav-dropdown-toggle .c-sidebar-nav-icon {
+  color: #ece154 !important;
+}
+
+.c-sidebar .c-sidebar-nav-link .c-sidebar-nav-icon,
+.c-sidebar .c-sidebar-nav-dropdown-toggle .c-sidebar-nav-icon {
+  color: #ece154 !important;
+}
+
+.c-sidebar .c-sidebar-nav-link,
+.c-sidebar .c-sidebar-nav-dropdown-toggle {
+  color: #ece154 !important;
+  font-family: "VT323", monospace;
+  font-size: 20px;
+}
+
+.c-sidebar .c-sidebar-nav-link.c-active,
+.c-sidebar .c-active.c-sidebar-nav-dropdown-toggle {
+  color: #ece154 !important;
+}
+
+.c-sidebar-brand-full {
+  font-family: "Pacifico", cursive;
+  font-size: 20px;
+}
+
+.c-sidebar-brand-minimized {
+  font-family: "Pacifico", cursive;
+}
+
+.c-header-brand {
+  font-family: "Pacifico", cursive;
+}
+
+.c-header .c-header-brand {
+  color: #ffffff !important;
+  font-size: 20px !important;
+  text-shadow: 0 0 3px #00000038 !important;
 }
 
