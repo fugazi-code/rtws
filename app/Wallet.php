@@ -46,6 +46,8 @@ class Wallet extends Model
 
     public static function noFunds()
     {
+        (new static())->rebuildWallet();
+
         return (new static())->newQuery()->where('user_id', auth()->id())->pluck('current')[0] <= 0;
     }
 }

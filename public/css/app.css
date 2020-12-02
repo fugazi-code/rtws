@@ -26086,3 +26086,7 @@ input {
   text-shadow: 0 0 3px #00000038 !important;
 }
 
+.login-form {
+  background-color: rgba(195, 192, 83, 0.72) !important;
+}
+
