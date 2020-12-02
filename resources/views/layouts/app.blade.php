@@ -114,7 +114,7 @@
         </div>
     </div>
     @else
-        <body onload="myFunction()" style="background-image: url('/img/logo1.png'); background-size: contain; background-repeat: no-repeat; background-color: #ffff99; background-position: center;">
+        <body onload="myFunction()" style="background-image: url('/img/logo.jpeg'); background-size: contain; background-repeat: no-repeat; background-color: #ffff99; background-position: center;">
        <!--  <body style="background-image: url(/img/logo.png);" style="width: 35px;"> -->
        <div id="loader"></div>
         <div class="wrapper animate-bottom" style="display:none;" id="myDiv">

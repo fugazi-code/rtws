@@ -85,7 +85,6 @@
                          <a href="https://broomexp.com/login" class="wow fadeInUp section-btn btn btn-success smoothScroll" data-wow-delay="1s">Book Now</a>
                     </div>
                </div>
-
 		</div>
 	</div>
 </section>
