@@ -97,6 +97,10 @@
             display: none;
             /*text-align: center;*/
         }
+        @media (min-width: 992px)
+            .col-md-8 {
+                width: 68.666667%;
+            }
     </style>
 </head>
 
