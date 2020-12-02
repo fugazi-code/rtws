@@ -48,7 +48,7 @@ class UserController extends Controller
             'created_at' => Carbon::now(),
         ]);
 
-        return redirect('/')->with('success', 'New Photo has been updated!');
+        return redirect('/p')->with('success', 'New Photo has been updated!');
     }
 
     /**
@@ -63,7 +63,7 @@ class UserController extends Controller
         unset($data['_token']);
         User::query()->where('id', auth()->user()->id)->update($data);
 
-        return redirect('/')->with('success', 'Profile has been updated!');
+        return redirect('/p')->with('success', 'Profile has been updated!');
     }
 
     public function changePassword(ChangePasswordRequest $request)
