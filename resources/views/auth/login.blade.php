@@ -13,9 +13,13 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center mt-5">
+            <div class="col-md-8 mt-5">
+                <img src="/img/header-logo.svg">
+            </div>
+            <div class="col-md-12"></div>
             <div class="col-md-8">
                 <div class="card login-form">
-                    <div class="card-header">{{ __('BROOM EXPRESS | Sign In') }}</div>
+                    <div class="card-header bg-dark pb-3">{{ __('Sign In') }}</div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
