@@ -86,12 +86,12 @@
             </div>
             <div class="col-md-12">
             </div>
-            <div id="btn-dl" class="col-md-auto col-xs-12">
-                <a href="{{ asset('apk/broomexp.apk') }}" class="btn btn-block btn-lg bg-green">
-                    <i class="fab fa-android"></i>
-                    Download our App for Android
-                </a>
-            </div>
+{{--            <div id="btn-dl" class="col-md-auto col-xs-12">--}}
+{{--                <a href="{{ asset('apk/broomexp.apk') }}" class="btn btn-block btn-lg bg-green">--}}
+{{--                    <i class="fab fa-android"></i>--}}
+{{--                    Download our App for Android--}}
+{{--                </a>--}}
+{{--            </div>--}}
         </div>
     </div>
 @endsection

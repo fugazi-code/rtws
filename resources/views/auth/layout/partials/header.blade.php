@@ -1,11 +1,11 @@
 <header class="c-header c-header-yellow c-header-fixed c-header-with-subheader">
-    <button class="c-header-toggler c-class-toggler d-lg-none mfe-auto" type="button" data-target="#sidebar" data-class="c-sidebar-show">
+    <button class="c-header-toggler c-class-toggler d-lg-none" type="button" data-target="#sidebar" data-class="c-sidebar-show">
         <div class="c-icon c-icon-lg">
             <i class="fas fa-bars"></i>
         </div>
     </button>
     <a class="c-header-brand d-lg-none" href="{{ route('p.index') }}">
-        BEX
+        <img src="{{ asset('img/header-logo.svg') }}" style="max-width: 150px; height: 30px">
     </a>
     <button class="c-header-toggler c-class-toggler mfs-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">
         <div class="c-icon c-icon-lg">
