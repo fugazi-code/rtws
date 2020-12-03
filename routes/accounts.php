@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\AccountsController;
 
 Route::post('/accounts/fetch', [AccountsController::class, 'fetch'])->name('accounts.fetch');
