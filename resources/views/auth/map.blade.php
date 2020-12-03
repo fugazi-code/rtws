@@ -23,9 +23,8 @@
         }).setView([14.434354283557754, 120.9925489160215], 6);
 
         // init map style
-        var tiles = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+        var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 20,
-            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
         });
 
         // init zoom control
@@ -34,6 +33,7 @@
         }).addTo(map);
 
         // init marker Group
+        var markersById = {};
         var markerGroup = new L.layerGroup().addTo(map);
 
         // init events for map interaction
@@ -42,6 +42,7 @@
             marker = new L.marker(e.latlng);
             marker.addTo(markerGroup);
             reverseGeocoding(e.latlng)
+            markersById[0] = marker;
         };
 
         function onSearch(latlng) {
@@ -61,12 +62,12 @@
                 var loc = place.geometry.location;
                 g_name = place.formatted_address;
 
+                onSearch([loc.lat(), loc.lng()])
+
                 map.panTo([loc.lat(), loc.lng()]);
                 map.setZoom(15);
-
                 g_lat = loc.lat();
                 g_lng = loc.lng()
-                onSearch([loc.lat(), loc.lng()])
             },
             position: 'topleft'
         }).addTo(map);
