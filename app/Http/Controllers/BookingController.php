@@ -26,7 +26,7 @@ class BookingController extends Controller
                 'pu'              => ['name' => '', 'lat' => '0', 'lng' => '0'],
                 'kilometers'      => '',
                 'setup'           => null,
-                'amount'          => '0',
+                'amount'             => '0',
             ];
         }
 

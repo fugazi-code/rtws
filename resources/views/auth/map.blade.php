@@ -4,7 +4,10 @@
     <!--suppress ALL -->
     <div class="row">
         <div class="col-md-12">
-            <button type="button" class="btn btn-block btn-primary" onclick="confirmLocation()">Confirm</button>
+            <div class="btn-group" role="group" style="display: flex;">
+                <button type="button" class="btn btn-primary" onclick="confirmLocation()">Confirm</button>
+                <a href="{{ route('book') }}" class="btn btn-secondary">Cancel</a>
+            </div>
         </div>
         <div class="col-md-12">
             <div id="map" style="width: 100vw; height: 95vh"></div>
@@ -13,93 +16,70 @@
 @endsection
 
 @section('scripts')
-    <!-- leaflet library -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.3/leaflet.js"></script>
-    <script type="text/javascript" src="https://tiles.unwiredmaps.com/js/leaflet-unwired.js"></script>
-
-    <!-- location control -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css"/>
-    <!-- location control -->
-    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js"
-            charset="utf-8"></script>
-    <!-- geocoding plugin -->
-    <link rel="stylesheet"
-          href="https://maps.locationiq.com/v2/libs/leaflet-geocoder/1.9.5/leaflet-geocoder-locationiq.min.css">
-    <script
-        src="https://maps.locationiq.com/v2/libs/leaflet-geocoder/1.9.5/leaflet-geocoder-locationiq.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-plugins/3.0.2/control/Permalink.js"></script>
-
-    <script type="text/javascript">
-        // Maps access token goes here
-        var key = 'pk.d77cc8e3aa8354c6533770b02a1c9046';
-
-        // Add layers that we need to the map
-        var streets = L.tileLayer.Unwired({key: key, scheme: "streets"});
-
-        // Initialize the map
+    <script type="text/javascript" defer>
+        // init map
         var map = L.map('map', {
-            center: [12.2205183, 122.3861085], // Map loads with this location as center
-            zoom: 6,
-            scrollWheelZoom: true,
-            layers: [streets],
             zoomControl: false
+        }).setView([14.434354283557754, 120.9925489160215], 6);
+
+        // init map style
+        var tiles = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
         });
 
-        // Add the 'zoom' control
+        // init zoom control
         L.control.zoom({
+            position: 'topright'
+        }).addTo(map);
+
+        // init marker Group
+        var markerGroup = new L.layerGroup().addTo(map);
+
+        // init events for map interaction
+        function onMapClick(e) {
+            markerGroup.clearLayers();
+            marker = new L.marker(e.latlng);
+            marker.addTo(markerGroup);
+            reverseGeocoding(e.latlng)
+        };
+
+        function onSearch(latlng) {
+            markerGroup.clearLayers();
+            marker = new L.marker(latlng);
+            marker.addTo(markerGroup);
+        }
+
+        map.on('click', onMapClick);
+
+        map.addLayer(tiles);
+
+        // init autocomplete Google maps searchables
+        var g_name = '';
+        new L.Control.GPlaceAutocomplete({
+            callback: function (place) {
+                var loc = place.geometry.location;
+                g_name = place.formatted_address;
+
+                map.panTo([loc.lat(), loc.lng()]);
+                map.setZoom(15);
+
+                g_lat = loc.lat();
+                g_lng = loc.lng()
+                onSearch([loc.lat(), loc.lng()])
+            },
             position: 'topleft'
         }).addTo(map);
 
-        // Add the 'scale' control
-        L.control.scale().addTo(map);
-        L.control.locate({
-            position: "bottomright"
-        }).addTo(map);
-
-        // Add the autocomplete text box
-        var name = null, latlng = null, marker = null;
-        L.control.geocoder(key, {
-            placeholder: 'Search nearby...',
-            url: "https://api.locationiq.com/v1",
-            expanded: true,
-            panToPoint: true,
-            focus: true,
-            expanded: true,
-            markers: false,
-            params: {
-                countrycodes: 'PH'
-            },
-            position: "topleft"
-        }).on('select', function (ev) {
-            latlng = ev.latlng;
-            name = ev.feature.innerText
-            if (marker != undefined) {
-                map.removeLayer(marker);
-            };
-
-            marker = L.marker(ev.latlng, {
-                draggable: true
-            }).addTo(map);
-
-            marker.on('dragend', function (event) {
-                var position = marker.getLatLng();
-                latlng = marker.getLatLng();
-                name = marker.getLatLng();
-            });
-
-            map.setView(ev.latlng, 16);
-        }).addTo(map);
-
+        // init function confirm location
         function confirmLocation() {
             $.ajax({
                 url: '{{ route('booking.location.store') }}',
                 method: 'POST',
                 data: {
-                    name: name,
-                    lat: latlng.lat,
-                    lng: latlng.lng
+                    name: g_name,
+                    lat: g_lat,
+                    lng: g_lng
                 },
                 success: function (value) {
                     window.location = '{{ route('book') }}';
@@ -107,6 +87,18 @@
             });
         }
 
-        map.addControl(new L.Control.Permalink({useLocation: true, text: null}));
+        function reverseGeocoding(latlng) {
+            var geocoder = new google.maps.Geocoder();
+            var address = 'London, UK';
+
+            if (geocoder) {
+                geocoder.geocode({'location': {lat: latlng.lat, lng: latlng.lng}},
+                    function (results, status) {
+                        g_lat = results[0].geometry.location.lat();
+                        g_lng = results[0].geometry.location.lng()
+                        g_name = results[0].formatted_address
+                    });
+            }
+        }
     </script>
 @endsection

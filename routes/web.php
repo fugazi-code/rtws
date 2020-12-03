@@ -18,7 +18,6 @@ use \App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CustomerController;
 use \App\Http\Controllers\RiderController;
 use \App\Http\Controllers\UserController;
-use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\HomeController;
 

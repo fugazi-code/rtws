@@ -19,9 +19,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.3/leaflet.css" rel="stylesheet" type="text/css"/>
 
     <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
           integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css"/>
     @yield('css')
     <style>
         .btn {
@@ -31,8 +33,13 @@
 </head>
 <body>
 @yield('content')
+
+<!-- leaflet 0.7 -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@0.7.7/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@0.7.7/dist/leaflet.js"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQQkfIgi0W3SJX7KQddC6_k8L7ihvWaUI&libraries=places"></script>
 <!--   Core JS Files   -->
-<script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/map.js') }}"></script>
 <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
 @include('layouts.partials.notification')
@@ -47,7 +54,6 @@
         document.getElementById("map").style.display = "block";
     }
 </script>
-
 @yield('scripts')
 </body>
 

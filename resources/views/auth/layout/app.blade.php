@@ -55,6 +55,14 @@
 <script src="https://cdn.jsdelivr.net/picturefill/2.3.1/picturefill.min.js"></script>
 <script src="{{ asset('vendor/lightgallery/dist/js/lightgallery-all.min.js') }}"></script>
 <script src="{{ asset('vendor/lightgallery/lib/jquery.mousewheel.min.js') }}"></script>
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+</script>
 @yield('script')
 </body>
 </html>

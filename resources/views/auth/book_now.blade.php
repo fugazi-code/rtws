@@ -117,7 +117,7 @@
                                     </div>
                                     <div class="col-sm-3">
                                         <label>Delivery Fee</label>
-                                        <input type="text" name="amount" class="form-control" v-model="form.amount"
+                                        <input type="number" name="amount" class="form-control" v-model="form.amount"
                                                readonly>
                                     </div>
                                     <div class="col-sm-3">

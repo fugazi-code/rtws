@@ -32,6 +32,8 @@ require('@coreui/icons/js/svgxuse.min');
 require('@coreui/utils/dist/coreui-utils');
 window.Chart = require('@coreui/chartjs/dist/js/coreui-chartjs.bundle');
 
+
+require('leaflet-google-places-autocomplete/src/js/leaflet-gplaces-autocomplete');
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -44,9 +46,3 @@ window.Chart = require('@coreui/chartjs/dist/js/coreui-chartjs.bundle');
 //     broadcaster: 'socket.io',
 //     host: window.location.hostname + ':6001',
 // });
-
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
