@@ -16,8 +16,10 @@ use Illuminate\Support\Facades\Broadcast;
 Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
-
 Broadcast::channel('fetch-booking', function ($user) {
+    return true;
+});
+Broadcast::channel('booking-status', function ($user) {
     return true;
 });
 

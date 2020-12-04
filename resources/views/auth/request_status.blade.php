@@ -24,7 +24,7 @@
                             </div>
                             <p class="mb-1"><strong>Schedule</strong> @{{ book.schedule }}</p>
                             <p v-if="book.rider" class="mb-1"><strong>Rider</strong> @{{ book.rider.name }}
-                                (@{{  book.rider.contact }})</p>
+                                (@{{ book.rider.contact }})</p>
                             <p class="mb-1">@{{ book.pick_up }} <strong>to</strong> @{{ book.drop_off }}</p>
                             <form method="POST" action="{{ route('request.cancel') }}">
                                 @csrf
@@ -63,27 +63,12 @@
             mounted() {
                 var $this = this;
                 const uuid = PubNub.generateUUID();
-                const pubnub = new PubNub({
-                    publishKey: '{{ env('PUB_NUB_PUBLISH_KEY') }}',
-                    subscribeKey: '{{ env('PUB_NUB_SUBSCRIBE_KEY') }}',
-                    uuid: uuid
-                });
-
-                pubnub.subscribe({
-                    channels: ['{{ env('PUB_NUB_CHANNEL') }}'],
-                    withPresence: true
-                });
-
-                pubnub.addListener({
-                    message: function (event) {
-                        $this.fetch();
-                        //console.log(event.message);
-                    },
-                    presence: function (event) {
-                        // console.log(event);
-                    }
-                });
                 this.fetch();
+                Echo.channel('booking-status')
+                    .listen('BookingStatusEvent', (e) => {
+                        console.log(e.update);
+                        $this.fetch();
+                    });
             }
         })
     </script>

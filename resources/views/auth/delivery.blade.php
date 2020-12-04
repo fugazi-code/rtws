@@ -204,28 +204,8 @@
             },
             mounted() {
                 var $this = this;
-                const uuid = PubNub.generateUUID();
-                const pubnub = new PubNub({
-                    publishKey: '{{ env('PUB_NUB_PUBLISH_KEY') }}',
-                    subscribeKey: '{{ env('PUB_NUB_SUBSCRIBE_KEY') }}',
-                    uuid: uuid
-                });
-
-                pubnub.subscribe({
-                    channels: ['{{ env('PUB_NUB_CHANNEL') }}'],
-                    withPresence: true
-                });
-
-                pubnub.addListener({
-                    message: function (event) {
-                        $this.fetch();
-                        //console.log(event.message);
-                    },
-                    presence: function (event) {
-                        // console.log(event);
-                    }
-                });
                 this.fetch();
+
                 Echo.channel('fetch-booking')
                     .listen('BookingSubmitEvent', (e) => {
                         console.log(e.update);

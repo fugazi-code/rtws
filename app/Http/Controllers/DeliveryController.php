@@ -7,6 +7,7 @@ use App\Booking;
 use App\Commission;
 use App\PubNub\PubNubConnect;
 use App\Events\DeliveryChanges;
+use App\Events\BookingStatusEvent;
 use App\Callbacks\DeliveryCallback;
 use App\Transformers\DeliveryFetchTransformer;
 
@@ -45,6 +46,7 @@ class DeliveryController extends Controller
      */
     public function mine($id, Booking $booking)
     {
+
         if (! $booking->isAlreadyAccepted($id)) {
             $pubnub = new PubNubConnect();
             $pubnub->message("Reserved!");
@@ -53,6 +55,8 @@ class DeliveryController extends Controller
                 'status'   => 'accepted',
                 'rider_id' => auth()->id(),
             ]);
+
+            event(new BookingStatusEvent());
 
             return redirect()->back()->with('success', 'Request is yours now!');
         }
@@ -82,8 +86,7 @@ class DeliveryController extends Controller
             'rider_id' => auth()->id(),
         ]);
 
-        $pubnub = new PubNubConnect();
-        $pubnub->message("Delivered!");
+        event(new BookingStatusEvent());
 
         return redirect()->back()->with('success', 'Request is yours now!');
     }

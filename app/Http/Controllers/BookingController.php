@@ -6,7 +6,6 @@ use App\Booking;
 use Carbon\Carbon;
 use Faker\Factory;
 use Illuminate\Http\Request;
-use App\PubNub\PubNubConnect;
 use App\Matrix\Specifications;
 use App\Events\BookingSubmitEvent;
 
@@ -58,8 +57,6 @@ class BookingController extends Controller
             "ref_no"      => strtoupper(hash('adler32', $schedule)),
         ]);
 
-//        $pubnub = new PubNubConnect();
-//        $pubnub->message("New Book!");
         event(new BookingSubmitEvent());
 
         return redirect()->back()->with('success', 'Book has been submitted!');
