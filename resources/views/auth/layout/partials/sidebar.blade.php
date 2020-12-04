@@ -72,7 +72,7 @@
                     <div class="c-sidebar-nav-icon">
                         <i class="fas fa-coins"></i>
                     </div>
-                    Top-Up Requests <span class="badge badge-info">{{ \App\TopUp::countPending() }}</span>
+                    Top-Up Requests <span class="badge badge-info countp">{{ \App\TopUp::countPending() }}</span>
                 </a>
             @endcan
             <a class="c-sidebar-nav-link" href="index.html">

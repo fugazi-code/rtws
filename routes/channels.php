@@ -19,7 +19,7 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
 Broadcast::channel('fetch-booking', function ($user) {
     return true;
 });
-Broadcast::channel('booking-status', function ($user) {
+Broadcast::channel('top-up-request', function ($user) {
     return true;
 });
 

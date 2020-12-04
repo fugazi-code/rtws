@@ -8,6 +8,7 @@ use App\Wallet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use App\Events\TopUpRequestEvent;
 use App\Notifications\TopUpRequest;
 use Illuminate\Support\Facades\Notification;
 
@@ -43,6 +44,8 @@ class WalletController extends Controller
 
         Notification::route('mail', User::query()->whereIn('role', ['admin', 'superadmin'])->pluck('email'))
                     ->notify(new TopUpRequest(auth()->user()->name));
+
+        event(new TopUpRequestEvent());
 
         return redirect('wallet')->with('success', 'Your Top-Up request has been sent!');
     }
