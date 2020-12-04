@@ -19,7 +19,7 @@
         "league/fractal": "^0.19.2",
         "predis/predis": "^1.1",
         "pubnub/pubnub": "^4.1",
-        "pusher/pusher-php-server": "~3.0",
+        "pusher/pusher-php-server": "~4.0",
         "spatie/fractalistic": "^2.9",
         "spatie/laravel-fractal": "^5.7",
         "yajra/laravel-datatables": "1.5"

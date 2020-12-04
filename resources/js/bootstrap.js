@@ -33,7 +33,10 @@ require('@coreui/utils/dist/coreui-utils');
 window.Chart = require('@coreui/chartjs/dist/js/coreui-chartjs.bundle');
 
 
+try {
 require('leaflet-google-places-autocomplete/src/js/leaflet-gplaces-autocomplete');
+} catch (e) {
+}
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -46,3 +49,14 @@ require('leaflet-google-places-autocomplete/src/js/leaflet-gplaces-autocomplete'
 //     broadcaster: 'socket.io',
 //     host: window.location.hostname + ':6001',
 // });
+
+import Echo from "laravel-echo";
+
+window.Pusher = require('pusher-js');
+
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: 'c2488c5f0695b043a034',
+    cluster: 'ap1',
+    forceTLS: false
+});

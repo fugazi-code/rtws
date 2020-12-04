@@ -226,6 +226,11 @@
                     }
                 });
                 this.fetch();
+                Echo.channel('fetch-booking')
+                    .listen('BookingSubmitEvent', (e) => {
+                        console.log(e.update);
+                        $this.fetch();
+                    });
             }
         });
     </script>
