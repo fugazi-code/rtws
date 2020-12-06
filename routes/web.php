@@ -33,7 +33,8 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 Route::middleware(['auth'])->group(function () {
     Route::resource('/p', 'UserController');
     Route::post('/u/p', [UserController::class, 'profilePicUpload'])->name('profile.pic.upload');
-    Route::post('/u/c/p', [UserController::class, 'changePassword'])->name('profile.change.pass');
+    Route::get('/u/cp/f', [UserController::class, 'changePasswordForm'])->name('profile.cpass');
+    Route::post('/u/c/p', [UserController::class, 'CPSubmit'])->name('profile.change.pass');
 
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
     Route::get('/settings/set/payment', [SettingsController::class, 'payment_type'])->name('settings.blade.php');

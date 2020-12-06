@@ -66,13 +66,18 @@ class UserController extends Controller
         return redirect('/p')->with('success', 'Profile has been updated!');
     }
 
-    public function changePassword(ChangePasswordRequest $request)
+    public function changePasswordForm()
+    {
+        return view('auth.change_pass');
+    }
+
+    public function CPSubmit(ChangePasswordRequest $request)
     {
         User::query()->update([
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
         ]);
 
-        return redirect()->back()->with('success', 'Password has been updated!');
+        return redirect()->route('p.index')->with('success', 'Password has been updated!');
     }
 
     /**

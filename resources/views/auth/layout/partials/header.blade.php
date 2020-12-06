@@ -46,6 +46,11 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right pt-0">
                 <div class="dropdown-header bg-light py-2"><strong>Account</strong></div>
+                <a class="dropdown-item" href="{{ route('profile.cpass') }}">
+                    <div class="c-icon mr-2">
+                        <i class="fas fa-user-secret"></i>
+                    </div> Change Password
+                </a>
                 <a class="dropdown-item" href="{{ route('logout') }}">
                     <div class="c-icon mr-2">
                         <i class="fas fa-unlock"></i>
