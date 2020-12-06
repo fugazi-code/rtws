@@ -160,7 +160,9 @@
         const s = new Vue({
             el: "#app",
             data() {
-                return {}
+                return {
+                    role: 'rider'
+                }
             },
             mounted() {
                 var $this = this;
