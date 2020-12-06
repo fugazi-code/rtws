@@ -61,6 +61,7 @@
                             }, name: 'name', title: 'Name'
                         },
                         {data: 'role', name: 'role', title: 'Role'},
+                        {data: 'status', name: 'status', title: 'Status'},
                     ],
                     drawCallback: function () {
                         $('table .btn').on('click', function () {
