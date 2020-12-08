@@ -73,7 +73,7 @@ class UserController extends Controller
 
     public function CPSubmit(ChangePasswordRequest $request)
     {
-        User::query()->update([
+        User::query()->where('id', auth()->id())->update([
             'password' => Hash::make($request->password),
         ]);
 
