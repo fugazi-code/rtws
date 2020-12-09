@@ -62,6 +62,11 @@
                         },
                         {data: 'role', name: 'role', title: 'Role'},
                         {data: 'status', name: 'status', title: 'Status'},
+                        {
+                            data: function (value) {
+                                return '<a href="/r/p/' + value.id + '" class="btn btn-sm btn-warning">Reset Pass</a>';
+                            }, name: 'id', title: 'Reset Pass'
+                        },
                     ],
                     drawCallback: function () {
                         $('table .btn').on('click', function () {

@@ -90,4 +90,13 @@ class UserController extends Controller
     {
         //
     }
+
+    public function resetPass($id)
+    {
+        User::query()->where('id', $id)->update([
+            'password' => Hash::make('password'),
+        ]);
+
+        return redirect()->route('accounts')->with('success', 'Password has been reset!');
+    }
 }
