@@ -14,7 +14,7 @@
     <div class="container">
         <div class="row justify-content-center mt-5">
             <div class="col-md-8 mt-5">
-                <img src="/img/header-logo.svg">
+                <img src="/img/login-logo.svg">
             </div>
             <div class="col-md-12"></div>
             <div class="col-md-8">
