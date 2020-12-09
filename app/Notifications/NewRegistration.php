@@ -47,7 +47,7 @@ class NewRegistration extends Notification
             ->bcc('renier.trenuela@gmail.com')
             ->greeting('Registration successful!')
             ->line('Hi ' . $notifiable->name . ',')
-            ->line('Thank you for choosing RTWDS');
+            ->line('Thank you for choosing Broom Express!');
     }
 
     /**
