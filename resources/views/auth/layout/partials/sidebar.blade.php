@@ -32,7 +32,7 @@
             {{--                    My History--}}
             {{--                </a>--}}
             {{--            @endcan--}}
-            @canany(['customer', 'superadmin'])
+            @canany(['customer', 'superadmin', 'admin'])
                 <a class="c-sidebar-nav-link" href="{{ route('request.status') }}">
                     <div class="c-sidebar-nav-icon">
                         <i class="fas fa-bookmark"></i>
@@ -40,7 +40,7 @@
                     Booking Status
                 </a>
             @endcan
-            @canany(['rider', 'superadmin'])
+            @canany(['rider', 'superadmin', 'admin'])
                 <a class="c-sidebar-nav-link" href="{{ route('delivery') }}">
                     <div class="c-sidebar-nav-icon">
                         <i class="fas fa-book-reader"></i>
