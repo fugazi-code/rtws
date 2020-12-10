@@ -126,11 +126,15 @@
                                                 <div class="btn-group-vertical">
                                                     <button @click="done('/d/c/' + delivery.id)"
                                                             class="btn btn-success btn-square">
-                                                        <i class="fas fa-check"></i> Done @{{ delivery.validCancel }}
+                                                        <i class="fas fa-check"></i> Done
                                                     </button>
                                                     <button v-if="delivery.validCancel <= 5"
                                                             @click="cancel('/d/cc/' + delivery.id)"
                                                             class="btn btn-danger btn-square">
+                                                        <i class="fas fa-ban"></i> Cancel
+                                                    </button>
+                                                    <button v-if="delivery.validCancel >= 5"
+                                                            class="btn btn-secondary disabled btn-square">
                                                         <i class="fas fa-ban"></i> Cancel
                                                     </button>
                                                 </div>
@@ -255,14 +259,12 @@
                             $this.yours = value.yours.data;
                             $this.complete = value.complete.data;
                             $this.cancelled = value.cancelled.data;
-                            $.each($this.yours, function (key, value) {
-                                $this.yours[key].validCancel = $this.validatedCancelBtn(value.updated_at)
-                                console.log($this.yours[key])
-                            });
+                            var hold = $this.yours;
                             this.interval = setInterval(function(){
-                                $.each($this.yours, function (key, value) {
-                                    $this.yours[key].validCancel = $this.validatedCancelBtn(value.updated_at)
+                                $.each(hold, (key, value) => {
+                                    hold[key].validCancel = $this.validatedCancelBtn(value.updated_at)
                                 });
+                                $this.yours = hold;
                             }, 1000);
                         }
                     });

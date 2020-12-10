@@ -47,6 +47,7 @@ class Booking extends Model
     public function yours()
     {
         return self::query()
+                   ->selectRaw('*, \'\' as validCancel')
                    ->where('status', 'accepted')
                    ->where('rider_id', auth()->id())
                    ->with(['rider', 'photo', 'customer'])
