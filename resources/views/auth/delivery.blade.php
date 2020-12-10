@@ -28,6 +28,11 @@
                                            role="tab"
                                            aria-controls="messages" aria-selected="false">Completed</a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="cancelled-tab" data-toggle="tab" href="#cancelled"
+                                           role="tab"
+                                           aria-controls="messages" aria-selected="false">Cancelled</a>
+                                    </li>
                                 </ul>
                             </div>
                             <div class="col-md-12">
@@ -118,10 +123,17 @@
                                                 </div>
                                             </div>
                                             <div class="col-2">
-                                                <a v-bind:href="'/d/c/' + delivery.id"
-                                                   class="btn btn-success btn-square">
-                                                    <i class="fas fa-check"></i> Done
-                                                </a>
+                                                <div class="btn-group-vertical">
+                                                    <button @click="done('/d/c/' + delivery.id)"
+                                                            class="btn btn-success btn-square">
+                                                        <i class="fas fa-check"></i> Done @{{ delivery.validCancel }}
+                                                    </button>
+                                                    <button v-if="delivery.validCancel <= 5"
+                                                            @click="cancel('/d/cc/' + delivery.id)"
+                                                            class="btn btn-danger btn-square">
+                                                        <i class="fas fa-ban"></i> Cancel
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row mt-3 justify-content-center" v-if="yours.length == 0">
@@ -135,10 +147,28 @@
                                         <div class="row mt-3" v-for="delivery in complete">
                                             <div class="col-4 col-md-2 justify-content-center row">
                                                 <div class="col-auto">
-                                                    <img v-if="delivery.photo"
-                                                         v-bind:src="'/storage/' + delivery.photo.path"
-                                                         class="img-fluid">
+                                                    <label class="badge badge-info text-white">
+                                                        <strong>@{{ delivery.service }}</strong>
+                                                    </label>
                                                 </div>
+                                            </div>
+                                            <div class="col-6 col-md-8">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <i>Php @{{ delivery.amount }}</i>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <i>@{{ delivery.created_at }}</i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{--                                    cancelled--}}
+                                    <div class="tab-pane" id="cancelled" role="tabpanel"
+                                         aria-labelledby="cancelled-tab">
+                                        <div class="row mt-3" v-for="delivery in cancelled">
+                                            <div class="col-4 col-md-2 justify-content-center row">
                                                 <div class="col-auto">
                                                     <label class="badge badge-info text-white">
                                                         <strong>@{{ delivery.service }}</strong>
@@ -148,20 +178,10 @@
                                             <div class="col-6 col-md-8">
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <strong>@{{ delivery.customer.name }}</strong>
-                                                        @{{ delivery.customer.contact}}
-                                                    </div>
-                                                    <div class="col-md-12">
                                                         <i>Php @{{ delivery.amount }}</i>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <i>@{{ delivery.schedule }}</i>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <strong>From:</strong> <i>@{{ delivery.pick_up }}</i>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <strong>To:</strong> <i>@{{ delivery.drop_off }}</i>
+                                                        <i>@{{ delivery.created_at }}</i>
                                                     </div>
                                                 </div>
                                             </div>
@@ -187,8 +207,44 @@
                 pending: [],
                 yours: [],
                 complete: [],
+                cancelled: [],
             },
             methods: {
+                validatedCancelBtn(dated) {
+                    current = new Date();
+                    com = new Date(dated);
+                    var diff = (com.getTime() - current.getTime()) / 1000;
+                    diff /= 60;
+                    return Math.abs(Math.round(diff));
+                },
+                done(link) {
+                    swal({
+                        title: "Booking will be Completed.",
+                        text: "",
+                        icon: "info",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                        .then((willDelete) => {
+                            if (willDelete) {
+                                window.location = link;
+                            }
+                        });
+                },
+                cancel(link) {
+                    swal({
+                        title: "Booking will be Cancelled.",
+                        text: "",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                        .then((willDelete) => {
+                            if (willDelete) {
+                                window.location = link;
+                            }
+                        });
+                },
                 fetch() {
                     var $this = this;
                     $.ajax({
@@ -198,6 +254,16 @@
                             $this.pending = value.pending.data;
                             $this.yours = value.yours.data;
                             $this.complete = value.complete.data;
+                            $this.cancelled = value.cancelled.data;
+                            $.each($this.yours, function (key, value) {
+                                $this.yours[key].validCancel = $this.validatedCancelBtn(value.updated_at)
+                                console.log($this.yours[key])
+                            });
+                            this.interval = setInterval(function(){
+                                $.each($this.yours, function (key, value) {
+                                    $this.yours[key].validCancel = $this.validatedCancelBtn(value.updated_at)
+                                });
+                            }, 1000);
                         }
                     });
                 },

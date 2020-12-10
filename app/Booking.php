@@ -62,6 +62,15 @@ class Booking extends Model
                    ->orderBy('created_at', 'desc');
     }
 
+    public function cancelled()
+    {
+        return self::query()
+                   ->where('status', 'cancelled')
+                   ->where('rider_id', auth()->id())
+                   ->with(['rider', 'photo', 'customer'])
+                   ->orderBy('created_at', 'desc');
+    }
+
     public function isAlreadyAccepted($id)
     {
         return $this::query()->where('id', $id)->where('status', 'accepted')->count() > 0;

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Wallet;
 use App\Booking;
+use Carbon\Carbon;
 use App\Commission;
 use App\PubNub\PubNubConnect;
 use App\Events\DeliveryChanges;
@@ -32,9 +33,10 @@ class DeliveryController extends Controller
     public function fetch(Booking $booking)
     {
         return [
-            'pending'  => fractal($booking->pending()->get()->toArray(), new DeliveryFetchTransformer()),
-            'yours'    => fractal($booking->yours()->get()->toArray(), new DeliveryFetchTransformer()),
-            'complete' => fractal($booking->complete()->get()->toArray(), new DeliveryFetchTransformer()),
+            'pending'   => fractal($booking->pending()->get()->toArray(), new DeliveryFetchTransformer()),
+            'yours'     => fractal($booking->yours()->get()->toArray(), new DeliveryFetchTransformer()),
+            'complete'  => fractal($booking->complete()->get()->toArray(), new DeliveryFetchTransformer()),
+            'cancelled' => fractal($booking->cancelled()->get()->toArray(), new DeliveryFetchTransformer()),
         ];
     }
 
@@ -42,18 +44,19 @@ class DeliveryController extends Controller
      * Reserved a booking.
      *
      * @param $id
+     * @param \App\Booking $booking
      * @return mixed
      */
     public function mine($id, Booking $booking)
     {
-
         if (! $booking->isAlreadyAccepted($id)) {
             $pubnub = new PubNubConnect();
             $pubnub->message("Reserved!");
 
-            Booking::query()->where('id', $id)->update([
-                'status'   => 'accepted',
-                'rider_id' => auth()->id(),
+            $booking->newQuery()->where('id', $id)->update([
+                'status'     => 'accepted',
+                'rider_id'   => auth()->id(),
+                'updated_at' => Carbon::now(),
             ]);
 
             event(new BookingStatusEvent());
@@ -62,6 +65,25 @@ class DeliveryController extends Controller
         }
 
         return redirect()->back()->with('error', 'Booking has already been reserved!');
+    }
+
+    /**
+     * Reserved a booking.
+     *
+     * @param $id
+     * @param \App\Booking $booking
+     * @return mixed
+     */
+    public function cancel($id, Booking $booking)
+    {
+        $booking->newQuery()->where('id', $id)->update([
+            'status'   => 'cancelled',
+            'rider_id' => auth()->id(),
+        ]);
+
+        event(new BookingStatusEvent());
+
+        return redirect()->back()->with('error', 'Booking has been cancelled!');
     }
 
     /***
