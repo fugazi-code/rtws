@@ -119,6 +119,6 @@ class Specifications
             return 0;
         }
 
-        return $this->initial_fee + ($this->fee * ($this->kilometers - 3));
+        return $this->initial_fee + ($this->fee * $this->kilometers);
     }
 }
