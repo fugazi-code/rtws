@@ -282,7 +282,6 @@
                                 $.each($this.yours, (key, value) => {
                                     $this.yours[key].validCancel = $this.validatedCancelBtn(value.updated_at)
                                 });
-                                $this.yours = hold;
                             }, 1000);
                         }
                     });
