@@ -11,6 +11,14 @@
                 <div class="card-body">
                     @if(!\App\Wallet::noFunds())
                         <div class="row">
+                            @canany(['admin', 'superadmin'])
+                            <div class="col-md-auto mb-3">
+                                <form>
+                                    <label>Override ID:</label>
+                                    <input class="form-control" v-model="fetchid" @keyup="fetch()">
+                                </form>
+                            </div>
+                            @endcan
                             <div class="col-md-12">
                                 <!-- Nav tabs -->
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -208,6 +216,7 @@
         const e = new Vue({
             el: '#app',
             data: {
+                fetchid: '{{ auth()->id() }}',
                 pending: [],
                 yours: [],
                 complete: [],
@@ -254,15 +263,17 @@
                     $.ajax({
                         url: '{{ route('delivery.fetch') }}',
                         method: 'POST',
+                        data: {
+                          id: $this.fetchid
+                        },
                         success: function (value) {
                             $this.pending = value.pending.data;
                             $this.yours = value.yours.data;
                             $this.complete = value.complete.data;
                             $this.cancelled = value.cancelled.data;
-                            var hold = $this.yours;
                             this.interval = setInterval(function(){
-                                $.each(hold, (key, value) => {
-                                    hold[key].validCancel = $this.validatedCancelBtn(value.updated_at)
+                                $.each($this.yours, (key, value) => {
+                                    $this.yours[key].validCancel = $this.validatedCancelBtn(value.updated_at)
                                 });
                                 $this.yours = hold;
                             }, 1000);

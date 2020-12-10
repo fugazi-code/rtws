@@ -44,30 +44,30 @@ class Booking extends Model
                    ->orderBy('created_at', 'desc');
     }
 
-    public function yours()
+    public function yours($id)
     {
         return self::query()
                    ->selectRaw('*, \'\' as validCancel')
                    ->where('status', 'accepted')
-                   ->where('rider_id', auth()->id())
+                   ->where('rider_id', $id)
                    ->with(['rider', 'photo', 'customer'])
                    ->orderBy('created_at', 'desc');
     }
 
-    public function complete()
+    public function complete($id)
     {
         return self::query()
                    ->where('status', 'complete')
-                   ->where('rider_id', auth()->id())
+                   ->where('rider_id', $id)
                    ->with(['rider', 'photo', 'customer'])
                    ->orderBy('created_at', 'desc');
     }
 
-    public function cancelled()
+    public function cancelled($id)
     {
         return self::query()
                    ->where('status', 'cancelled')
-                   ->where('rider_id', auth()->id())
+                   ->where('rider_id', $id)
                    ->with(['rider', 'photo', 'customer'])
                    ->orderBy('created_at', 'desc');
     }

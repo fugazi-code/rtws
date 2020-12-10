@@ -9,7 +9,7 @@ use App\Commission;
 use App\PubNub\PubNubConnect;
 use App\Events\DeliveryChanges;
 use App\Events\BookingStatusEvent;
-use App\Callbacks\DeliveryCallback;
+use Illuminate\Http\Request;
 use App\Transformers\DeliveryFetchTransformer;
 
 class DeliveryController extends Controller
@@ -27,16 +27,17 @@ class DeliveryController extends Controller
     /**
      * Gets data for Booking.
      *
+     * @param \Illuminate\Http\Request $request
      * @param Booking $booking
      * @return array
      */
-    public function fetch(Booking $booking)
+    public function fetch(Request $request, Booking $booking)
     {
         return [
             'pending'   => fractal($booking->pending()->get()->toArray(), new DeliveryFetchTransformer()),
-            'yours'     => fractal($booking->yours()->get()->toArray(), new DeliveryFetchTransformer()),
-            'complete'  => fractal($booking->complete()->get()->toArray(), new DeliveryFetchTransformer()),
-            'cancelled' => fractal($booking->cancelled()->get()->toArray(), new DeliveryFetchTransformer()),
+            'yours'     => fractal($booking->yours($request->id)->get()->toArray(), new DeliveryFetchTransformer()),
+            'complete'  => fractal($booking->complete($request->id)->get()->toArray(), new DeliveryFetchTransformer()),
+            'cancelled' => fractal($booking->cancelled($request->id)->get()->toArray(), new DeliveryFetchTransformer()),
         ];
     }
 
