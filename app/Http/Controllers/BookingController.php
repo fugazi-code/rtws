@@ -54,6 +54,7 @@ class BookingController extends Controller
             "amount"      => $request->get("amount"),
             "weight"      => $request->get("weight"),
             "budget"      => $request->get("budget"),
+            "distance"    => $request->get("kilometers"),
             "ref_no"      => strtoupper(hash('adler32', $schedule)),
         ]);
 
