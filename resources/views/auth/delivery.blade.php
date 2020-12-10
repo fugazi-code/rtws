@@ -132,19 +132,26 @@
                                             </div>
                                             <div class="col-2">
                                                 <div class="btn-group-vertical">
-                                                    <button @click="done('/d/c/' + delivery.id)"
-                                                            class="btn btn-success btn-square">
-                                                        <i class="fas fa-check"></i> Done
-                                                    </button>
-                                                    <button v-if="delivery.validCancel <= 5"
-                                                            @click="cancel('/d/cc/' + delivery.id)"
-                                                            class="btn btn-danger btn-square">
-                                                        <i class="fas fa-ban"></i> Cancel
-                                                    </button>
-                                                    <button v-if="delivery.validCancel >= 5"
-                                                            class="btn btn-secondary disabled btn-square">
-                                                        <i class="fas fa-ban"></i> Cancel
-                                                    </button>
+                                                    @canany(['admin', 'superadmin'])
+                                                        <button @click="cancel('/d/cc/' + delivery.id)"
+                                                                class="btn btn-danger btn-square">
+                                                            <i class="fas fa-ban"></i> Cancel
+                                                        </button>
+                                                    @else
+                                                        <button @click="done('/d/c/' + delivery.id)"
+                                                                class="btn btn-success btn-square">
+                                                            <i class="fas fa-check"></i> Done
+                                                        </button>
+                                                        <button v-if="delivery.validCancel <= 5"
+                                                                @click="cancel('/d/cc/' + delivery.id)"
+                                                                class="btn btn-danger btn-square">
+                                                            <i class="fas fa-ban"></i> Cancel
+                                                        </button>
+                                                        <button v-if="delivery.validCancel >= 5"
+                                                                class="btn btn-secondary disabled btn-square">
+                                                            <i class="fas fa-ban"></i> Cancel
+                                                        </button>
+                                                    @endcan
                                                 </div>
                                             </div>
                                         </div>
