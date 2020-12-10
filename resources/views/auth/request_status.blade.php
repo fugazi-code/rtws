@@ -9,6 +9,18 @@
                     Request Status
                 </div>
                 <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            @canany(['admin', 'superadmin'])
+                                <div class="col-md-auto mb-3">
+                                    <form>
+                                        <label>Override ID:</label>
+                                        <input class="form-control" v-model="fetchid" @keyup="fetch()">
+                                    </form>
+                                </div>
+                            @endcan
+                        </div>
+                    </div>
                     <div class="list-group">
                         <a href="#" class="list-group-item list-group-item-action" v-for="book in books">
                             <div class="d-flex w-100 justify-content-between">
@@ -46,6 +58,7 @@
         const e = new Vue({
             el: '#app',
             data: {
+                fetchid: '{{ auth()->id() }}',
                 books: []
             },
             methods: {
@@ -54,6 +67,9 @@
                     $.ajax({
                         url: '{{ route('request.fetch') }}',
                         method: 'POST',
+                        data: {
+                          id: $this.fetchid
+                        },
                         success(value) {
                             $this.books = value.booking.data;
                         }

@@ -13,10 +13,10 @@ class RequestStatusController extends Controller
         return view('auth.request_status');
     }
 
-    public function fetch()
+    public function fetch(Request $request)
     {
         $booking = Booking::with('customer', 'rider')
-                          ->where('customer_id', auth()->id())
+                          ->where('customer_id', $request->id)
                           ->orderByDesc('id')
                           ->get()
                           ->toArray();
