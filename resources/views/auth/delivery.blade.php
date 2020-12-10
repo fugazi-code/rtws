@@ -224,10 +224,10 @@
             el: '#app',
             data: {
                 fetchid: '{{ auth()->id() }}',
-                pending: [],
-                yours: [],
-                complete: [],
-                cancelled: [],
+                pending: {},
+                yours: {},
+                complete: {},
+                cancelled: {},
             },
             methods: {
                 validatedCancelBtn(dated) {
