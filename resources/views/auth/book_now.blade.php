@@ -21,12 +21,13 @@
                                             <div class="form-check form-check-inline mr-1">
                                                 <input class="form-check-input" v-model="form.vehicle"
                                                        id="inline-radio1" type="radio" value="motorcycle"
-                                                       name="vehicle">
+                                                       name="vehicle" @change="matrix()">
                                                 <label class="form-check-label" for="inline-radio1">Motorcycle</label>
                                             </div>
                                             <div class="form-check form-check-inline mr-1">
                                                 <input class="form-check-input" v-model="form.vehicle"
-                                                       id="inline-radio2" type="radio" value="car" name="vehicle">
+                                                       id="inline-radio2" type="radio" value="car"
+                                                       name="vehicle" @change="matrix()">
                                                 <label class="form-check-label" for="inline-radio2">Car</label>
                                             </div>
                                         </div>
@@ -40,19 +41,19 @@
                                             <div class="form-check form-check-inline mr-1">
                                                 <input class="form-check-input" v-model="form.service"
                                                        id="inline-radio1" type="radio" value="padala"
-                                                       name="service">
+                                                       name="service" @change="matrix()">
                                                 <label class="form-check-label">padala</label>
                                             </div>
                                             <div class="form-check form-check-inline mr-1">
                                                 <input class="form-check-input" v-model="form.service"
                                                        id="inline-radio2" type="radio" value="pabili"
-                                                       name="service">
+                                                       name="service" @change="matrix()">
                                                 <label class="form-check-label">pabili</label>
                                             </div>
                                             <div class="form-check form-check-inline mr-1">
                                                 <input class="form-check-input" v-model="form.service"
                                                        id="inline-radio2" type="radio" value="grocery"
-                                                       name="service">
+                                                       name="service" @change="matrix()">
                                                 <label class="form-check-label">grocery</label>
                                             </div>
                                         </div>
