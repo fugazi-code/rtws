@@ -82,7 +82,7 @@
                     <div class="home-thumb">
                          <h1 class="wow fadeInUp" data-wow-delay="0.6s">Broom Express</h1>
                          <p class="wow fadeInUp" data-wow-delay="0.8s">The Broom Express is a local group of company that provides on same day delivery by connecting users with delivery drivers on its mobile and web application.</p>
-                         <a href="{{ asset('apk/broomexp.apk') }}" class="wow fadeInUp section-btn btn btn-success smoothScroll" data-wow-delay="1s">Download Now</a>
+                         <a href="https://broomexp.com/login" class="wow fadeInUp section-btn btn btn-success smoothScroll" data-wow-delay="1s">Book Now</a>
                     </div>
                </div>
 		</div>
@@ -151,7 +151,7 @@
           <div class="row">
 
                <div class="col-md-offset-2 col-md-8 col-sm-12">
-                    <h2 class="wow fadeInUp" data-wow-delay="0.4s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris diam nisi, vehicula non iaculis iaculis, iaculis sit amet ante. Aliquam auctor gravida nisi, non pulvinar libero posuere at. Aenean venenatis purus sit amet est fermentum laoreet. Proin pharetra hendrerit nunc in tincidunt. Suspendisse potenti. Curabitur feugiat eget diam nec vestibulum.</h2>
+                    <h2 class="wow fadeInUp" data-wow-delay="0.4s">To provide our customers with the best online courier in town. A smooth experience from beginning to end , with a friendly user application and to deliver high quality service.</h2>
                     <!-- <a href="#screenshot" class="wow fadeInUp section-btn btn btn-success smoothScroll" data-wow-delay="0.8s">Learn More</a> -->
                </div>
 
@@ -169,7 +169,7 @@
                <div class="col-md-offset-2 col-md-8 col-sm-12">
                     <div class="section-title">
                          <h1>App Screenshots</h1>
-                         <p class="wow fadeInUp" data-wow-delay="0.8s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris diam nisi, vehicula non iaculis iaculis, iaculis sit amet ante. Aliquam auctor gravida nisi, non pulvinar libero posuere at. </p>
+                         <p class="wow fadeInUp" data-wow-delay="0.8s"></p>
                     </div>
                </div>
 
@@ -352,7 +352,7 @@
                          <li><a href="#" class="fa fa-linkedin"></a></li>
                     </ul>
                </div>
-
+			
 		</div>
 	</div>
 </footer>
