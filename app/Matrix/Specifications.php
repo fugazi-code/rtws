@@ -59,7 +59,7 @@ class Specifications
                     $this->initial_fee = 120;
                 }
             }
-            if ($this->service == 'pa-grocery') {
+            if ($this->service == 'grocery') {
                 $this->fee = 15;
                 if ($this->budget < 1500) {
                     $this->initial_fee = 200;
@@ -97,7 +97,7 @@ class Specifications
                     $this->initial_fee = 120;
                 }
             }
-            if ($this->service == 'pa-grocery') {
+            if ($this->service == 'grocery') {
                 $this->fee = 16;
                 if ($this->budget < 1500) {
                     $this->initial_fee = 200;
