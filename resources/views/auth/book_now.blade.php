@@ -106,7 +106,7 @@
                                                 <div class="input-group-text"><i class="fas fa-coins"></i></div>
                                             </div>
                                             <input type="text" v-model="form.budget" name="budget" class="form-control"
-                                                   placeholder="Budget in Peso">
+                                                   placeholder="Budget in Peso" @keyup="matrix()">
                                         </div>
                                     </div>
                                 </div>
