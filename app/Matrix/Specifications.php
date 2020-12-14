@@ -52,7 +52,7 @@ class Specifications
             }
             if ($this->service == 'pabili') {
                 $this->fee = 12;
-                if ($this->budget < 1500) {
+                if ($this->budget <= 1500) {
                     $this->initial_fee = 100;
                 }
                 if ($this->budget > 1501) {
@@ -61,7 +61,7 @@ class Specifications
             }
             if ($this->service == 'grocery') {
                 $this->fee = 16;
-                if ($this->budget < 1500) {
+                if ($this->budget <= 1500) {
                     $this->initial_fee = 150;
                 }
                 if ($this->budget > 1501) {
@@ -87,7 +87,7 @@ class Specifications
             }
             if ($this->service == 'pabili') {
                 $this->fee = 13;
-                if ($this->budget < 1500) {
+                if ($this->budget <= 1500) {
                     $this->initial_fee = 100;
                 }
                 if ($this->budget > 1501) {
@@ -96,7 +96,7 @@ class Specifications
             }
             if ($this->service == 'grocery') {
                 $this->fee = 16;
-                if ($this->budget < 1500) {
+                if ($this->budget <= 1500) {
                     $this->initial_fee = 180;
                 }
                 if ($this->budget > 1501) {
