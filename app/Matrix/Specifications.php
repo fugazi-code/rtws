@@ -60,15 +60,12 @@ class Specifications
                 }
             }
             if ($this->service == 'grocery') {
-                $this->fee = 15;
+                $this->fee = 16;
                 if ($this->budget < 1500) {
-                    $this->initial_fee = 200;
+                    $this->initial_fee = 150;
                 }
-                if ($this->budget <= 3000 && $this->budget > 1500) {
-                    $this->initial_fee = 250;
-                }
-                if ($this->budget > 3000) {
-                    $this->initial_fee = 300;
+                if ($this->budget > 1501) {
+                    $this->initial_fee = 180;
                 }
             }
         }
@@ -100,13 +97,10 @@ class Specifications
             if ($this->service == 'grocery') {
                 $this->fee = 16;
                 if ($this->budget < 1500) {
+                    $this->initial_fee = 180;
+                }
+                if ($this->budget > 1501) {
                     $this->initial_fee = 200;
-                }
-                if ($this->budget <= 3000 && $this->budget > 1500) {
-                    $this->initial_fee = 250;
-                }
-                if ($this->budget > 3000) {
-                    $this->initial_fee = 300;
                 }
             }
         }
