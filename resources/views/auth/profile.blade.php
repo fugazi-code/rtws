@@ -128,6 +128,14 @@
                                                    value="{{ auth()->user()->birth_date }}">
                                         </div>
                                     </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Messenger Link</label>
+                                            <input type="text" class="form-control" placeholder="Messenger Link"
+                                                   name="msg_link"
+                                                   value="{{ auth()->user()->msg_link }}">
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="row justify-content-center">

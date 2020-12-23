@@ -65,7 +65,9 @@
                                             <div class="col-6 col-md-8">
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <strong>@{{ delivery.customer.name }}</strong>
+                                                        <a v-bind:href="delivery.customer.msg_link">
+                                                            <strong>@{{ delivery.customer.name }}</strong>
+                                                        </a>
                                                         @{{ delivery.customer.contact}}
                                                     </div>
                                                     <div class="col-md-12">
@@ -127,6 +129,9 @@
                                                     </div>
                                                     <div class="col-md-12">
                                                         <strong>To:</strong> <i>@{{ delivery.drop_off }}</i>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <strong>Chat:</strong> <i>@{{ delivery.msg_link }}</i>
                                                     </div>
                                                 </div>
                                             </div>

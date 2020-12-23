@@ -26,6 +26,7 @@ class User extends Authenticatable
         'address',
         'country',
         'postal_code',
+        'msg_link',
     ];
 
     /**
