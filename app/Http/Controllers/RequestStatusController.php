@@ -18,7 +18,7 @@ class RequestStatusController extends Controller
     public function fetch(Request $request)
     {
         $booking = Booking::with('customer', 'rider')
-                          ->where('customer_id', $request->id)
+                          ->where('customer.name', $request->id)
                           ->orderByDesc('id')
                           ->get()
                           ->toArray();
