@@ -18,7 +18,7 @@ class RequestStatusController extends Controller
     public function fetch(Request $request)
     {
         $booking = Booking::with('customer', 'rider')
-                          ->where('customer.name', $request->id)
+                          ->where('customer_id', $request->id)
                           ->orderByDesc('id')
                           ->get()
                           ->toArray();
@@ -38,10 +38,11 @@ class RequestStatusController extends Controller
     public function details($id)
     {
         $results = DB::table('bookings')
-                     ->selectRaw('bookings.*, uc.name as customer_name, ur.name as rider_name')
+                     ->selectRaw('bookings.*, uc.name as customer_name, ur.name as rider_name, g.path')
                      ->where('bookings.id', $id)
                      ->leftJoin('users as uc','uc.id', '=', 'customer_id')
                      ->leftJoin('users as ur','ur.id', '=', 'rider_id')
+                     ->leftJoin('galleries as g','g.user_id', '=', 'rider_id')
                      ->get()[0];
 
         return view('auth.request_details', compact('results'));

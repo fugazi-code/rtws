@@ -9,12 +9,28 @@
                     Request Details
                 </div>
                 <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-auto">
+                            <img src="/storage/{{ $results->path }}" class="img-thumbnail" style="height: 120px"/>
+                        </div>
+                        <div class="col-12 mb-3">
+                        </div>
+                        <div class="col-auto text-right pr-0">
+                            <label class="font-weight-bold">Rider</label>
+                        </div>
+                        <div class="col-auto pl-1">
+                            <label class="text-muted">{{ $results->rider_name }}</label>
+                        </div>
+                    </div>
                     <div class="row justify-content-start">
+                        <div class="col-12">
+                            <hr class="m-1">
+                        </div>
                         <div class="col-auto text-right">
                             <label class="font-weight-bold">Reference No.</label>
                         </div>
                         <div class="col-auto">
-                            <label class="text-muted">{{ strtoupper($results->ref_no) }}</label>
+                            <label class="text-muted">{{ $results->ref_no }}</label>
                         </div>
                         <div class="col-12">
                             <hr class="m-1">
@@ -74,26 +90,19 @@
                         <div class="col-12">
                             <hr class="m-1">
                         </div>
-                        <div class="col-auto text-right">
+                        <div class="col-auto text-right pr-0">
                             <label class="font-weight-bold">Schedule</label>
                         </div>
                         <div class="col-auto">
-                            <label class="text-muted">{{ $results->schedule }}</label>
+                            <label class="text-muted pl-1">
+                                {{ \Carbon\Carbon::parse($results->schedule)->format('M j, Y H:iA') }}
+                            </label>
                         </div>
                         <div class="col-auto text-right">
                             <label class="font-weight-bold">Distance</label>
                         </div>
                         <div class="col-auto">
                             <label class="text-muted">{{ $results->distance }}</label>
-                        </div>
-                        <div class="col-12">
-                            <hr class="m-1">
-                        </div>
-                        <div class="col-auto text-right">
-                            <label class="font-weight-bold">Rider</label>
-                        </div>
-                        <div class="col-auto">
-                            <label class="text-muted">{{ $results->rider_name }}</label>
                         </div>
                         <div class="col-12">
                             <hr class="m-1">

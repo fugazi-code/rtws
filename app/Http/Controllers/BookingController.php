@@ -35,6 +35,7 @@ class BookingController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->get("kilometers"));
         session()->forget('form');
         $schedule = $request->get("schedule");
 

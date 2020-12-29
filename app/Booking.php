@@ -18,6 +18,7 @@ class Booking extends Model
         "status",
         "ref_no",
         "weight",
+        "distance",
         "budget",
     ];
 
