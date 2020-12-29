@@ -22,21 +22,27 @@
                         </div>
                     </div>
                     <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action" v-for="book in books">
+                        <span class="list-group-item list-group-item-action" v-for="book in books" :key="book._id">
                             <div class="d-flex w-100 justify-content-between">
                                 <h5 class="mb-1">#@{{ book.ref_no }}
                                     <span v-if="book.status == 'pending'"
                                           class="badge badge-info">Looking for a Rider</span>
                                     <span v-else-if="book.status == 'accepted'" class="badge badge-success">Rider has been assigned</span>
                                     <span v-else-if="book.status == 'cancelled'"
-                                          class="badge badge-danger">Cancelled</span>
+                                          class="badge btn-square badge-danger">Cancelled</span>
                                     <span v-else class="badge badge-info">@{{ book.status }}</span>
                                 </h5>
                                 <small>Php @{{ book.amount }}</small>
                             </div>
                             <p class="mb-1"><strong>Schedule</strong> @{{ book.schedule }}</p>
-                            <p v-if="book.rider" class="mb-1"><strong>Rider</strong> @{{ book.rider.name }}
-                                (@{{ book.rider.contact }})</p>
+                            <p v-if="book.rider" class="mb-1">
+                                <strong>Rider</strong>
+                                <a :href="book.rider.msg_link">
+                                    @{{ book.rider.name }}
+                                </a>
+                                <br>
+                                (@{{ book.rider.contact }})
+                            </p>
                             <p class="mb-1">@{{ book.pick_up }} <strong>to</strong> @{{ book.drop_off }}</p>
                             <form method="POST" action="{{ route('request.cancel') }}">
                                 @csrf
@@ -45,7 +51,7 @@
                                     <button class="btn btn-sm btn-round btn-danger">Cancel Order</button>
                                 </p>
                             </form>
-                        </a>
+                        </span>
                     </div>
                 </div>
             </div>
