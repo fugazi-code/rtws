@@ -124,9 +124,6 @@
                                             <div class="col-md-12">
                                                 <strong>To:</strong> <i>@{{ delivery.drop_off }}</i>
                                             </div>
-                                            <div class="col-md-12">
-                                                <strong>Chat:</strong> <i>@{{ delivery.msg_link }}</i>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-2">
