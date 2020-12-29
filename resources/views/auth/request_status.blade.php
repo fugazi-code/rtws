@@ -24,7 +24,7 @@
                             <div class="row">
                                 <!-- =============================== -->
                                 <div class="col-auto align-self-start pr-0">
-                                    <a v-bind:href="book.id" class="text-black-50">
+                                    <a v-bind:href="'/r/s/d/' + book.id" class="text-black-50">
                                         Ref no. @{{ book.ref_no }} <i class="fas fa-eye"></i>
                                     </a>
                                 </div>

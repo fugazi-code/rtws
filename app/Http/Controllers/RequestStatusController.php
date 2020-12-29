@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Booking;
 use Illuminate\Http\Request;
+use Facade\Ignition\Tabs\Tab;
 use App\Transformers\BookingFetchTransformer;
+use DB;
 
 class RequestStatusController extends Controller
 {
@@ -35,7 +37,12 @@ class RequestStatusController extends Controller
 
     public function details($id)
     {
-        $results = Booking::find($id);
+        $results = DB::table('bookings')
+                     ->selectRaw('bookings.*, uc.name as customer_name, ur.name as rider_name')
+                     ->where('bookings.id', $id)
+                     ->leftJoin('users as uc','uc.id', '=', 'customer_id')
+                     ->leftJoin('users as ur','ur.id', '=', 'rider_id')
+                     ->get()[0];
 
         return view('auth.request_details', compact('results'));
     }
