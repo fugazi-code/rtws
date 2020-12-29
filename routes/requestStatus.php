@@ -7,5 +7,5 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/m/f', [RequestStatusController::class, 'fetch'])->name('request.fetch');
     Route::post('/m/c', [RequestStatusController::class, 'cancel'])->name('request.cancel');
     Route::get('/m/d', [RequestStatusController::class, 'index'])->name('request.status');
-    Route::get('/r/s/d', [RequestStatusController::class, 'details'])->name('request.details');
+    Route::get('/r/s/d/{id}', [RequestStatusController::class, 'details'])->name('request.details');
 });

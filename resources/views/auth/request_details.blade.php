@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card card-accent-warning">
                 <div class="card-header">
-                    Request Status
+                    Request Details
                 </div>
                 <div class="card-body">
                     <div class="row">

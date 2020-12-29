@@ -8,5 +8,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/m/m', [BookingController::class, 'map'])->name('booking.map');
     Route::post('/b/s', [BookingController::class, 'locationStore'])->name('booking.location.store');
     Route::post('/b/m', [BookingController::class, 'matrix'])->name('booking.matrix');
-    Route::get('/b/d', [BookingController::class, 'details'])->name('book.details');
+    Route::get('/b', [BookingController::class, 'index'])->name('book');
 });

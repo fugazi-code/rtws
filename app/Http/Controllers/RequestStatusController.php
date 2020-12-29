@@ -32,4 +32,11 @@ class RequestStatusController extends Controller
 
         return redirect()->back()->with('success', 'Book has been cancelled!');
     }
+
+    public function details($id)
+    {
+        $results = Booking::find($id);
+
+        return view('auth.request_details', compact('results'));
+    }
 }
