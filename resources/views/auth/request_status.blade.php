@@ -12,11 +12,13 @@
                     <div class="row">
                         <div class="col-md-12">
                             @canany(['admin', 'superadmin'])
-                                <div class="col-md-auto mb-3">
-                                    <form>
-                                        <label>Override ID:</label>
-                                        <input class="form-control" v-model="fetchid" @keyup="fetch()">
-                                    </form>
+                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                        <form>
+                                            <label>Override ID of @{{ name }}</label>
+                                            <input class="form-control" v-model="fetchid" @keyup="getCurrentUser()">
+                                        </form>
+                                    </div>
                                 </div>
                             @endcan
                         </div>
@@ -85,7 +87,9 @@
                                                 @csrf
                                                 <p class="mb-1" v-if="book.status == 'pending'">
                                                     <input name="book_id" v-bind:value="book.id" hidden>
-                                                    <button class="btn btn-block btn-sm btn-square btn-danger card-link">Cancel
+                                                    <button
+                                                        class="btn btn-block btn-sm btn-square btn-danger card-link">
+                                                        Cancel
                                                         Order
                                                     </button>
                                                 </p>
@@ -108,9 +112,24 @@
             el: '#app',
             data: {
                 fetchid: '{{ auth()->id() }}',
+                name: '{{ auth()->user()->name }}',
                 books: []
             },
             methods: {
+                getCurrentUser() {
+                    var $this = this;
+                    $.ajax({
+                        url: '{{ route('user.get.detail') }}',
+                        method: 'POST',
+                        data: {
+                            id: $this.fetchid
+                        },
+                        success(value) {
+                            $this.name = value.name
+                            $this.fetch()
+                        }
+                    });
+                },
                 fetch() {
                     var $this = this;
                     $.ajax({
@@ -128,7 +147,8 @@
             mounted() {
                 var $this = this;
                 const uuid = PubNub.generateUUID();
-                this.fetch();
+                $this.fetch();
+                $this.getCurrentUser()
                 Echo.channel('booking-status')
                     .listen('BookingStatusEvent', (e) => {
                         console.log(e.update);

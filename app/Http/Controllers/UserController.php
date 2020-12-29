@@ -80,15 +80,9 @@ class UserController extends Controller
         return redirect()->route('p.index')->with('success', 'Password has been updated!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function getDetailById(Request $request)
     {
-        //
+        return User::find($request->id);
     }
 
     public function resetPass($id)

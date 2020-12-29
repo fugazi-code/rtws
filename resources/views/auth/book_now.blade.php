@@ -127,6 +127,11 @@
                                                v-model="form.kilometers"
                                                readonly>
                                     </div>
+                                    <div class="col-sm-12 mt-1">
+                                        <label>Remarks</label>
+                                        <textarea type="text" name="sub" class="form-control" v-model="form.sub"
+                                        rows="3"></textarea>
+                                    </div>
                                 </div>
                                 <div class="row mt-2 justify-content-center">
                                     <div class="col-md-12">

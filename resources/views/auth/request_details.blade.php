@@ -78,13 +78,13 @@
                             <label class="font-weight-bold">Schedule</label>
                         </div>
                         <div class="col-auto">
-                            <label class="text-muted">{{ strtoupper($results->schedule) }}</label>
+                            <label class="text-muted">{{ $results->schedule }}</label>
                         </div>
                         <div class="col-auto text-right">
                             <label class="font-weight-bold">Distance</label>
                         </div>
                         <div class="col-auto">
-                            <label class="text-muted">{{ strtoupper($results->distance) }}</label>
+                            <label class="text-muted">{{ $results->distance }}</label>
                         </div>
                         <div class="col-12">
                             <hr class="m-1">
@@ -93,7 +93,7 @@
                             <label class="font-weight-bold">Rider</label>
                         </div>
                         <div class="col-auto">
-                            <label class="text-muted">{{ strtoupper($results->rider_name) }}</label>
+                            <label class="text-muted">{{ $results->rider_name }}</label>
                         </div>
                         <div class="col-12">
                             <hr class="m-1">
@@ -102,13 +102,21 @@
                             <label class="font-weight-bold">Pick Up</label>
                         </div>
                         <div class="col-auto">
-                            <label class="text-muted">{{ strtoupper($results->pick_up) }}</label>
+                            <label class="text-muted">{{ $results->pick_up }}</label>
+                        </div>
+                        <div class="col-12">
                         </div>
                         <div class="col-auto text-right">
                             <label class="font-weight-bold">Drop Off</label>
                         </div>
                         <div class="col-auto">
-                            <label class="text-muted">{{ strtoupper($results->drop_off) }}</label>
+                            <label class="text-muted">{{ $results->drop_off }}</label>
+                        </div>
+                        <div class="col-12">
+                            <label class="font-weight-bold">Remarks</label>
+                        </div>
+                        <div class="col-auto">
+                            <label class="text-muted">{{ $results->sub }}</label>
                         </div>
                         <div class="col-12 mt-2">
                         <a href="{{ route('request.status') }}" class="btn btn-block btn-square btn-info text-white">
@@ -132,8 +140,6 @@
                 results: {!! collect($results) !!}
             },
             methods: {
-                fetch() {
-                }
             },
             mounted() {
             }
