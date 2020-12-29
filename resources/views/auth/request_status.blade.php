@@ -20,38 +20,81 @@
                                 </div>
                             @endcan
                         </div>
-                    </div>
-                    <div class="list-group">
-                        <span class="list-group-item list-group-item-action" v-for="book in books" :key="book._id">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">#@{{ book.ref_no }}
-                                    <span v-if="book.status == 'pending'"
-                                          class="badge badge-info">Looking for a Rider</span>
-                                    <span v-else-if="book.status == 'accepted'" class="badge badge-success">Rider has been assigned</span>
-                                    <span v-else-if="book.status == 'cancelled'"
-                                          class="badge btn-square badge-danger">Cancelled</span>
-                                    <span v-else class="badge badge-info">@{{ book.status }}</span>
-                                </h5>
-                                <small>Php @{{ book.amount }}</small>
+                        <div class="col-md-12 mb-3 border p-1 shadow-sm" v-for="book in books" :key="book._id">
+                            <div class="row">
+                                <!-- =============================== -->
+                                <div class="col-auto align-self-start pr-0">
+                                    <a v-bind:href="'/b/d/' + book.id" class="text-black-50">
+                                        Ref no. @{{ book.ref_no }} <i class="fas fa-eye"></i>
+                                    </a>
+                                </div>
+                                <div class="col align-self-center">
+                                    <h6 v-if="book.status == 'pending'" class="mb-0 badge badge-info">Looking for a
+                                        Rider...</h6>
+                                    <h6 v-else-if="book.status == 'accepted'" class="mb-0 badge badge-warning">Rider
+                                        Assigned</h6>
+                                    <h6 v-else-if="book.status == 'cancelled'" class="mb-0 badge badge-danger">
+                                        Cancelled</h6>
+                                    <h6 v-else class="badge badge-success">@{{ book.status }}</h6>
+                                </div>
+                                <div class="mb-0 col-auto align-self-end">Php @{{ book.amount }}</div>
+                                <!-- =============================== -->
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-4 font-weight-bold text-right pr-0">Schedule</div>
+                                        <div class="col-auto">@{{ book.schedule }}</div>
+                                    </div>
+                                </div>
+                                <!-- =============================== -->
+                                <div class="col-12" v-if="book.rider">
+                                    <div class="row">
+                                        <div class="col-4 font-weight-bold text-right pr-0">Rider</div>
+                                        <div class="col-auto">
+                                            <a :href="book.rider.msg_link" target="_blank" class="text-black-50">
+                                                @{{ book.rider.name }}
+                                                <i class="fas fa-link"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- =============================== -->
+                                <div class="col-12" v-if="book.rider">
+                                    <div class="row">
+                                        <div class="col-4 font-weight-bold text-right pr-0">Contact</div>
+                                        <div class="col-auto"><small>@{{ book.rider.contact }}</small></div>
+                                    </div>
+                                </div>
+                                <!-- =============================== -->
+                                <div class="col-12" v-if="book.pick_up">
+                                    <div class="row">
+                                        <div class="col-auto font-weight-bold text-right pr-0">Pick-Up</div>
+                                        <div class="col-auto"><small>@{{ book.pick_up }}</small></div>
+                                    </div>
+                                </div>
+                                <div class="col-12" v-if="book.drop_off">
+                                    <div class="row">
+                                        <div class="col-auto font-weight-bold text-right pr-0">Drop-Off</div>
+                                        <div class="col-auto"><small>@{{ book.drop_off }}</small></div>
+                                    </div>
+                                </div>
+                                <!-- =============================== -->
+                                <div class="col-12 mt-2">
+                                    <div class="row justify-content-center">
+                                        <div class="col-12">
+                                            <form method="POST" action="{{ route('request.cancel') }}">
+                                                @csrf
+                                                <p class="mb-1" v-if="book.status == 'pending'">
+                                                    <input name="book_id" v-bind:value="book.id" hidden>
+                                                    <button class="btn btn-block btn-sm btn-square btn-danger card-link">Cancel
+                                                        Order
+                                                    </button>
+                                                </p>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <p class="mb-1"><strong>Schedule</strong> @{{ book.schedule }}</p>
-                            <p v-if="book.rider" class="mb-1">
-                                <strong>Rider</strong>
-                                <a :href="book.rider.msg_link">
-                                    @{{ book.rider.name }}
-                                </a>
-                                <br>
-                                (@{{ book.rider.contact }})
-                            </p>
-                            <p class="mb-1">@{{ book.pick_up }} <strong>to</strong> @{{ book.drop_off }}</p>
-                            <form method="POST" action="{{ route('request.cancel') }}">
-                                @csrf
-                                <p class="mb-1" v-if="book.status == 'pending'">
-                                    <input name="book_id" v-bind:value="book.id" hidden>
-                                    <button class="btn btn-sm btn-round btn-danger">Cancel Order</button>
-                                </p>
-                            </form>
-                        </span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -74,7 +117,7 @@
                         url: '{{ route('request.fetch') }}',
                         method: 'POST',
                         data: {
-                          id: $this.fetchid
+                            id: $this.fetchid
                         },
                         success(value) {
                             $this.books = value.booking.data;
