@@ -86,7 +86,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    @if(\App\Booking::limitBooking(auth()->id()))
+                                    @if(!\App\Booking::limitBooking(auth()->id()))
                                     <div class="col-12 p-0">
                                         <a v-bind:href="'/d/m/' + delivery.id"
                                            class="btn btn-info btn-block btn-square">
@@ -100,7 +100,7 @@
                                         <h3>No Bookings Available.</h3>
                                     </div>
                                 </div>
-                                @if(!\App\Booking::limitBooking(auth()->id()))
+                                @if(\App\Booking::limitBooking(auth()->id()))
                                 <div class="row mt-3 justify-content-center">
                                     <div class="col-auto">
                                         <h5>We only Allow riders 2 bookings at a time.</h5>
@@ -164,18 +164,18 @@
                                                 </button>
                                             @else
                                                 <button @click="done('/d/c/' + delivery.id)"
-                                                        class="btn btn-success btn-square">
+                                                        class="btn btn-success btn-square btn-block">
                                                     <i class="fas fa-check"></i> Done
                                                 </button>
-                                                <button v-if="delivery.validCancel <= 5"
-                                                        @click="cancel('/d/cc/' + delivery.id)"
-                                                        class="btn btn-danger btn-square">
-                                                    <i class="fas fa-ban"></i> Cancel
-                                                </button>
-                                                <button v-if="delivery.validCancel >= 5"
-                                                        class="btn btn-secondary disabled btn-square">
-                                                    <i class="fas fa-ban"></i> Cancel
-                                                </button>
+{{--                                                <button v-if="delivery.validCancel <= 5"--}}
+{{--                                                        @click="cancel('/d/cc/' + delivery.id)"--}}
+{{--                                                        class="btn btn-danger btn-square">--}}
+{{--                                                    <i class="fas fa-ban"></i> Cancel--}}
+{{--                                                </button>--}}
+{{--                                                <button v-if="delivery.validCancel >= 5"--}}
+{{--                                                        class="btn btn-secondary disabled btn-square">--}}
+{{--                                                    <i class="fas fa-ban"></i> Cancel--}}
+{{--                                                </button>--}}
                                             @endcan
                                         </div>
                                     </div>

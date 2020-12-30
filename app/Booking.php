@@ -80,6 +80,6 @@ class Booking extends Model
 
     public static function limitBooking($id)
     {
-        return (new static())::query()->where('id', $id)->where('status', 'pending')->count() >= 2;
+        return (new static())::query()->where('rider_id', $id)->where('status', 'accepted')->count() >= 2;
     }
 }
