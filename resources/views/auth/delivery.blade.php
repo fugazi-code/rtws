@@ -12,16 +12,16 @@
                     @if(!\App\Wallet::noFunds())
                         <div class="row">
                             @canany(['admin', 'superadmin'])
-                                <div class="col-md-auto mb-3">
+                                <div class="col-12 mb-3">
                                     <form>
                                         <label>Override ID:</label>
                                         <input class="form-control" v-model="fetchid" @keyup="fetch()">
                                     </form>
                                 </div>
                             @endcan
-                            <div class="col-md-12 mb-2">
-                                <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button type="button" class="btn" @click="window = 1"
+                            <div class="col-12 mb-2 p-0">
+                                <div class="btn-group w-100" role="group">
+                                    <button type="button" class="btn btn-square" @click="window = 1"
                                             v-bind:class="{ 'btn-primary': (window == 1), 'btn-dark': (window != 1) }">
                                         Available
                                     </button>
@@ -33,52 +33,56 @@
                                             v-bind:class="{ 'btn-primary': (window == 3), 'btn-dark': (window != 3) }">
                                         Completed
                                     </button>
-                                    <button type="button" class="btn" @click="window = 4"
+                                    <button type="button" class="btn btn-square" @click="window = 4"
                                             v-bind:class="{ 'btn-primary': (window == 4), 'btn-dark': (window != 4) }">
                                         Cancelled
                                     </button>
                                 </div>
                             </div>
-                                {{--                                Available--}}
-                            <div class="col-md-12" v-show="window == 1">
-                                <div class="row mt-3" v-for="delivery in pending">
-                                    <div class="col-4 col-md-2 justify-content-center row">
-                                        <div class="col-auto">
-                                            <img v-if="delivery.photo"
-                                                 v-bind:src="'/storage/' + delivery.photo.path"
-                                                 class="img-fluid">
-                                        </div>
-                                        <div class="col-auto">
-                                            <label class="badge badge-info text-white">
-                                                <strong>@{{ delivery.service }}</strong>
-                                            </label>
+                            {{--                                Available--}}
+                            <div class="col-12" v-show="window == 1">
+                                <div class="row mt-2  border shadow-sm pt-2" v-for="delivery in pending">
+                                    <div class="col-3">
+                                        <div class="row">
+                                            <div class="col-12 p-1">
+                                                <img v-if="delivery.photo"
+                                                     v-bind:src="'/storage/' + delivery.photo.path"
+                                                     class="rounded-circle img-fluid">
+                                            </div>
+                                            <div class="col-12 p-0 text-center">
+                                                <label class="badge badge-info text-white">
+                                                    @{{ delivery.service }}
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-6 col-md-8">
+                                    <div class="col-9 pl-0">
                                         <div class="row">
-                                            <div class="col-md-12">
-                                                <a v-bind:href="delivery.customer.msg_link"  target="_blank">
-                                                    <strong>@{{ delivery.customer.name }}</strong>
+                                            <div class="col-auto pr-0">
+                                                <a v-bind:href="delivery.customer.msg_link" target="_blank">
+                                                    @{{ delivery.customer.name }} <i class="fas fa-link"></i>
                                                 </a>
+                                            </div>
+                                            <div class="col-auto pr-0">
+                                                Php @{{ delivery.amount }}
+                                            </div>
+                                            <div class="col-12">
                                                 @{{ delivery.customer.contact}}
                                             </div>
-                                            <div class="col-md-12">
-                                                <i>Php @{{ delivery.amount }}</i>
+                                            <div class="col-12">
+                                                @{{ delivery.schedule }}
                                             </div>
-                                            <div class="col-md-12">
-                                                <i>@{{ delivery.schedule }}</i>
+                                            <div class="col-12">
+                                                <strong>From:</strong> @{{ delivery.pick_up }}
                                             </div>
-                                            <div class="col-md-12">
-                                                <strong>From:</strong> <i>@{{ delivery.pick_up }}</i>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <strong>To:</strong> <i>@{{ delivery.drop_off }}</i>
+                                            <div class="col-12">
+                                                <strong>To:</strong> @{{ delivery.drop_off }}
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-2">
+                                    <div class="col-12 p-0">
                                         <a v-bind:href="'/d/m/' + delivery.id"
-                                           class="btn btn-info btn-square">
+                                           class="btn btn-info btn-block btn-square">
                                             <i class="fas fa-bullseye"></i> Mine
                                         </a>
                                     </div>
@@ -89,7 +93,7 @@
                                     </div>
                                 </div>
                             </div>
-                                {{--                                    Yours--}}
+                            {{--                                    Yours--}}
                             <div class="col-md-12" v-show="window == 2">
                                 <div class="row mt-3" v-for="delivery in yours">
                                     <div class="col-4 col-md-2 justify-content-center row">
@@ -157,7 +161,7 @@
                                     </div>
                                 </div>
                             </div>
-                                {{--                                    Complete--}}
+                            {{--                                    Complete--}}
                             <div class="col-md-12" v-show="window == 3">
                                 <div class="row mt-3" v-for="delivery in complete">
                                     <div class="col-4 col-md-2 justify-content-center row">
@@ -179,7 +183,7 @@
                                     </div>
                                 </div>
                             </div>
-                                {{--                                    Cancelled--}}
+                            {{--                                    Cancelled--}}
                             <div class="col-md-12" v-show="window == 4">
                                 <div class="row mt-3" v-for="delivery in cancelled">
                                     <div class="col-4 col-md-2 justify-content-center row">

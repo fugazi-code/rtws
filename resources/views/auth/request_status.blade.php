@@ -25,7 +25,10 @@
                         <div class="col-md-12 mb-3 border p-1 shadow-sm" v-for="book in books" :key="book._id">
                             <div class="row">
                                 <!-- =============================== -->
-                                <div class="col-auto align-self-start pr-0">
+                                <div class="col-auto align-self-start pr-0" v-if="book.status == 'complete'">
+                                    Ref no. @{{ book.ref_no }}
+                                </div>
+                                <div class="col-auto align-self-start pr-0" v-else>
                                     <a v-bind:href="'/r/s/d/' + book.id" class="text-black-50">
                                         Ref no. @{{ book.ref_no }} <i class="fas fa-eye"></i>
                                     </a>
@@ -48,7 +51,7 @@
                                     </div>
                                 </div>
                                 <!-- =============================== -->
-                                <div class="col-12" v-if="book.rider">
+                                <div class="col-12" v-if="book.rider && book.status != 'complete'">
                                     <div class="row">
                                         <div class="col-4 font-weight-bold text-right pr-0">Rider</div>
                                         <div class="col-auto">
@@ -89,8 +92,7 @@
                                                     <input name="book_id" v-bind:value="book.id" hidden>
                                                     <button
                                                         class="btn btn-block btn-sm btn-square btn-danger card-link">
-                                                        Cancel
-                                                        Order
+                                                        Cancel Request
                                                     </button>
                                                 </p>
                                             </form>
