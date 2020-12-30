@@ -77,4 +77,9 @@ class Booking extends Model
     {
         return $this::query()->where('id', $id)->where('status', 'accepted')->count() > 0;
     }
+
+    public static function limitBooking($id)
+    {
+        return (new static())::query()->where('id', $id)->where('status', 'pending')->count() >= 2;
+    }
 }

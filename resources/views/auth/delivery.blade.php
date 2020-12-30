@@ -86,18 +86,27 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @if(\App\Booking::limitBooking(auth()->id()))
                                     <div class="col-12 p-0">
                                         <a v-bind:href="'/d/m/' + delivery.id"
                                            class="btn btn-info btn-block btn-square">
                                             <i class="fas fa-bullseye"></i> Mine
                                         </a>
                                     </div>
+                                    @endif
                                 </div>
                                 <div class="row mt-3 justify-content-center" v-if="pending.length == 0">
                                     <div class="col-auto">
                                         <h3>No Bookings Available.</h3>
                                     </div>
                                 </div>
+                                @if(!\App\Booking::limitBooking(auth()->id()))
+                                <div class="row mt-3 justify-content-center">
+                                    <div class="col-auto">
+                                        <h5>We only Allow riders 2 bookings at a time.</h5>
+                                    </div>
+                                </div>
+                                @endif
                             </div>
                             {{--                                    Yours--}}
                             <div class="col-md-12" v-show="window == 2">
