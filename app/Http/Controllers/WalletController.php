@@ -45,7 +45,7 @@ class WalletController extends Controller
         Notification::route('mail', User::query()->whereIn('role', ['admin', 'superadmin'])->pluck('email'))
                     ->notify(new TopUpRequest(auth()->user()->name));
 
-        event(new TopUpRequestEvent());
+        broadcast(new TopUpRequestEvent());
 
         return redirect('wallet')->with('success', 'Your Top-Up request has been sent!');
     }

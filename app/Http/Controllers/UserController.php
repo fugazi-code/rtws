@@ -61,6 +61,7 @@ class UserController extends Controller
     {
         $data = $request->input();
         unset($data['_token']);
+        $data['birth_date'] = Carbon::parse($data['birth_date'])->format('Y-m-d');
         User::query()->where('id', auth()->user()->id)->update($data);
 
         return redirect('/p')->with('success', 'Profile has been updated!');

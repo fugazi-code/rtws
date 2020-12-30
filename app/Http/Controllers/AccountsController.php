@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Gallery;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Hash;
@@ -34,6 +35,7 @@ class AccountsController extends Controller
         $data = $request->input();
         unset($data['_token']);
         $data['password'] = Hash::make('password');
+        $data['birth_date'] = Carbon::parse($data['birth_date'])->format('Y-m-d');
         $id               = $user->newQuery()->insertGetId($data);
 
         User::find($id)->notify(new NewRegistration());
@@ -78,6 +80,7 @@ class AccountsController extends Controller
 
         $data = $request->input();
         unset($data['_token']);
+        $data['birth_date'] = Carbon::parse($data['birth_date'])->format('Y-m-d');
         User::query()->where('id', $id)->update($data);
 
         return redirect('accounts')->with('success', 'User has been updated!');
