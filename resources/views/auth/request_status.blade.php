@@ -88,13 +88,23 @@
                                         <div class="col-12">
                                             <form method="POST" action="{{ route('request.cancel') }}">
                                                 @csrf
-                                                <p class="mb-1" v-if="book.status == 'pending'">
-                                                    <input name="book_id" v-bind:value="book.id" hidden>
-                                                    <button
-                                                        class="btn btn-block btn-sm btn-square btn-danger card-link">
-                                                        Cancel Request
-                                                    </button>
-                                                </p>
+                                                @canany(['admin', 'superadmin'])
+                                                    <p class="mb-1" v-if="book.status == 'pending' || book.status == 'accepted'">
+                                                        <input name="book_id" v-bind:value="book.id" hidden>
+                                                        <button
+                                                            class="btn btn-block btn-sm btn-square btn-danger card-link">
+                                                            Cancel Request
+                                                        </button>
+                                                    </p>
+                                                @else
+                                                    <p class="mb-1" v-if="book.status == 'pending'">
+                                                        <input name="book_id" v-bind:value="book.id" hidden>
+                                                        <button
+                                                            class="btn btn-block btn-sm btn-square btn-danger card-link">
+                                                            Cancel Request
+                                                        </button>
+                                                    </p>
+                                                @endcan
                                             </form>
                                         </div>
                                     </div>
