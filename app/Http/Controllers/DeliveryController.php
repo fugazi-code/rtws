@@ -51,16 +51,13 @@ class DeliveryController extends Controller
     public function mine($id, Booking $booking)
     {
         if (! $booking->isAlreadyAccepted($id)) {
-            $pubnub = new PubNubConnect();
-            $pubnub->message("Reserved!");
-
             $booking->newQuery()->where('id', $id)->update([
                 'status'     => 'accepted',
                 'rider_id'   => auth()->id(),
                 'updated_at' => Carbon::now(),
             ]);
 
-            event(new BookingStatusEvent());
+            broadcast(new BookingStatusEvent());
 
             return redirect()->back()->with('success', 'Request is yours now!');
         }

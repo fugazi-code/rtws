@@ -36,7 +36,7 @@
 {{--                    <svg class="c-icon mr-2">--}}
 {{--                       --}}
 {{--                    </svg> --}}
-                    Updates<span class="badge badge-info ml-auto">42</span>
+{{--                    Updates<span class="badge badge-info ml-auto">42</span>--}}
                 </a>
             </div>
         </li>

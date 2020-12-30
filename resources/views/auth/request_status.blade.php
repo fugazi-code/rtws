@@ -63,7 +63,7 @@
                                     </div>
                                 </div>
                                 <!-- =============================== -->
-                                <div class="col-12" v-if="book.rider">
+                                <div class="col-12" v-if="book.rider && book.status != 'complete'">
                                     <div class="row">
                                         <div class="col-4 font-weight-bold text-right pr-0">Contact</div>
                                         <div class="col-auto"><small>@{{ book.rider.contact }}</small></div>

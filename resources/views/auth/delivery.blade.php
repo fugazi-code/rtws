@@ -41,7 +41,7 @@
                             </div>
                             {{--                                Available--}}
                             <div class="col-12" v-show="window == 1">
-                                <div class="row mt-2  border shadow-sm pt-2" v-for="delivery in pending">
+                                <div class="row mt-2 border shadow-sm pt-2" v-for="delivery in pending">
                                     <div class="col-3">
                                         <div class="row">
                                             <div class="col-12 p-1">
@@ -101,46 +101,56 @@
                             </div>
                             {{--                                    Yours--}}
                             <div class="col-md-12" v-show="window == 2">
-                                <div class="row mt-3" v-for="delivery in yours">
-                                    <div class="col-4 col-md-2 justify-content-center row">
-                                        <div class="col-auto">
-                                            <img v-if="delivery.photo"
-                                                 v-bind:src="'/storage/' + delivery.photo.path"
-                                                 class="img-fluid">
-                                        </div>
-                                        <div class="col-auto">
-                                            <label class="badge badge-info text-white">
-                                                <strong>@{{ delivery.service }}</strong>
-                                            </label>
+                                <div class="row mt-2 border shadow-sm pt-2" v-for="delivery in yours">
+                                    <div class="col-3">
+                                        <div class="row">
+                                            <div class="col-12 p-1">
+                                                <img v-if="delivery.photo"
+                                                     v-bind:src="'/storage/' + delivery.photo.path"
+                                                     class="rounded-circle img-fluid">
+                                            </div>
+                                            <div class="col-12 p-0 text-center">
+                                                <label class="badge badge-info text-white">
+                                                    @{{ delivery.service }}
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-6 col-md-8">
+                                    <div class="col-9 pl-0">
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            <div class="col-auto pr-0">
                                                 <a v-bind:href="delivery.customer.msg_link" target="_blank">
-                                                    <strong>@{{ delivery.customer.name }}</strong>
+                                                    @{{ delivery.customer.name }} <i class="fas fa-link"></i>
                                                 </a>
+                                            </div>
+                                            <div class="col-auto pr-0">
+                                                Php @{{ delivery.amount }}
+                                            </div>
+                                            <div class="col-12">
                                                 @{{ delivery.customer.contact}}
                                             </div>
-                                            <div class="col-md-12">
-                                                <i>Php @{{ delivery.amount }}</i>
+                                            <div class="col-12">
+                                                @{{ delivery.schedule }}
                                             </div>
-                                            <div class="col-md-12">
-                                                <i>@{{ delivery.schedule }}</i>
+                                            <div class="col-auto" v-if="delivery.budget !== null">
+                                                <strong>Budget:</strong> @{{ delivery.budget }}
                                             </div>
-                                            <div class="col-md-12">
-                                                <strong>From:</strong> <i>@{{ delivery.pick_up }}</i>
+                                            <div class="col-auto" v-if="delivery.weight !== null">
+                                                <strong>Weight:</strong> @{{ delivery.weight }}
                                             </div>
-                                            <div class="col-md-12">
-                                                <strong>To:</strong> <i>@{{ delivery.drop_off }}</i>
+                                            <div class="col-12">
+                                                <strong>Pick-up:</strong> @{{ delivery.pick_up }}
+                                            </div>
+                                            <div class="col-12">
+                                                <strong>Drop-Off:</strong> @{{ delivery.drop_off }}
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-2">
-                                        <div class="btn-group-vertical">
+                                    <div class="col-12 p-0">
+                                        <div class="btn-group w-100 mt-2">
                                             @canany(['admin', 'superadmin'])
                                                 <button @click="cancel('/d/cc/' + delivery.id)"
-                                                        class="btn btn-danger btn-square">
+                                                        class="btn btn-danger btn-square btn-block">
                                                     <i class="fas fa-ban"></i> Cancel
                                                 </button>
                                             @else
