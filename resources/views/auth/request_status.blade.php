@@ -89,7 +89,7 @@
                                             <form method="POST" action="{{ route('request.cancel') }}">
                                                 @csrf
                                                     <p class="mb-1"
-                                                       v-if="(book.status == 'pending' || book.status == 'accepted') && (book.customer.role == 'admin' || book.customer.role == 'superadmin')">
+                                                       v-if="(book.status == 'pending' || book.status == 'accepted') && (role == 'admin' || role == 'superadmin')">
                                                         <input name="book_id" v-bind:value="book.id" hidden>
                                                         <button
                                                             class="btn btn-block btn-sm btn-square btn-danger card-link">
@@ -122,6 +122,7 @@
             el: '#app',
             data: {
                 fetchid: '{{ auth()->id() }}',
+                role: '{{ auth()->user()->role }}',
                 name: '{{ auth()->user()->name }}',
                 books: []
             },
