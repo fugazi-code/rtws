@@ -58,7 +58,7 @@ class BookingController extends Controller
             "ref_no"      => strtoupper(hash('adler32', $schedule)),
         ]);
 
-        event(new BookingSubmitEvent());
+        broadcast(new BookingSubmitEvent());
 
         return redirect()->back()->with('success', 'Book has been submitted!');
     }

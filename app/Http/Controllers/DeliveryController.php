@@ -79,7 +79,7 @@ class DeliveryController extends Controller
             'rider_id' => auth()->id(),
         ]);
 
-        event(new BookingStatusEvent());
+        broadcast(new BookingStatusEvent());
 
         return redirect()->back()->with('error', 'Booking has been cancelled!');
     }
@@ -106,7 +106,7 @@ class DeliveryController extends Controller
             'rider_id' => auth()->id(),
         ]);
 
-        event(new BookingStatusEvent());
+        broadcast(new BookingStatusEvent());
 
         return redirect()->back()->with('success', 'Request is yours now!');
     }
