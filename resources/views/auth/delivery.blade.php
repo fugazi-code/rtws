@@ -87,12 +87,12 @@
                                         </div>
                                     </div>
                                     @if(!\App\Booking::limitBooking(auth()->id()))
-                                    <div class="col-12 p-0">
-                                        <a v-bind:href="'/d/m/' + delivery.id"
-                                           class="btn btn-info btn-block btn-square">
-                                            <i class="fas fa-bullseye"></i> Mine
-                                        </a>
-                                    </div>
+                                        <div class="col-12 p-0">
+                                            <a v-bind:href="'/d/m/' + delivery.id"
+                                               class="btn btn-info btn-block btn-square">
+                                                <i class="fas fa-bullseye"></i> Mine
+                                            </a>
+                                        </div>
                                     @endif
                                 </div>
                                 <div class="row mt-3 justify-content-center" v-if="pending.length == 0">
@@ -101,11 +101,11 @@
                                     </div>
                                 </div>
                                 @if(\App\Booking::limitBooking(auth()->id()))
-                                <div class="row mt-3 justify-content-center">
-                                    <div class="col-auto">
-                                        <h5>We only Allow riders 2 bookings at a time.</h5>
+                                    <div class="row mt-3 justify-content-center">
+                                        <div class="col-auto">
+                                            <h5>We only Allow riders 2 bookings at a time.</h5>
+                                        </div>
                                     </div>
-                                </div>
                                 @endif
                             </div>
                             {{--                                    Yours--}}
@@ -157,169 +157,167 @@
                                     </div>
                                     <div class="col-12 p-0">
                                         <div class="btn-group w-100 mt-2">
-                                            @canany(['admin', 'superadmin'])
-                                                <button @click="cancel('/d/cc/' + delivery.id)"
-                                                        class="btn btn-danger btn-square btn-block">
-                                                    <i class="fas fa-ban"></i> Cancel
-                                                </button>
-                                            @else
-                                                <button @click="done('/d/c/' + delivery.id)"
-                                                        class="btn btn-success btn-square btn-block">
-                                                    <i class="fas fa-check"></i> Done
-                                                </button>
-{{--                                                <button v-if="delivery.validCancel <= 5"--}}
-{{--                                                        @click="cancel('/d/cc/' + delivery.id)"--}}
-{{--                                                        class="btn btn-danger btn-square">--}}
-{{--                                                    <i class="fas fa-ban"></i> Cancel--}}
-{{--                                                </button>--}}
-{{--                                                <button v-if="delivery.validCancel >= 5"--}}
-{{--                                                        class="btn btn-secondary disabled btn-square">--}}
-{{--                                                    <i class="fas fa-ban"></i> Cancel--}}
-{{--                                                </button>--}}
-                                            @endcan
+                                            <button v-if="role == 'admin' || role == 'superadmin'"
+                                                    @click="cancel('/d/cc/' + delivery.id)"
+                                                    class="btn btn-danger btn-square btn-block">
+                                                <i class="fas fa-ban"></i> Cancel
+                                            </button>
+                                            <button v-else @click="done('/d/c/' + delivery.id)"
+                                                    class="btn btn-success btn-square btn-block">
+                                                <i class="fas fa-check"></i> Done
+                                            </button>
+                                            {{--                                                <button v-if="delivery.validCancel <= 5"--}}
+                                            {{--                                                        @click="cancel('/d/cc/' + delivery.id)"--}}
+                                            {{--                                                        class="btn btn-danger btn-square">--}}
+                                            {{--                                                    <i class="fas fa-ban"></i> Cancel--}}
+                                            {{--                                                </button>--}}
+                                            {{--                                                <button v-if="delivery.validCancel >= 5"--}}
+                                            {{--                                                        class="btn btn-secondary disabled btn-square">--}}
+                                            {{--                                                    <i class="fas fa-ban"></i> Cancel--}}
+                                            {{--                                                </button>--}}
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row mt-3 justify-content-center" v-if="yours.length == 0">
-                                    <div class="col-auto">
-                                        <h3>You haven't pick a booking.</h3>
-                                    </div>
-                                </div>
-                            </div>
-                            {{--                                    Complete--}}
-                            <div class="col-md-12" v-show="window == 3">
-                                <div class="row mt-3" v-for="delivery in complete">
-                                    <div class="col-4 col-md-2 justify-content-center row">
+                                    <div class="row mt-3 justify-content-center" v-if="yours.length == 0">
                                         <div class="col-auto">
-                                            <label class="badge badge-info text-white">
-                                                <strong>@{{ delivery.service }}</strong>
-                                            </label>
+                                            <h3>You haven't pick a booking.</h3>
                                         </div>
                                     </div>
-                                    <div class="col-6 col-md-8">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <i>Php @{{ delivery.amount }}</i>
+                                </div>
+                                {{--                                    Complete--}}
+                                <div class="col-md-12" v-show="window == 3">
+                                    <div class="row mt-3" v-for="delivery in complete">
+                                        <div class="col-4 col-md-2 justify-content-center row">
+                                            <div class="col-auto">
+                                                <label class="badge badge-info text-white">
+                                                    <strong>@{{ delivery.service }}</strong>
+                                                </label>
                                             </div>
-                                            <div class="col-md-12">
-                                                <i>@{{ delivery.created_at }}</i>
+                                        </div>
+                                        <div class="col-6 col-md-8">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <i>Php @{{ delivery.amount }}</i>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <i>@{{ delivery.created_at }}</i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{--                                    Cancelled--}}
+                                <div class="col-md-12" v-show="window == 4">
+                                    <div class="row mt-3" v-for="delivery in cancelled">
+                                        <div class="col-4 col-md-2 justify-content-center row">
+                                            <div class="col-auto">
+                                                <label class="badge badge-info text-white">
+                                                    <strong>@{{ delivery.service }}</strong>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-md-8">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <i>Php @{{ delivery.amount }}</i>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <i>@{{ delivery.created_at }}</i>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            {{--                                    Cancelled--}}
-                            <div class="col-md-12" v-show="window == 4">
-                                <div class="row mt-3" v-for="delivery in cancelled">
-                                    <div class="col-4 col-md-2 justify-content-center row">
-                                        <div class="col-auto">
-                                            <label class="badge badge-info text-white">
-                                                <strong>@{{ delivery.service }}</strong>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 col-md-8">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <i>Php @{{ delivery.amount }}</i>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <i>@{{ delivery.created_at }}</i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @else
+                                <h4>Please load your <a href="{{ route('wallet') }}">Wallet</a>.</h4>
+                            @endif
                         </div>
-                    @else
-                        <h4>Please load your <a href="{{ route('wallet') }}">Wallet</a>.</h4>
-                    @endif
                 </div>
             </div>
         </div>
-    </div>
-@endsection
+        @endsection
 
-@section('script')
-    <script>
-        const e = new Vue({
-            el: '#app',
-            data: {
-                fetchid: '{{ auth()->id() }}',
-                pending: {},
-                yours: {},
-                complete: {},
-                cancelled: {},
-                window: 1
-            },
-            methods: {
-                validatedCancelBtn(dated) {
-                    current = new Date();
-                    com = new Date(dated);
-                    var diff = (com.getTime() - current.getTime()) / 1000;
-                    diff /= 60;
-                    return Math.abs(Math.round(diff));
-                },
-                done(link) {
-                    swal({
-                        title: "Booking will be Completed.",
-                        text: "",
-                        icon: "info",
-                        buttons: true,
-                        dangerMode: true,
-                    })
-                        .then((willDelete) => {
-                            if (willDelete) {
-                                window.location = link;
-                            }
-                        });
-                },
-                cancel(link) {
-                    swal({
-                        title: "Booking will be Cancelled.",
-                        text: "",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true,
-                    })
-                        .then((willDelete) => {
-                            if (willDelete) {
-                                window.location = link;
-                            }
-                        });
-                },
-                fetch() {
-                    var $this = this;
-                    $.ajax({
-                        url: '{{ route('delivery.fetch') }}',
-                        method: 'POST',
-                        data: {
-                            id: $this.fetchid
+        @section('script')
+            <script>
+                const e = new Vue({
+                    el: '#app',
+                    data: {
+                        fetchid: '{{ auth()->id() }}',
+                        role: '{{ auth()->user()->role }}',
+                        pending: {},
+                        yours: {},
+                        complete: {},
+                        cancelled: {},
+                        window: 1
+                    },
+                    methods: {
+                        validatedCancelBtn(dated) {
+                            current = new Date();
+                            com = new Date(dated);
+                            var diff = (com.getTime() - current.getTime()) / 1000;
+                            diff /= 60;
+                            return Math.abs(Math.round(diff));
                         },
-                        success: function (value) {
-                            $this.pending = value.pending.data;
-                            $this.yours = value.yours.data;
-                            $this.complete = value.complete.data;
-                            $this.cancelled = value.cancelled.data;
-                            this.interval = setInterval(function () {
-                                $.each($this.yours, (key, value) => {
-                                    $this.yours[key].validCancel = $this.validatedCancelBtn(value.updated_at)
+                        done(link) {
+                            swal({
+                                title: "Booking will be Completed.",
+                                text: "",
+                                icon: "info",
+                                buttons: true,
+                                dangerMode: true,
+                            })
+                                .then((willDelete) => {
+                                    if (willDelete) {
+                                        window.location = link;
+                                    }
                                 });
-                            }, 1000);
-                        }
-                    });
-                },
-            },
-            mounted() {
-                var $this = this;
-                this.fetch();
+                        },
+                        cancel(link) {
+                            swal({
+                                title: "Booking will be Cancelled.",
+                                text: "",
+                                icon: "warning",
+                                buttons: true,
+                                dangerMode: true,
+                            })
+                                .then((willDelete) => {
+                                    if (willDelete) {
+                                        window.location = link;
+                                    }
+                                });
+                        },
+                        fetch() {
+                            var $this = this;
+                            $.ajax({
+                                url: '{{ route('delivery.fetch') }}',
+                                method: 'POST',
+                                data: {
+                                    id: $this.fetchid
+                                },
+                                success: function (value) {
+                                    $this.pending = value.pending.data;
+                                    $this.yours = value.yours.data;
+                                    $this.complete = value.complete.data;
+                                    $this.cancelled = value.cancelled.data;
+                                    this.interval = setInterval(function () {
+                                        $.each($this.yours, (key, value) => {
+                                            $this.yours[key].validCancel = $this.validatedCancelBtn(value.updated_at)
+                                        });
+                                    }, 1000);
+                                }
+                            });
+                        },
+                    },
+                    mounted() {
+                        var $this = this;
+                        this.fetch();
 
-                Echo.channel('fetch-booking')
-                    .listen('BookingSubmitEvent', (e) => {
-                        console.log(e.update);
-                        $this.fetch();
-                    });
-            }
-        });
-    </script>
+                        Echo.channel('fetch-booking')
+                            .listen('BookingSubmitEvent', (e) => {
+                                console.log(e.update);
+                                $this.fetch();
+                            });
+                    }
+                });
+            </script>
 @endsection
