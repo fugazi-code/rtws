@@ -75,12 +75,12 @@
                     Top-Up Requests <span class="badge badge-info countp">{{ \App\TopUp::countPending() }}</span>
                 </a>
             @endcan
-            <a class="c-sidebar-nav-link" href="index.html">
-                <div class="c-sidebar-nav-icon">
-                    <i class="fas fa-cog"></i>
-                </div>
-                Settings
-            </a>
+{{--            <a class="c-sidebar-nav-link" href="index.html">--}}
+{{--                <div class="c-sidebar-nav-icon">--}}
+{{--                    <i class="fas fa-cog"></i>--}}
+{{--                </div>--}}
+{{--                Settings--}}
+{{--            </a>--}}
         </li>
     </ul>
     <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent"

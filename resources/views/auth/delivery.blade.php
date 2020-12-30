@@ -72,11 +72,17 @@
                                             <div class="col-12">
                                                 @{{ delivery.schedule }}
                                             </div>
-                                            <div class="col-12">
-                                                <strong>From:</strong> @{{ delivery.pick_up }}
+                                            <div class="col-auto" v-if="delivery.budget !== null">
+                                                <strong>Budget:</strong> @{{ delivery.budget }}
+                                            </div>
+                                            <div class="col-auto" v-if="delivery.weight !== null">
+                                                <strong>Weight:</strong> @{{ delivery.weight }}
                                             </div>
                                             <div class="col-12">
-                                                <strong>To:</strong> @{{ delivery.drop_off }}
+                                                <strong>Pick-up:</strong> @{{ delivery.pick_up }}
+                                            </div>
+                                            <div class="col-12">
+                                                <strong>Drop-Off:</strong> @{{ delivery.drop_off }}
                                             </div>
                                         </div>
                                     </div>
