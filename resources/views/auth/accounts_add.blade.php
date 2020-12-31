@@ -98,9 +98,6 @@
                                             <input name="cr" class="form-control">
                                         </div>
                                     </div>
-                                    <div v-if="role == 'rider'" class="col-md-6">
-                                        <button type="submit" class="btn btn-round btn-success">Submit</button>
-                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3 row justify-content-center mt-3">

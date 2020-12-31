@@ -92,19 +92,17 @@ class DeliveryController extends Controller
      */
     public function complete($id, Booking $booking, Wallet $wallet, Commission $commission)
     {
-        $booking = $booking->where('id', $id)->first();
-
-        $comm = $booking->amount * .15;
-
-        $wallet = $wallet->where('user_id', $booking->rider_id)->first();
-
-        $commission->store($booking->id, $wallet->id, $booking->rider_id, $wallet->current, $comm);
-        $wallet->withdraw($booking->rider_id, $comm);
-
         Booking::query()->where('id', $id)->update([
             'status'   => 'complete',
             'rider_id' => auth()->id(),
         ]);
+
+        $booking = $booking->where('id', $id)->first();
+        $comm    = $booking->amount * .15;
+        $wallet  = $wallet->where('user_id', $booking->rider_id)->first();
+
+        $commission->store($booking->id, $wallet->id, $booking->rider_id, $wallet->current, $comm);
+        $wallet->withdraw($booking->rider_id, $comm);
 
         broadcast(new BookingStatusEvent());
 
