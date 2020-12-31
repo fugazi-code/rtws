@@ -21,26 +21,26 @@
                             @endcan
                             <div class="col-12 mb-2 p-0">
                                 <div class="btn-group w-100" role="group">
-                                    <button type="button" class="btn btn-square" @click="window = 1"
-                                            v-bind:class="{ 'btn-primary': (window == 1), 'btn-dark': (window != 1) }">
+                                    <button type="button" class="btn btn-square" @click="windowpanel = 1"
+                                            v-bind:class="{ 'btn-primary': (windowpanel == 1), 'btn-dark': (windowpanel != 1) }">
                                         Available
                                     </button>
-                                    <button type="button" class="btn" @click="window = 2"
-                                            v-bind:class="{ 'btn-primary': (window == 2), 'btn-dark': (window != 2) }">
+                                    <button type="button" class="btn" @click="windowpanel = 2"
+                                            v-bind:class="{ 'btn-primary': (windowpanel == 2), 'btn-dark': (windowpanel != 2) }">
                                         Yours
                                     </button>
-                                    <button type="button" class="btn" @click="window = 3"
-                                            v-bind:class="{ 'btn-primary': (window == 3), 'btn-dark': (window != 3) }">
+                                    <button type="button" class="btn" @click="windowpanel = 3"
+                                            v-bind:class="{ 'btn-primary': (windowpanel == 3), 'btn-dark': (windowpanel != 3) }">
                                         Completed
                                     </button>
-                                    <button type="button" class="btn btn-square" @click="window = 4"
-                                            v-bind:class="{ 'btn-primary': (window == 4), 'btn-dark': (window != 4) }">
+                                    <button type="button" class="btn btn-square" @click="windowpanel = 4"
+                                            v-bind:class="{ 'btn-primary': (windowpanel == 4), 'btn-dark': (windowpanel != 4) }">
                                         Cancelled
                                     </button>
                                 </div>
                             </div>
                             {{--                                Available--}}
-                            <div class="col-12" v-show="window == 1">
+                            <div class="col-12" v-show="windowpanel == 1">
                                 <div class="row mt-2 border shadow-sm pt-2" v-for="delivery in pending">
                                     <div class="col-3">
                                         <div class="row">
@@ -109,7 +109,7 @@
                                 @endif
                             </div>
                             {{--                                    Yours--}}
-                            <div class="col-md-12" v-show="window == 2">
+                            <div class="col-md-12" v-show="windowpanel == 2">
                                 <div class="row mt-2 border shadow-sm pt-2" v-for="delivery in yours">
                                     <div class="col-3">
                                         <div class="row">
@@ -184,7 +184,7 @@
                                     </div>
                                 </div>
                                 {{--                                    Complete--}}
-                                <div class="col-md-12" v-show="window == 3">
+                                <div class="col-12" v-show="windowpanel == 3">
                                     <div class="row mt-3" v-for="delivery in complete">
                                         <div class="col-4 col-md-2 justify-content-center row">
                                             <div class="col-auto">
@@ -206,7 +206,7 @@
                                     </div>
                                 </div>
                                 {{--                                    Cancelled--}}
-                                <div class="col-md-12" v-show="window == 4">
+                                <div class="col-12" v-show="windowpanel == 4">
                                     <div class="row mt-3" v-for="delivery in cancelled">
                                         <div class="col-4 col-md-2 justify-content-center row">
                                             <div class="col-auto">
@@ -248,7 +248,7 @@
                         yours: {},
                         complete: {},
                         cancelled: {},
-                        window: 1
+                        windowpanel: 1
                     },
                     methods: {
                         validatedCancelBtn(dated) {
