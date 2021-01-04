@@ -83,7 +83,9 @@
                          <h1 class="wow fadeInUp" data-wow-delay="0.6s">Broom Express</h1>
                          <p class="wow fadeInUp" data-wow-delay="0.8s">The Broom Express is a local company that provides same day delivery by connecting users with delivery drivers on its mobile and web application.</p>
 {{--                         <a href="https://broomexp.com/login" class="wow fadeInUp section-btn btn btn-success smoothScroll" data-wow-delay="1s">Book Now</a>--}}
-                        <a href="{{ asset('apk/broomexp.apk') }}" class="wow fadeInUp section-btn btn btn-success smoothScroll" data-wow-delay="1s">Download Now</a>
+                        <a href="{{ route('login') }}" class="wow fadeInUp section-btn btn btn-warning smoothScroll" data-wow-delay="1s"
+                           style="background: #4070e2;">Book Now</a>
+                        <a href="{{ asset('apk/broomexp.apk') }}" class="wow fadeInUp section-btn btn btn-success smoothScroll" data-wow-delay="1s">App Now</a>
                     </div>
                </div>
 		</div>
