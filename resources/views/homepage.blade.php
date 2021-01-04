@@ -85,7 +85,7 @@
 {{--                         <a href="https://broomexp.com/login" class="wow fadeInUp section-btn btn btn-success smoothScroll" data-wow-delay="1s">Book Now</a>--}}
                         <a href="{{ route('login') }}" class="wow fadeInUp section-btn btn btn-warning smoothScroll" data-wow-delay="1s"
                            style="background: #4070e2;">Book Now</a>
-                        <a href="{{ asset('apk/broomexp.apk') }}" class="wow fadeInUp section-btn btn btn-success smoothScroll" data-wow-delay="1s">App Now</a>
+                        <a href="{{ asset('apk/broomexp.apk') }}" class="wow fadeInUp section-btn btn btn-success smoothScroll" data-wow-delay="1s">Get App Now</a>
                     </div>
                </div>
 		</div>
