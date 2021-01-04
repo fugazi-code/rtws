@@ -150,8 +150,7 @@
 :root .fa-flip-horizontal,
 :root .fa-flip-vertical,
 :root .fa-flip-both {
-  -webkit-filter: none;
-          filter: none; }
+  filter: none; }
 
 .fa-stack {
   display: inline-block;
@@ -10143,11 +10142,6 @@ html:not([dir=rtl]) .dropleft .dropdown-toggle:empty::after {
   opacity: 1;
 }
 
-.form-control::-ms-input-placeholder {
-  color: #8a93a2;
-  opacity: 1;
-}
-
 .form-control::placeholder {
   color: #8a93a2;
   opacity: 1;
@@ -16597,10 +16591,6 @@ html:not([dir=rtl]) .c-sidebar.c-sidebar-show.c-sidebar-right {
   color: rgba(255, 255, 255, 0.7);
 }
 
-.c-sidebar .c-sidebar-form .c-form-control::-ms-input-placeholder {
-  color: rgba(255, 255, 255, 0.7);
-}
-
 .c-sidebar .c-sidebar-form .c-form-control::placeholder {
   color: rgba(255, 255, 255, 0.7);
 }
@@ -16827,10 +16817,6 @@ html:not([dir=rtl]) .c-sidebar.c-sidebar-light.c-sidebar-right {
 }
 
 .c-sidebar.c-sidebar-light .c-sidebar-form .c-form-control:-ms-input-placeholder {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.c-sidebar.c-sidebar-light .c-sidebar-form .c-form-control::-ms-input-placeholder {
   color: rgba(255, 255, 255, 0.7);
 }
 
