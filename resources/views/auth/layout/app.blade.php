@@ -49,12 +49,27 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+    var audioElement = document.createElement('audio');
+    audioElement.setAttribute('src', '{{ asset('music/Google_Event-1.mp3') }}');
+
+    audioElement.addEventListener('ended', function() {
+        audioElement.pause();
+    }, true);
+
+    function playNotification() {
+        audioElement.play(1);
+    };
+
+    $(window).click(function() {
+        audioElement.pause();
+    });
+
     $(document).ready(function () {
         // Verifying technology support
         if (window.webkitNotifications) {
-            console.log('Your browser supports Notifications');
+            console.log('Your browser supports Notifications.');
         } else {
-            console.log('Your browser doesn\'t support Notifications =(');
+            console.log('Your browser doesn\'t support Notifications.');
         }
 
         Echo.channel('top-up-request')

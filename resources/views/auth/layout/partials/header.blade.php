@@ -14,7 +14,7 @@
     </button>
     <ul class="c-header-nav ml-auto mr-4">
         <li class="c-header-nav-item">
-            <button class="btn c-header-nav-link" onclick="reloader()">
+            <button id="btn-refresher" class="btn c-header-nav-link" onclick="reloader()">
                 <div class="c-icon"><i class="fas fa-sync-alt" style="margin-top: 6px;"></i></div>
             </button>
             <script>
