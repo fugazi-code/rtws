@@ -24,12 +24,12 @@
                                                        name="vehicle" @change="matrix()">
                                                 <label class="form-check-label" for="inline-radio1">Motorcycle</label>
                                             </div>
-                                            <div class="form-check form-check-inline mr-1">
-                                                <input class="form-check-input" v-model="form.vehicle"
-                                                       id="inline-radio2" type="radio" value="car"
-                                                       name="vehicle" @change="matrix()">
-                                                <label class="form-check-label" for="inline-radio2">Car</label>
-                                            </div>
+{{--                                            <div class="form-check form-check-inline mr-1">--}}
+{{--                                                <input class="form-check-input" v-model="form.vehicle"--}}
+{{--                                                       id="inline-radio2" type="radio" value="car"--}}
+{{--                                                       name="vehicle" @change="matrix()">--}}
+{{--                                                <label class="form-check-label" for="inline-radio2">Car</label>--}}
+{{--                                            </div>--}}
                                         </div>
                                     </div>
                                 </div>
