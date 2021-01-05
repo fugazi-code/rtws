@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Faker\Factory;
 use Illuminate\Http\Request;
 use App\Matrix\Specifications;
+use App\Events\NotifySoundEvent;
 use App\Events\BookingSubmitEvent;
 
 class BookingController extends Controller
@@ -59,6 +60,7 @@ class BookingController extends Controller
         ]);
 
         broadcast(new BookingSubmitEvent());
+        broadcast(new NotifySoundEvent());
 
         return redirect()->back()->with('success', 'Book has been submitted!');
     }

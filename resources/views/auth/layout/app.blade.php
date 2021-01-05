@@ -63,9 +63,9 @@
     $(window).click(function () {
         audioElement.pause();
     });
-    @can(['rider'])
-    Echo.channel('fetch-booking')
-        .listen('BookingSubmitEvent', (e) => {
+    @canany(['rider', 'admin', 'superadmin'])
+    Echo.channel('notify-sound')
+        .listen('NotifySoundEvent', (e) => {
             playNotification();
         });
     Echo.channel('top-up-request')

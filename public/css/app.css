@@ -26127,3 +26127,9 @@ input {
   box-shadow: 0 0 20px 0px #0000001f !important;
 }
 
+.btn-primary {
+  color: #fff !important;
+  background-color: #ece155 !important;
+  border-color: #ece155 !important;
+}
+
