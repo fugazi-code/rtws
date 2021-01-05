@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Booking;
 use Illuminate\Http\Request;
 use Facade\Ignition\Tabs\Tab;
+use App\Events\CustomerCancelEvent;
 use App\Transformers\BookingFetchTransformer;
 use DB;
 
@@ -31,6 +32,8 @@ class RequestStatusController extends Controller
     public function cancel(Request $request)
     {
         Booking::find($request->book_id)->update(['status' => 'cancelled']);
+
+        broadcast(new CustomerCancelEvent());
 
         return redirect()->back()->with('success', 'Book has been cancelled!');
     }

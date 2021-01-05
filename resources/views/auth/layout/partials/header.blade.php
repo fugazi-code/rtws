@@ -42,7 +42,8 @@
         </li>
         <li class="c-header-nav-item dropdown">
             <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <div class="c-icon"><i class="fas fa-user-circle"></i></div>
+                <div class="c-icon" style="color: #2cea5f"><small><i class="fas fa-circle"></i></small></div>
+                <span class="mt-1">Hi, {{ auth()->user()->name }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right pt-0">
                 <div class="dropdown-header bg-light py-2"><strong>Account</strong></div>

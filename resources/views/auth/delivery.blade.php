@@ -317,6 +317,10 @@
                     .listen('BookingSubmitEvent', (e) => {
                         $this.fetch();
                     });
+                Echo.channel('customer-cancel')
+                    .listen('CustomerCancelEvent', (e) => {
+                        $this.fetch();
+                    });
             }
         });
     </script>

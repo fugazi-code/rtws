@@ -63,16 +63,17 @@
     $(window).click(function () {
         audioElement.pause();
     });
-
+    @can(['rider'])
     Echo.channel('fetch-booking')
         .listen('BookingSubmitEvent', (e) => {
             playNotification();
         });
-
     Echo.channel('top-up-request')
         .listen('TopUpRequestEvent', (e) => {
             $(".countp").html(e.topup_pending_count);
         });
+    @endcan
+
     $(document).ready(function () {
         // Verifying technology support
         if (window.webkitNotifications) {
