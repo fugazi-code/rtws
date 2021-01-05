@@ -315,7 +315,6 @@
 
                 Echo.channel('fetch-booking')
                     .listen('BookingSubmitEvent', (e) => {
-                        playNotification();
                         $this.fetch();
                     });
             }

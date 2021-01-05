@@ -74,8 +74,13 @@
 
         Echo.channel('top-up-request')
             .listen('TopUpRequestEvent', (e) => {
-                console.log(e.topup_pending_count);
                 $( ".countp" ).html(e.topup_pending_count);
+            });
+
+        Echo.channel('fetch-booking')
+            .listen('BookingSubmitEvent', (e) => {
+                playNotification();
+                $this.fetch();
             });
     });
 </script>
