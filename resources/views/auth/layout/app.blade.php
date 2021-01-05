@@ -52,7 +52,7 @@
     var audioElement = document.createElement('audio');
     audioElement.setAttribute('src', '{{ asset('music/Google_Event-1.mp3') }}');
 
-    audioElement.addEventListener('ended', function() {
+    audioElement.addEventListener('ended', function () {
         audioElement.pause();
     }, true);
 
@@ -60,10 +60,19 @@
         audioElement.play(1);
     };
 
-    $(window).click(function() {
+    $(window).click(function () {
         audioElement.pause();
     });
 
+    Echo.channel('fetch-booking')
+        .listen('BookingSubmitEvent', (e) => {
+            playNotification();
+        });
+
+    Echo.channel('top-up-request')
+        .listen('TopUpRequestEvent', (e) => {
+            $(".countp").html(e.topup_pending_count);
+        });
     $(document).ready(function () {
         // Verifying technology support
         if (window.webkitNotifications) {
@@ -72,16 +81,7 @@
             console.log('Your browser doesn\'t support Notifications.');
         }
 
-        Echo.channel('top-up-request')
-            .listen('TopUpRequestEvent', (e) => {
-                $( ".countp" ).html(e.topup_pending_count);
-            });
 
-        Echo.channel('fetch-booking')
-            .listen('BookingSubmitEvent', (e) => {
-                playNotification();
-                $this.fetch();
-            });
     });
 </script>
 @yield('script')
