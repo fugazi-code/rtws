@@ -27,11 +27,11 @@ class AccountStoreRequest extends FormRequest
             "name"          => "required",
             "email"         => "required|unique:users|email:rfc,dns",
             "selfie_photo"  => "required|image",
-            "license_plate" => "required|image",
-            "front"         => "required|image",
-            "side"          => "required|image",
-            "back"          => "required|image",
-            "or_cr"         => "required|image",
+            "license_plate" => "required_if:role,==,rider|image",
+            "front"         => "required_if:role,==,rider|image",
+            "side"          => "required_if:role,==,rider|image",
+            "back"          => "required_if:role,==,rider|image",
+            "or_cr"         => "required_if:role,==,rider|image",
         ];
     }
 }
