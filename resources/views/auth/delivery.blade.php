@@ -42,12 +42,12 @@
                             {{--                                Available--}}
                             <div class="col-12" v-show="windowpanel == 1">
                                 <div class="row mt-2 border shadow-sm pt-2" v-for="delivery in pending">
-                                    <div class="col-3">
+                                    <div class="col-3 col-md-auto">
                                         <div class="row">
-                                            <div class="col-12 p-1">
+                                            <div class="col-12 p-1 text-center">
                                                 <img v-if="delivery.photo"
                                                      v-bind:src="'/storage/' + delivery.photo.path"
-                                                     class="rounded-circle img-fluid">
+                                                     class="rounded-circle img-fluid border shadow-sm" style="max-height: 150px; width: 150px;">
                                             </div>
                                             <div class="col-12 p-0 text-center">
                                                 <label class="badge badge-info text-white">
@@ -116,7 +116,7 @@
                                             <div class="col-12 p-1">
                                                 <img v-if="delivery.photo"
                                                      v-bind:src="'/storage/' + delivery.photo.path"
-                                                     class="rounded-circle img-fluid">
+                                                     class="rounded-circle img-fluid" style="max-height: 150px">
                                             </div>
                                             <div class="col-12 p-0 text-center">
                                                 <label class="badge badge-info text-white">
