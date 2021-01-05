@@ -23,19 +23,19 @@
                                 <div class="btn-group w-100" role="group">
                                     <button type="button" class="btn btn-square" @click="windowpanel = 1"
                                             v-bind:class="{ 'btn-primary': (windowpanel == 1), 'btn-dark': (windowpanel != 1) }">
-                                        Available
+                                        <i class="fas fa-bullhorn"></i>
                                     </button>
                                     <button type="button" class="btn" @click="windowpanel = 2"
                                             v-bind:class="{ 'btn-primary': (windowpanel == 2), 'btn-dark': (windowpanel != 2) }">
-                                        Yours
+                                        <i class="fas fa-thumbtack"></i>
                                     </button>
                                     <button type="button" class="btn" @click="windowpanel = 3"
                                             v-bind:class="{ 'btn-primary': (windowpanel == 3), 'btn-dark': (windowpanel != 3) }">
-                                        Completed
+                                        <i class="fas fa-user-check"></i>
                                     </button>
                                     <button type="button" class="btn btn-square" @click="windowpanel = 4"
                                             v-bind:class="{ 'btn-primary': (windowpanel == 4), 'btn-dark': (windowpanel != 4) }">
-                                        Cancelled
+                                        <i class="fas fa-user-times"></i>
                                     </button>
                                 </div>
                             </div>
