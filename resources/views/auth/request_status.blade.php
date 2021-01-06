@@ -42,7 +42,8 @@
                                         Cancelled</h6>
                                     <h6 v-else class="badge badge-success">@{{ book.status }}</h6>
                                 </div>
-                                <div class="mb-0 col-auto align-self-end">Php @{{ book.amount }}</div>
+                                <div class="mb-0 col-auto align-self-end font-weight-bolder">Php @{{ book.amount }}</div>
+                                <div class="mb-0 col-auto align-self-end text-muted">@{{ book.created_at }}</div>
                                 <!-- =============================== -->
                                 <div class="col-12">
                                     <div class="row">
