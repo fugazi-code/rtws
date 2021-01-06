@@ -34,8 +34,7 @@
                                     </a>
                                 </div>
                                 <div class="col align-self-center">
-                                    <h6 v-if="book.status == 'pending'" class="mb-0 badge badge-info">Looking for a
-                                        Rider...</h6>
+                                    <h6 v-if="book.status == 'pending'" class="mb-0 badge badge-info">Searching...</h6>
                                     <h6 v-else-if="book.status == 'accepted'" class="mb-0 badge badge-warning">Rider
                                         Assigned</h6>
                                     <h6 v-else-if="book.status == 'cancelled'" class="mb-0 badge badge-danger">
