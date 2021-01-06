@@ -53,15 +53,24 @@
     audioElement.setAttribute('src', '{{ asset('music/Google_Event-1.mp3') }}');
 
     audioElement.addEventListener('ended', function () {
-        audioElement.pause();
+        try {
+            audioElement.pause();
+        } catch (err) {
+        }
     }, true);
 
     function playNotification() {
-        audioElement.play(1);
+        try {
+            audioElement.play(1);
+        } catch (err) {
+        }
     };
 
     $(window).click(function () {
-        audioElement.pause();
+        try {
+            audioElement.pause();
+        } catch (err) {
+        }
     });
     @canany(['rider', 'admin', 'superadmin'])
     Echo.channel('notify-sound')
