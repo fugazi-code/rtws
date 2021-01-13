@@ -57,21 +57,24 @@
 
         // init autocomplete Google maps searchables
         var g_name = '';
+        var g_lat = '';
+        var g_lng = '';
         new L.Control.GPlaceAutocomplete({
             callback: function (place) {
                 g_name = place.formatted_address;
 
                 var request = new XMLHttpRequest();
-                request.open( 'GET', 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyBQQkfIgi0W3SJX7KQddC6_k8L7ihvWaUI&address=' + g_name, false);
+                request.open('GET', 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyBQQkfIgi0W3SJX7KQddC6_k8L7ihvWaUI&address=' + g_name, false);
                 request.send();
 
                 var loc = $.parseJSON(request.response).results[0].geometry.location;
-                onSearch([loc.lat(), loc.lng()])
+                console.log(loc);
+                onSearch([loc.lat, loc.lng])
 
-                map.panTo([loc.lat(), loc.lng()]);
+                map.panTo([loc.lat, loc.lng]);
                 map.setZoom(15);
-                g_lat = loc.lat();
-                g_lng = loc.lng()
+                g_lat = loc.lat;
+                g_lng = loc.lng;
             },
             position: 'topleft'
         }).addTo(map);
