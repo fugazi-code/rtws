@@ -59,9 +59,13 @@
         var g_name = '';
         new L.Control.GPlaceAutocomplete({
             callback: function (place) {
-                var loc = place.geometry.location;
                 g_name = place.formatted_address;
 
+                var request = new XMLHttpRequest();
+                request.open( 'GET', 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyBQQkfIgi0W3SJX7KQddC6_k8L7ihvWaUI&address=' + g_name, false);
+                request.send();
+
+                var loc = $.parseJSON(request.response).results[0].geometry.location;
                 onSearch([loc.lat(), loc.lng()])
 
                 map.panTo([loc.lat(), loc.lng()]);
