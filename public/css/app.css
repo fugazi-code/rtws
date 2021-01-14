@@ -26087,9 +26087,9 @@ input {
 
 .c-sidebar .c-sidebar-nav-link,
 .c-sidebar .c-sidebar-nav-dropdown-toggle {
-  color: #ece154 !important;
-  font-family: "VT323", monospace;
-  font-size: 20px;
+  color: #FFFDFE !important;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 .c-sidebar .c-sidebar-nav-link.c-active,

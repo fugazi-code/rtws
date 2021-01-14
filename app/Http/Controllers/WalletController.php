@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Events\TopUpRequestEvent;
 use App\Notifications\TopUpRequest;
+use App\Http\Requests\SendTopUpRequest;
 use Illuminate\Support\Facades\Notification;
 
 class WalletController extends Controller
@@ -35,7 +36,7 @@ class WalletController extends Controller
         return view('auth.topup_form');
     }
 
-    public function sendTopUp(Request $request, TopUp $topUp, Wallet $wallet)
+    public function sendTopUp(SendTopUpRequest $request, TopUp $topUp, Wallet $wallet)
     {
         $path      = $request->file('receipt')->store('receipt');
         $wallet_id = $wallet->id();
