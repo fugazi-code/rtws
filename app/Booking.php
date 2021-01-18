@@ -20,6 +20,7 @@ class Booking extends Model
         "weight",
         "distance",
         "budget",
+        "exact_address",
     ];
 
     public function customer()

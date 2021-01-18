@@ -36,6 +36,7 @@ class BookingController extends Controller
 
     public function store(Request $request)
     {
+        $form = session()->get('form');
         session()->forget('form');
         $schedule = $request->get("schedule");
 
@@ -44,19 +45,20 @@ class BookingController extends Controller
         }
 
         Booking::create([
-            "status"      => "pending",
-            "customer_id" => auth()->id(),
-            "vehicle"     => $request->get("vehicle"),
-            "service"     => $request->get("service"),
-            "sub"         => $request->get("sub"),
-            "schedule"    => $request->get("schedule"),
-            "pick_up"     => $request->get("pick_up"),
-            "drop_off"    => $request->get("drop_off"),
-            "amount"      => $request->get("amount"),
-            "weight"      => $request->get("weight"),
-            "budget"      => $request->get("budget"),
-            "distance"    => $request->get("kilometers"),
-            "ref_no"      => strtoupper(hash('adler32', $schedule)),
+            "status"        => "pending",
+            "customer_id"   => auth()->id(),
+            "vehicle"       => $request->get("vehicle"),
+            "service"       => $request->get("service"),
+            "sub"           => $request->get("sub"),
+            "schedule"      => $request->get("schedule"),
+            "pick_up"       => $request->get("pick_up"),
+            "drop_off"      => $request->get("drop_off"),
+            "amount"        => $request->get("amount"),
+            "weight"        => $request->get("weight"),
+            "budget"        => $request->get("budget"),
+            "distance"      => $request->get("kilometers"),
+            "exact_address" => json_encode(['dp' => $form['dp'], 'pu' => $form['pu']]),
+            "ref_no"        => strtoupper(hash('adler32', $schedule)),
         ]);
 
         broadcast(new BookingSubmitEvent());
