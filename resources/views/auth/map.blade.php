@@ -76,7 +76,7 @@
                 g_lat = loc.lat;
                 g_lng = loc.lng;
             },
-            position: 'topleft'
+            position: 'topleft',
         }).addTo(map);
 
         // init function confirm location
@@ -109,4 +109,8 @@
             }
         }
     </script>
+
+{{--    .setComponentRestrictions({--}}
+{{--    country: ["us", "pr", "vi", "gu", "mp"],--}}
+{{--    }--}}
 @endsection

@@ -36,11 +36,11 @@ button, input {
 .card-header {
     text-align: center;
     font-weight: 800;
-    font-size: 1.3rem;
+    font-size: 1.7rem;
     color: white;
     text-shadow: 0 0 1px #0000006b;
     background-color: #ece154;
-    font-family: 'Pacifico', cursive;
+    font-family: 'Sirin Stencil', cursive;
 }
 
 .card {
@@ -103,4 +103,8 @@ button, input {
     color: #fff !important;
     background-color: #ece155!important;
     border-color: #ece155!important;
+}
+
+.leaflet-gac-wrapper {
+    height: 40px !important;
 }

@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css2?family=Pacifico&family=VT323&display=swap);/*!
+@import url(https://fonts.googleapis.com/css2?family=Pacifico&family=VT323&display=swap);@import url(https://fonts.googleapis.com/css2?family=Sirin+Stencil&display=swap);/*!
  * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
@@ -26059,11 +26059,11 @@ input {
 .card-header {
   text-align: center;
   font-weight: 800;
-  font-size: 1.3rem;
+  font-size: 1.7rem;
   color: white;
   text-shadow: 0 0 1px #0000006b;
   background-color: #ece154;
-  font-family: "Pacifico", cursive;
+  font-family: "Sirin Stencil", cursive;
 }
 
 .card {
@@ -26131,5 +26131,9 @@ input {
   color: #fff !important;
   background-color: #ece155 !important;
   border-color: #ece155 !important;
+}
+
+.leaflet-gac-wrapper {
+  height: 40px !important;
 }
 
