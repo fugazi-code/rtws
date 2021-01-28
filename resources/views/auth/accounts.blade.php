@@ -3,7 +3,7 @@
 @section('content')
     <!--suppress ALL -->
     <div id="app" class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 p-0">
             <div class="card card-accent-warning">
                 <div class="card-header">
                     User Accounts

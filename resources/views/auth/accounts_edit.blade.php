@@ -2,7 +2,7 @@
 
 @section('content')
     <div id="app" class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 p-0">
             <div class="card card-accent-warning">
                 <div class="card-header">Edit Account</div>
                 <div class="card-body">
@@ -105,6 +105,18 @@
                                     <div class="col-md-3 row justify-content-center mt-3">
                                         <div class="col-md-6">
                                             @foreach($gallery as $item)
+                                                @if($item->purpose == 'gov_id')
+                                                    <img src="/storage/{{ $item->path }}" class="img-thumbnail">
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                        <div class="col-md-12 mt-3">
+                                            <label>Gov ID <small>(For verification)</small></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 row justify-content-center mt-3">
+                                        <div class="col-md-6">
+                                            @foreach($gallery as $item)
                                                 @if($item->purpose == 'selfie_photo')
                                                     <img src="/storage/{{ $item->path }}" class="img-thumbnail">
                                                 @endif
@@ -182,14 +194,14 @@
                                     </div>
                                 </div>
                                 <div class="row justify-content-center mt-3">
-                                    <div class="col-md-auto col-auto">
-                                        <button type="submit" class="btn btn-lg btn-square btn-primary">Update</button>
+                                    <div class="col-auto p-0">
+                                        <button type="submit" class="btn btn-lg btn-square btn-success">Update</button>
                                     </div>
-                                    <div class="col-md-auto">
+                                    <div class="col-auto p-0">
                                         <a href="{{ route('accounts.delete', $user->id) }}"
-                                           class="btn btn-lg btn-square btn-success">Delete</a>
+                                           class="btn btn-lg btn-square btn-danger">Delete</a>
                                     </div>
-                                    <div class="col-md-auto">
+                                    <div class="col-auto p-0">
                                         <a href="{{ route('accounts') }}"
                                            class="btn btn-lg btn-square btn-secondary">Cancel</a>
                                     </div>

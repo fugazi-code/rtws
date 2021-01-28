@@ -3,13 +3,14 @@
 @section('content')
     <!--suppress ALL -->
     <div id="app" class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 p-0">
             <div class="card card-accent-warning">
                 <div class="card-header">
                     Book Now
                 </div>
                 <div class="card-body">
                     <div class="row">
+                        @if(auth()->user() == 'active')
                         <div class="col-md-12">
                             <form method="POST" action="{{ route('booking.submit') }}">
                                 @csrf
@@ -141,6 +142,13 @@
                                 </div>
                             </form>
                         </div>
+                        @else
+                        <div class="col-md-12">
+                            <h6>
+                                You must be verified first by uploading your Government ID in My Profile > Uploads.
+                            </h6>
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>

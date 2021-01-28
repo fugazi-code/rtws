@@ -9,27 +9,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\PicUploadRequest;
+use App\Http\Requests\GovIdStoreRequest;
 use App\Http\Requests\ChangePasswordRequest;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function index()
     {
         return view('auth.profile');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Gallery $gallery
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
     public function profilePicUpload(PicUploadRequest $request, Gallery $gallery)
     {
         $path_to_delete = Gallery::myProfilePic();
@@ -51,12 +40,27 @@ class UserController extends Controller
         return redirect('/p')->with('success', 'New Photo has been updated!');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
+    public function govIdUpload(GovIdStoreRequest $request, Gallery $gallery)
+    {
+        $path_to_delete = Gallery::myGovIdPic();
+
+        foreach ($path_to_delete as $item) {
+            Storage::delete($item->path);
+        }
+
+        $path = $request->file('gov-id')->store('details');
+
+        Gallery::query()->where('user_id', auth()->id())->where('purpose', 'gov_id')->delete();
+        $gallery->newQuery()->insert([
+            'user_id'    => auth()->user()->id,
+            'path'       => $path,
+            'purpose'    => 'gov_id',
+            'created_at' => Carbon::now(),
+        ]);
+
+        return redirect('/p')->with('success', 'New Id for verification has been sent updated!');
+    }
+
     public function store(Request $request)
     {
         $data = $request->input();

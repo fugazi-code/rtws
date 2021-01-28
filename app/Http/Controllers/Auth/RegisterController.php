@@ -82,7 +82,7 @@ class RegisterController extends Controller
             'email'       => $data['email'],
             'password'    => Hash::make($data['password']),
             'role'        => 'customer',
-            'status'      => 'active',
+            'status'      => 'not verified',
             'contact'     => $data['contact'],
             'birth_date'  => $data['birth_date'],
             'address'     => $data['address'],

@@ -34,6 +34,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/p', 'UserController');
     Route::post('/r/i', [UserController::class, 'getDetailById'])->name('user.get.detail');
     Route::post('/u/p', [UserController::class, 'profilePicUpload'])->name('profile.pic.upload');
+    Route::post('/g/i', [UserController::class, 'govIdUpload'])->name('gov.id.upload');
     Route::get('/u/cp/f', [UserController::class, 'changePasswordForm'])->name('profile.cpass');
     Route::post('/u/c/p', [UserController::class, 'CPSubmit'])->name('profile.change.pass');
     Route::get('/r/p/{id}', [UserController::class, 'resetPass'])->name('profile.reset.pass');

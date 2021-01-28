@@ -2,7 +2,7 @@
 
 @section('content')
     <div id="app" class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 p-0">
             <div class="card card-accent-warning">
                 <div class="card-header">Edit Account</div>
                 <div class="card-body">

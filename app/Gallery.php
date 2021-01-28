@@ -12,4 +12,9 @@ class Gallery extends Model
     {
         return self::query()->select('path')->where('user_id', auth()->id())->where('purpose', 'selfie_photo')->get();
     }
+
+    public static function myGovIdPic()
+    {
+        return self::query()->select('path')->where('user_id', auth()->id())->where('purpose', 'gov_id')->get();
+    }
 }
