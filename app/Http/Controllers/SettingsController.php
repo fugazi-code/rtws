@@ -19,7 +19,9 @@ class SettingsController extends Controller
             "payment_type" => $request->get("payment_type"),
         ]);
 
-        return redirect()->back()->with('success', 'Payment options has been updated!');
+        session()->put('success', 'Payment options has been updated!');
+
+        return redirect()->back();
     }
 }
 

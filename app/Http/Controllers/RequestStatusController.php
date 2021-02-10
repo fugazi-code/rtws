@@ -35,7 +35,9 @@ class RequestStatusController extends Controller
 
         broadcast(new CustomerCancelEvent());
 
-        return redirect()->back()->with('success', 'Book has been cancelled!');
+        session()->put('success', 'Book has been cancelled!');
+
+        return redirect()->back();
     }
 
     public function details($id)

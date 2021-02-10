@@ -44,6 +44,8 @@ class TopUpController extends Controller
 
         $topup->updateStatus($request);
 
-        return redirect()->route('topup.requests')->with('success', 'Top-Up update successful!');
+        session()->put('success', 'Top-Up update successful!');
+
+        return redirect()->route('topup.requests');
     }
 }

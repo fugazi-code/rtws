@@ -59,10 +59,14 @@ class DeliveryController extends Controller
 
             broadcast(new BookingStatusEvent());
 
-            return redirect()->back()->with('success', 'Request is yours now!');
+            session()->put('success', 'Request is yours now!');
+
+            return redirect()->back();
         }
 
-        return redirect()->back()->with('error', 'Booking has already been reserved!');
+        session()->put('error', 'Booking has already been reserved!');
+
+        return redirect()->back();
     }
 
     /**
@@ -81,7 +85,9 @@ class DeliveryController extends Controller
 
         broadcast(new BookingStatusEvent());
 
-        return redirect()->back()->with('error', 'Booking has been cancelled!');
+        session()->put('success', 'Booking has been cancelled!');
+
+        return redirect()->back();
     }
 
     /***
@@ -106,6 +112,8 @@ class DeliveryController extends Controller
 
         broadcast(new BookingStatusEvent());
 
-        return redirect()->back()->with('success', 'Request is yours now!');
+        session()->put('success', 'Request is yours now!');
+
+        return redirect()->back();
     }
 }

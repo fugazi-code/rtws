@@ -48,7 +48,9 @@ class WalletController extends Controller
 
         broadcast(new TopUpRequestEvent());
 
-        return redirect('wallet')->with('success', 'Your Top-Up request has been sent!');
+        session()->put('success', 'Your Top-Up request has been sent!');
+
+        return redirect('wallet');
     }
 
     public function table()

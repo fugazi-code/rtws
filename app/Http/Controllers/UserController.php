@@ -37,7 +37,9 @@ class UserController extends Controller
             'created_at' => Carbon::now(),
         ]);
 
-        return redirect('/p')->with('success', 'New Photo has been updated!');
+        session()->put('success', 'New Photo has been updated!');
+
+        return redirect('/p');
     }
 
     public function govIdUpload(GovIdStoreRequest $request, Gallery $gallery)
@@ -58,7 +60,9 @@ class UserController extends Controller
             'created_at' => Carbon::now(),
         ]);
 
-        return redirect('/p')->with('success', 'New Id for verification has been sent updated!');
+        session()->put('success', 'Gov Id for verification has been sent!');
+
+        return redirect('/p');
     }
 
     public function store(Request $request)
@@ -68,7 +72,9 @@ class UserController extends Controller
         $data['birth_date'] = Carbon::parse($data['birth_date'])->format('Y-m-d');
         User::query()->where('id', auth()->user()->id)->update($data);
 
-        return redirect('/p')->with('success', 'Profile has been updated!');
+        session()->put('success', 'Details has been updated!');
+
+        return redirect('/p');
     }
 
     public function changePasswordForm()
@@ -82,7 +88,9 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect()->route('p.index')->with('success', 'Password has been updated!');
+        session()->put('success', 'Password has been updated!');
+
+        return redirect()->route('p.index');
     }
 
     public function getDetailById(Request $request)
@@ -96,6 +104,8 @@ class UserController extends Controller
             'password' => Hash::make('password'),
         ]);
 
-        return redirect()->route('accounts')->with('success', 'Password has been reset!');
+        session()->put('success', 'Password has been reset!');
+
+        return redirect()->route('accounts');
     }
 }

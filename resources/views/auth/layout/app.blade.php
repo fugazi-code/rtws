@@ -37,7 +37,6 @@
         </footer>
     </div>
 </div>
-@include('auth.layout.partials.notification')
 <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.21.7.min.js"></script>
 <script src="{{ asset('js/map.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/picturefill/2.3.1/picturefill.min.js"></script>
@@ -90,10 +89,9 @@
         } else {
             console.log('Your browser doesn\'t support Notifications.');
         }
-
-
     });
 </script>
 @yield('script')
+@include('auth.layout.partials.notification')
 </body>
 </html>

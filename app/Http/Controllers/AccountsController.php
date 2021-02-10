@@ -34,9 +34,9 @@ class AccountsController extends Controller
     {
         $data = $request->input();
         unset($data['_token']);
-        $data['password'] = Hash::make('password');
+        $data['password']   = Hash::make('password');
         $data['birth_date'] = Carbon::parse($data['birth_date'])->format('Y-m-d');
-        $id               = $user->newQuery()->insertGetId($data);
+        $id                 = $user->newQuery()->insertGetId($data);
 
         User::find($id)->notify(new NewRegistration());
 
@@ -49,7 +49,9 @@ class AccountsController extends Controller
             ]);
         }
 
-        return redirect('accounts')->with('success', 'New User has been added!');
+        session()->put('success', 'New User has been added!');
+
+        return redirect('accounts');
     }
 
     public function edit($id)
@@ -83,7 +85,9 @@ class AccountsController extends Controller
         $data['birth_date'] = Carbon::parse($data['birth_date'])->format('Y-m-d');
         User::query()->where('id', $id)->update($data);
 
-        return redirect('accounts')->with('success', 'User has been updated!');
+        session()->put('success', 'User has been updated!');
+
+        return redirect('accounts');
     }
 
     public function destroy($id)
@@ -96,7 +100,9 @@ class AccountsController extends Controller
         Gallery::query()->where('user_id', $id)->delete();
         User::query()->where('id', $id)->delete();
 
-        return redirect('accounts')->with('success', 'New User has been deleted!');
+        session()->put('success', 'New User has been deleted!');
+
+        return redirect('accounts');
     }
 
     public function notify()

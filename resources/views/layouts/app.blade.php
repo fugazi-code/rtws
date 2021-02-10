@@ -20,9 +20,7 @@
     <!-- CSS Files -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet"/>
     <link href="/template/assets/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="/template/assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet"/>
     <link href="/css/main.css" rel="stylesheet"/>
-    <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     @yield('css')
     <style>
@@ -126,12 +124,8 @@
             @yield('content')
         </div>
         @endisset
-        <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.21.7.min.js"></script>
         <!--   Core JS Files   -->
         <script src="{{ asset('js/app.js') }}"></script>
-        <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-        <script src="/template/assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script>
-        <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" type="text/javascript"></script>
         @include('layouts.partials.notification')
         <script>
             $.ajaxSetup({

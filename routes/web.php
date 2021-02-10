@@ -23,7 +23,7 @@ use App\Http\Controllers\HomeController;
 
 // Eto public links
 //<Route class>::<method>(<link style>, [Class sa Http, function sa Class]); Pattern
-  Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index']);
 
 // End of public links
 
@@ -42,3 +42,25 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
     Route::get('/settings/set/payment', [SettingsController::class, 'payment_type'])->name('settings.blade.php');
 });
+
+Route::post('/notif', function (\Illuminate\Http\Request $request) {
+    $message = [];
+    if (Session::has('success')) {
+        $message = ['message'=> Session::get('success'), 'status' => 'success'];
+        session()->forget('success');
+    }
+    if (Session::has('error')) {
+        $message = ['message'=> Session::get('error'), 'status' => 'error'];
+        session()->forget('error');
+    }
+    if (Session::has('warning')) {
+        $message = ['message'=> Session::get('warning'), 'status' => 'warning'];
+        session()->forget('error');
+    }
+    if ($request->errors) {
+        $message = ['message'=> Session::get('errors'), 'status' => 'errors'];
+        session()->forget('error');
+    }
+
+    return $message;
+})->name('notif');

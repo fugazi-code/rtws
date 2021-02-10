@@ -16,23 +16,20 @@
             <div class="col-md-8 mt-5">
                 <img src="/img/login-logo.svg">
             </div>
-            <div class="col-md-12"></div>
+            <div class="col-md-12">
+            </div>
             <div class="col-md-8">
-                <div class="card login-form">
-                    <div class="card-header bg-dark pb-3">{{ __('Sign In') }}</div>
+                <div class="card login-form mt-5">
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="form-group row">
                                 <label for="email"
-                                       class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address / Contact Number') }}</label>
-
+                                       class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
                                 <div class="col-md-6">
                                     <input id="email" type="email"
                                            class="form-control @error('email') is-invalid @enderror" name="email"
-                                           value="{{ old('email') }}" required autocomplete="email" autofocus
-                                           style="background-color: white;border-color: black;">
-
+                                           value="{{ old('email') }}" required autocomplete="email" autofocus>
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -40,7 +37,6 @@
                                     @enderror
                                 </div>
                             </div>
-
                             <div class="form-group row">
                                 <label for="password"
                                        class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
@@ -48,8 +44,7 @@
                                 <div class="col-md-6">
                                     <input id="password" type="password"
                                            class="form-control @error('password') is-invalid @enderror" name="password"
-                                           required autocomplete="current-password"
-                                           style="background-color: white;border-color: black;">
+                                           required autocomplete="current-password">
 
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -58,44 +53,50 @@
                                     @enderror
                                 </div>
                             </div>
-
-                        <!--    <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                            </label>
-                        </div>
-                    </div>
-                </div>
--->                    <br><br>
-                            <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary" style="background-color: #6610f2;">
+                            <div class="form-group row">
+                                <div class="col align-self-start">
+                                    <div class="form-group form-check mb-0 mt-2 font-sm">
+                                        <input type="checkbox" name="remember" class="form-check-input" id="remember">
+                                        <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                                    </div>
+                                </div>
+                                <div class="col-auto align-self-end p-0">
+                                    <a class="btn btn-link font-sm" href="{{ route('register') }}">
+                                        Forgot Password?
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="form-group row justify-content-center">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-block btn-primary"
+                                            style="background-color: #6610f2;">
                                         {{ __('Login') }}
                                     </button>
-
-                                    @if (Route::has('password.request'))
-                                        <a class="btn btn-link" href="{{ route('register') }}">
-                                            Don't have an Account?
-                                        </a>
-                                    @endif
                                 </div>
                             </div>
                         </form>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row justify-content-center">
+                            <div class="col-auto">
+                                @if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('register') }}">
+                                        Don't have an Account?
+                                    </a>
+                                @endif
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-12">
             </div>
-{{--            <div id="btn-dl" class="col-md-auto col-xs-12">--}}
-{{--                <a href="{{ asset('apk/broomexp.apk') }}" class="btn btn-block btn-lg bg-green">--}}
-{{--                    <i class="fab fa-android"></i>--}}
-{{--                    Download our App for Android--}}
-{{--                </a>--}}
-{{--            </div>--}}
+            {{--            <div id="btn-dl" class="col-md-auto col-xs-12">--}}
+            {{--                <a href="{{ asset('apk/broomexp.apk') }}" class="btn btn-block btn-lg bg-green">--}}
+            {{--                    <i class="fab fa-android"></i>--}}
+            {{--                    Download our App for Android--}}
+            {{--                </a>--}}
+            {{--            </div>--}}
         </div>
     </div>
 @endsection
