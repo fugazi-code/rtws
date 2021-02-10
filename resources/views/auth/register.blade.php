@@ -9,7 +9,7 @@
         <div class="row justify-content-center mt-5">
             <div class="col-md-8">
                 <div class="card login-form">
-                    <div class="card-header">{{ __('Registration') }}</div>
+                    <div class="card-header text-dark">{{ __('Registration') }}</div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                             @csrf
@@ -50,11 +50,11 @@
                                     <label>Confirm Password</label>
                                     <input type="password" name="password_confirmation" class="form-control">
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 mt-2">
                                     <label>Profile Picture</label>
                                     <input type="file" name="selfie_photo" style="max-width: 100%;">
                                 </div>
-                                <div class="col-md-7">
+                                <div class="col-md-7 mt-4">
                                     <div class="form-check">
                                         <label class="form-check-label">
                                             <input name="certify" class="form-check-input" type="checkbox">
@@ -67,8 +67,8 @@
                                 </div>
                             </div>
                             <div class="row justify-content-center">
-                                <div class="col-md-3">
-                                    <button class="btn btn-round btn-success">Register now</button>
+                                <div class="col">
+                                    <button class="btn btn-block btn-round btn-success">Register now</button>
                                 </div>
                             </div>
                         </form>
