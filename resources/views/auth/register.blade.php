@@ -66,9 +66,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row justify-content-center">
+                            <div class="row justify-content-center mt-2">
                                 <div class="col">
                                     <button class="btn btn-block btn-round btn-success">Register now</button>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center mt-2">
+                                <div class="col">
+                                    <a href="{{ route('login') }}" class="btn btn-block btn-round btn-primary">Cancel</a>
                                 </div>
                             </div>
                         </form>

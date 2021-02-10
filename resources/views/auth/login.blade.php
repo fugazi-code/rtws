@@ -61,7 +61,7 @@
                                     </div>
                                 </div>
                                 <div class="col-auto align-self-end p-0">
-                                    <a class="btn btn-link font-sm" href="{{ route('register') }}">
+                                    <a class="btn btn-link font-sm" href="{{ route('password.request') }}">
                                         Forgot Password?
                                     </a>
                                 </div>
