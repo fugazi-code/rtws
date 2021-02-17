@@ -10,7 +10,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        @if(auth()->user() == 'active')
+                        @if(auth()->user()->status == 'active')
                         <div class="col-md-12">
                             <form method="POST" action="{{ route('booking.submit') }}">
                                 @csrf

@@ -32,7 +32,7 @@
             </div>
         </main>
         <footer class="c-footer">
-            <div><a href="#">Broom Express</a> &copy; 2020</div>
+            <div><a href="#">Broom Express</a> &copy; 2021</div>
             <div class="ml-auto">Powered by Yaramay</div>
         </footer>
     </div>
