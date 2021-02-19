@@ -62,6 +62,12 @@
                 </a>
             @endcan
             @canany(['admin', 'superadmin'])
+                <a class="c-sidebar-nav-link" href="{{ route('promo.codes') }}">
+                    <div class="c-sidebar-nav-icon">
+                        <i class="fas fa-ribbon"></i>
+                    </div>
+                    Promo Codes
+                </a>
                 <a class="c-sidebar-nav-link" href="{{ route('accounts') }}">
                     <div class="c-sidebar-nav-icon">
                         <i class="fas fa-user-shield"></i>

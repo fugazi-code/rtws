@@ -24,7 +24,7 @@
 <div class="c-wrapper c-fixed-components">
     @include('auth.layout.partials.header')
     <div class="c-body">
-        <main class="c-main">
+        <main class="c-main pt-3">
             <div class="container-fluid">
                 <div class="fade-in">
                     @yield('content')
