@@ -11,143 +11,158 @@
                 <div class="card-body">
                     <div class="row">
                         @if(auth()->user()->status == 'active')
-                        <div class="col-md-12">
-                            <form method="POST" action="{{ route('booking.submit') }}">
-                                @csrf
-                                {{--VEHICLE--}}
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label>Pick a vehicle</label>
-                                        <div class="col-md-9 col-form-label">
-                                            <div class="form-check form-check-inline mr-1">
-                                                <input class="form-check-input" v-model="form.vehicle"
-                                                       id="inline-radio1" type="radio" value="motorcycle"
-                                                       name="vehicle" @change="matrix()">
-                                                <label class="form-check-label" for="inline-radio1">Motorcycle</label>
-                                            </div>
-{{--                                            <div class="form-check form-check-inline mr-1">--}}
-{{--                                                <input class="form-check-input" v-model="form.vehicle"--}}
-{{--                                                       id="inline-radio2" type="radio" value="car"--}}
-{{--                                                       name="vehicle" @change="matrix()">--}}
-{{--                                                <label class="form-check-label" for="inline-radio2">Car</label>--}}
-{{--                                            </div>--}}
-                                        </div>
-                                    </div>
-                                </div>
-                                {{--SERVICES--}}
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label>Pick a service</label>
-                                        <div class="col-md-9 col-form-label">
-                                            <div class="form-check form-check-inline mr-1">
-                                                <input class="form-check-input" v-model="form.service"
-                                                       id="inline-radio1" type="radio" value="padala"
-                                                       name="service" @change="matrix()">
-                                                <label class="form-check-label">padala</label>
-                                            </div>
-                                            <div class="form-check form-check-inline mr-1">
-                                                <input class="form-check-input" v-model="form.service"
-                                                       id="inline-radio2" type="radio" value="pabili"
-                                                       name="service" @change="matrix()">
-                                                <label class="form-check-label">pabili</label>
-                                            </div>
-                                            <div class="form-check form-check-inline mr-1">
-                                                <input class="form-check-input" v-model="form.service"
-                                                       id="inline-radio2" type="radio" value="grocery"
-                                                       name="service" @change="matrix()">
-                                                <label class="form-check-label">grocery</label>
+                            <div class="col-md-12">
+                                <form>
+                                    @csrf
+                                    {{--VEHICLE--}}
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label class="mb-0">Pick a vehicle</label>
+                                            <div class="col-md-9 col-form-label">
+                                                <div class="form-check form-check-inline mr-1">
+                                                    <input class="form-check-input" v-model="form.vehicle"
+                                                           id="inline-radio1" type="radio" value="motorcycle"
+                                                           name="vehicle" @change="matrix()">
+                                                    <label class="form-check-label"
+                                                           for="inline-radio1">Motorcycle</label>
+                                                </div>
+                                                {{--                                            <div class="form-check form-check-inline mr-1">--}}
+                                                {{--                                                <input class="form-check-input" v-model="form.vehicle"--}}
+                                                {{--                                                       id="inline-radio2" type="radio" value="car"--}}
+                                                {{--                                                       name="vehicle" @change="matrix()">--}}
+                                                {{--                                                <label class="form-check-label" for="inline-radio2">Car</label>--}}
+                                                {{--                                            </div>--}}
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                {{--PU & DP--}}
-                                <div class="row mt-3">
-                                    <div class="col-md-12">
-                                        <label>Pick-Up</label>
-                                        <div class="input-group" @click="mapPickUp">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text"><i class="fas fa-search-location"></i>
+                                    {{--SERVICES--}}
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label class="mb-0">Pick a service</label>
+                                            <div class="col-md-9 col-form-label">
+                                                <div class="form-check form-check-inline mr-1">
+                                                    <input class="form-check-input" v-model="form.service"
+                                                           id="inline-radio1" type="radio" value="padala"
+                                                           name="service" @change="matrix()">
+                                                    <label class="form-check-label">padala</label>
+                                                </div>
+                                                <div class="form-check form-check-inline mr-1">
+                                                    <input class="form-check-input" v-model="form.service"
+                                                           id="inline-radio2" type="radio" value="pabili"
+                                                           name="service" @change="matrix()">
+                                                    <label class="form-check-label">pabili</label>
+                                                </div>
+                                                <div class="form-check form-check-inline mr-1">
+                                                    <input class="form-check-input" v-model="form.service"
+                                                           id="inline-radio2" type="radio" value="grocery"
+                                                           name="service" @change="matrix()">
+                                                    <label class="form-check-label">grocery</label>
                                                 </div>
                                             </div>
-                                            <input type="text" v-model="form.pu.name" name="pick_up"
-                                                   class="form-control"
-                                                   placeholder="Pick-Up">
                                         </div>
                                     </div>
-                                    <div class="col-sm-12">
-                                        <label>Drop-Off</label>
-                                        <div class="input-group" @click="mapDropOff">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text"><i class="fas fa-search-location"></i>
+                                    {{--PU & DP--}}
+                                    <div class="row mt-3">
+                                        <div class="col-md-12">
+                                            <label class="mb-0">Pick-Up</label>
+                                            <div class="input-group" @click="mapPickUp">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text"><i class="fas fa-search-location"></i>
+                                                    </div>
                                                 </div>
+                                                <input type="text" v-model="form.pu.name" name="pick_up"
+                                                       class="form-control"
+                                                       placeholder="Pick-Up">
                                             </div>
-                                            <input type="text" v-model="form.dp.name" name="drop_off"
-                                                   class="form-control"
-                                                   placeholder="Drop-Off">
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <label class="mb-0">Drop-Off</label>
+                                            <div class="input-group" @click="mapDropOff">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text"><i class="fas fa-search-location"></i>
+                                                    </div>
+                                                </div>
+                                                <input type="text" v-model="form.dp.name" name="drop_off"
+                                                       class="form-control"
+                                                       placeholder="Drop-Off">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                {{--SUB-CATEG--}}
-                                <div class="row mt-2">
-                                    <div class="col-md-12" v-if="form.service == 'padala'">
-                                        <label>Weight (kg.)</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text"><i class="fas fa-balance-scale"></i></div>
+                                    {{--SUB-CATEG--}}
+                                    <div class="row">
+                                        <div class="col-5" v-if="form.service == 'padala'">
+                                            <label class="mb-0">Weight (Kg.)</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text"><i class="fas fa-balance-scale"></i>
+                                                    </div>
+                                                </div>
+                                                <input type="number" v-model="form.weight" name="weight"
+                                                       class="form-control"
+                                                       placeholder="Weight in kilograms" @keyup="matrix()">
                                             </div>
-                                            <input type="number" v-model="form.weight" name="weight"
-                                                   class="form-control"
-                                                   placeholder="Weight in kilograms" @keyup="matrix()">
+                                        </div>
+                                        <div class="col-5" v-else>
+                                            <label class="mb-0">Budget</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text"><i class="fas fa-coins"></i></div>
+                                                </div>
+                                                <input type="text" v-model="form.budget" name="budget"
+                                                       class="form-control"
+                                                       placeholder="Budget in Peso" @keyup="matrix()">
+                                            </div>
+                                        </div>
+                                        <div class="col-7 pl-0">
+                                            <label class="mb-0">Schedule Pick-Up</label>
+                                            <input type="datetime-local" name="schedule" class="form-control"
+                                                   v-model="form.schedule_pickup">
                                         </div>
                                     </div>
-                                    <div class="col-md-12" v-else>
-                                        <label>Budget</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text"><i class="fas fa-coins"></i></div>
-                                            </div>
-                                            <input type="text" v-model="form.budget" name="budget" class="form-control"
-                                                   placeholder="Budget in Peso" @keyup="matrix()">
+                                    <div class="row">
+                                        <div class="col-7 pr-0">
+                                            <label class="mb-0">Delivery Fee</label>
+                                            <input type="number" name="amount" class="form-control"
+                                                   v-model="form.amount"
+                                                   readonly>
+                                        </div>
+                                        <div class="col-5">
+                                            <label class="mb-0">Kilometers</label>
+                                            <input type="text" name="kilometers" class="form-control"
+                                                   v-model="form.kilometers"
+                                                   readonly>
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="mb-0">Promo Code</label>
+                                            <input type="text" name="promocode" class="form-control"
+                                                   v-model="form.promocode">
+                                        </div>
+                                        <div class="col-6 pl-0 mt-3 pt-1">
+                                            <button @click="verifyCode" type="button" class="btn btn-block btn-warning text-white">
+                                                APPLY
+                                            </button>
+                                        </div>
+                                        <div class="col-12 mt-1">
+                                            <label class="mb-0">Remarks</label>
+                                            <textarea type="text" name="sub" class="form-control" v-model="form.sub"
+                                                      rows="3"></textarea>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row mt-2">
-                                    <div class="col-sm-6">
-                                        <label>Schedule Pick-Up</label>
-                                        <input type="datetime-local" name="schedule" class="form-control"
-                                               v-model="form.schedule_pickup">
+                                    <div class="row mt-2 justify-content-center">
+                                        <div class="col-md-12">
+                                            <button @click="bookSubmit" type="button" class="btn btn-block btn-round btn-success">
+                                                BOOK NOW
+                                            </button>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-3">
-                                        <label>Delivery Fee</label>
-                                        <input type="number" name="amount" class="form-control" v-model="form.amount"
-                                               readonly>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <label>Kilometers</label>
-                                        <input type="text" name="kilometers" class="form-control"
-                                               v-model="form.kilometers"
-                                               readonly>
-                                    </div>
-                                    <div class="col-sm-12 mt-1">
-                                        <label>Remarks</label>
-                                        <textarea type="text" name="sub" class="form-control" v-model="form.sub"
-                                        rows="3"></textarea>
-                                    </div>
-                                </div>
-                                <div class="row mt-2 justify-content-center">
-                                    <div class="col-md-12">
-                                        <button type="submit" class="btn btn-block btn-round btn-success">Book Now!
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                                </form>
+                            </div>
                         @else
-                        <div class="col-md-12">
-                            <h6>
-                                You must be verified first by uploading your Government ID in My Profile > Uploads.
-                            </h6>
-                        </div>
+                            <div class="col-md-12">
+                                <h6>
+                                    You must be verified first by uploading your Government ID in My Profile > Uploads.
+                                </h6>
+                            </div>
                         @endif
                     </div>
                 </div>
@@ -168,9 +183,58 @@
         const e = new Vue({
             el: '#app',
             data: {
-                form: {!! $form !!}
+                form: {!! $form !!},
+                discount: 0,
             },
             methods: {
+                compCode() {
+                    var $this = this
+                    if($this.discount != 0) {
+                        $hold = $this.form.amount
+                        $this.form.amount = $this.form.amount - ( $hold * (parseFloat($this.discount) / 100))
+                    }
+                },
+                verifyCode() {
+                    var $this = this;
+                    $.ajax({
+                        url: '{{ route('promo.verify') }}',
+                        method: 'POST',
+                        data: $this.form,
+                        success(value) {
+                            if(value.success) {
+                                $this.discount = value.discount
+                                swal('Succes', 'Promo Code is valid!', 'success');
+                                $this.matrix()
+                            } else {
+                                swal('Warning', 'Promo Code is invalid!', 'warning');
+                                $this.discount = 0
+                                $this.form.promocode = ''
+                            }
+                        },
+                        error :function( data ) {
+                            if( data.status === 422 ) {
+                                swal('Pleas try again', $.parseJSON(data.responseText).message, 'error');
+                            }
+                        }
+                    });
+                },
+                bookSubmit() {
+                    var $this = this;
+                    $.ajax({
+                        url: '{{ route('booking.submit') }}',
+                        method: 'POST',
+                        data: $this.form,
+                        success(value) {
+                            swal('Succes', 'Promo Code Verified!', 'success');
+                        },
+                        error :function( data ) {
+                            if( data.status === 422 ) {
+                                swal('Pleas try again', $.parseJSON(data.responseText).message, 'error');
+                                window.location = '{{ route('book') }}'
+                            }
+                        }
+                    });
+                },
                 setService(value) {
                     this.form.service = value;
                     this.matrix();
@@ -204,6 +268,7 @@
                         data: $this.form,
                         success: function (value) {
                             $this.form.amount = value;
+                            $this.compCode()
                         }
                     })
                 }

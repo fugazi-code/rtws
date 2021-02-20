@@ -36,4 +36,16 @@ class PromoCodeController extends Controller
 
         return ['success' => true];
     }
+
+    public function verify(Request $request, PromoCode $promo_code)
+    {
+        if ($promo_code->isExistAndUnused($request->promocode)) {
+            return [
+                'success'  => true,
+                'discount' => PromoCode::query()->where('code', strtoupper($request->promocode))->first()->discount,
+            ];
+        } else {
+            return ['success' => false];
+        }
+    }
 }

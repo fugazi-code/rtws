@@ -11,6 +11,11 @@ class PromoCode extends Model
         return $this->newQuery()->where('code', $code)->exists();
     }
 
+    public function isExistAndUnused($code)
+    {
+        return $this->newQuery()->where('code', $code)->where('status', 'unused')->exists();
+    }
+
     public function newCode($code, $discount)
     {
         $model              = new $this;

@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Booking;
 use Carbon\Carbon;
 use Faker\Factory;
+use App\PromoCode;
 use Illuminate\Http\Request;
 use App\Matrix\Specifications;
 use App\Events\NotifySoundEvent;
 use App\Events\BookingSubmitEvent;
+use App\Http\Requests\BookingSubmit;
 
 class BookingController extends Controller
 {
@@ -28,13 +30,14 @@ class BookingController extends Controller
                 'kilometers'      => '',
                 'setup'           => null,
                 'amount'          => '0',
+                'promocode'       => ''
             ];
         }
 
         return view('auth.book_now', ['form' => collect($form)]);
     }
 
-    public function store(Request $request)
+    public function store(BookingSubmit $request)
     {
         $form = session()->get('form');
         session()->forget('form');
@@ -44,7 +47,7 @@ class BookingController extends Controller
             $schedule = Factory::create()->bankAccountNumber;
         }
 
-        Booking::create([
+        $booking = Booking::create([
             "status"        => "pending",
             "customer_id"   => auth()->id(),
             "vehicle"       => $request->get("vehicle"),
@@ -59,6 +62,12 @@ class BookingController extends Controller
             "distance"      => $request->get("kilometers"),
             "exact_address" => json_encode(['dp' => $form['dp'], 'pu' => $form['pu']]),
             "ref_no"        => strtoupper(hash('adler32', $schedule)),
+        ]);
+
+        PromoCode::query()->where('code', $request->promocode)->update([
+            'booking_id' => $booking->id,
+            'customer_id' => auth()->id(),
+            'status' => 'used',
         ]);
 
         broadcast(new BookingSubmitEvent());
