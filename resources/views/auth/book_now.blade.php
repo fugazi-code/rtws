@@ -225,7 +225,7 @@
                         method: 'POST',
                         data: $this.form,
                         success(value) {
-                            swal('Succes', 'Promo Code Verified!', 'success');
+                            swal('Succes', 'Booking Submitted!', 'success');
                         },
                         error :function( data ) {
                             if( data.status === 422 ) {

@@ -24,7 +24,7 @@ class BookingSubmit extends FormRequest
     public function rules()
     {
         return [
-            "kilometers" => 'min:2'
+            "kilometers" => 'min:1'
         ];
     }
 }
