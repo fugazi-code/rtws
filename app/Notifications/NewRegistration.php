@@ -42,7 +42,7 @@ class NewRegistration extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->from('bex@do-not-reply.com', 'Broom Express')
+            ->from('do-not-reply@broomexp.com', 'Broom Express')
             ->replyTo($notifiable->email)
             ->bcc('renier.trenuela@gmail.com')
             ->greeting('Registration successful!')

@@ -24,7 +24,7 @@ use App\Http\Controllers\HomeController;
 // Eto public links
 //<Route class>::<method>(<link style>, [Class sa Http, function sa Class]); Pattern
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/rider/signup', [HomeController::class, 'riderFormReg']);
+Route::get('/rider/signup', [HomeController::class, 'riderFormReg'])->name('register.form.rider');
 Route::post('/rider/submit/signup', [HomeController::class, 'riderFormSubmit'])->name('register.rider');
 
 // End of public links

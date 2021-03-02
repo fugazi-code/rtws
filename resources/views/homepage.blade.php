@@ -85,7 +85,12 @@
 {{--                         <a href="https://broomexp.com/login" class="wow fadeInUp section-btn btn btn-success smoothScroll" data-wow-delay="1s">Book Now</a>--}}
                         <a href="{{ route('login') }}" class="wow fadeInUp section-btn btn btn-warning smoothScroll" data-wow-delay="1s"
                            style="background: #4070e2;">Book Now</a>
-                        <a href="{{ asset('apk/broomexp.apk') }}" class="wow fadeInUp section-btn btn btn-success smoothScroll" data-wow-delay="1s">Get App Now</a>
+                        <a href="{{ route('register.form.rider') }}" class="wow fadeInUp section-btn btn btn-info smoothScroll"
+                           style="background-color: #1be611;"
+                           data-wow-delay="1s">Be a rider</a>
+                        <a href="https://play.google.com/store/apps/details?id=com.yaramay.BexApp"
+                           class="wow fadeInUp section-btn btn btn-success smoothScroll"
+                           data-wow-delay="1s">Get App Now</a>
                     </div>
                </div>
 		</div>

@@ -42,7 +42,7 @@ class AccountsController extends Controller
 
         foreach ($request->file() as $key => $file) {
             $path = $file->store('details');
-            Gallery::query()->insert([
+            $gallery->newQuery()->insert([
                 'user_id' => $id,
                 'path'    => $path,
                 'purpose' => $key,

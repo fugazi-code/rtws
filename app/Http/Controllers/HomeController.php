@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\Gallery;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Notifications\NewRegistration;
+use App\Http\Requests\AccountStoreRequest;
 
 class HomeController extends Controller
 {
@@ -33,10 +39,29 @@ class HomeController extends Controller
         return view('register_rider');
     }
 
-    public function riderFormSubmit(Request $request)
+    public function riderFormSubmit(AccountStoreRequest $request, User $user, Gallery $gallery)
     {
-        dd($request->input());
+        $data = $request->input();
+        unset($data['_token']);
+        $data['role']       = "rider";
+        $data['status']     = "for verification";
+        $data['password']   = Hash::make('password');
+        $data['birth_date'] = Carbon::parse($data['birth_date'])->format('Y-m-d');
+        $id                 = $user->newQuery()->insertGetId($data);
 
-        return view('register_rider');
+        User::find($id)->notify(new NewRegistration());
+
+        foreach ($request->file() as $key => $file) {
+            $path = $file->store('details');
+            $gallery->newQuery()->insert([
+                'user_id' => $id,
+                'path'    => $path,
+                'purpose' => $key,
+            ]);
+        }
+
+        session()->put('success', 'New User has been added!');
+
+        return redirect('accounts');
     }
 }
