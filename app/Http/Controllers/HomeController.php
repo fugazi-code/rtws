@@ -27,4 +27,16 @@ class HomeController extends Controller
     {
         return view('homepage');
     }
+
+    public function riderFormReg()
+    {
+        return view('register_rider');
+    }
+
+    public function riderFormSubmit(Request $request)
+    {
+        dd($request->input());
+
+        return view('register_rider');
+    }
 }
