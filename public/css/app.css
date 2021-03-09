@@ -26137,3 +26137,7 @@ input {
   height: 40px !important;
 }
 
+input {
+  border-radius: 0 !important;
+}
+

@@ -6,6 +6,7 @@ use App\Booking;
 use Carbon\Carbon;
 use Faker\Factory;
 use App\PromoCode;
+use App\CodeHistory;
 use Illuminate\Http\Request;
 use App\Matrix\Specifications;
 use App\Events\NotifySoundEvent;
@@ -30,7 +31,7 @@ class BookingController extends Controller
                 'kilometers'      => '',
                 'setup'           => null,
                 'amount'          => '0',
-                'promocode'       => ''
+                'promocode'       => '',
             ];
         }
 
@@ -40,7 +41,6 @@ class BookingController extends Controller
     public function store(BookingSubmit $request)
     {
         $form = session()->get('form');
-        session()->forget('form');
         $schedule = $request->get("schedule");
 
         if (! $schedule) {
@@ -54,8 +54,8 @@ class BookingController extends Controller
             "service"       => $request->get("service"),
             "sub"           => $request->get("sub"),
             "schedule"      => $request->get("schedule"),
-            "pick_up"       => $request->get("pick_up"),
-            "drop_off"      => $request->get("drop_off"),
+            "pick_up"       => $form['pu']['name'],
+            "drop_off"      => $form['dp']['name'],
             "amount"        => $request->get("amount"),
             "weight"        => $request->get("weight"),
             "budget"        => $request->get("budget"),
@@ -64,17 +64,22 @@ class BookingController extends Controller
             "ref_no"        => strtoupper(hash('adler32', $schedule)),
         ]);
 
-        PromoCode::query()->where('code', $request->promocode)->update([
-            'booking_id' => $booking->id,
-            'customer_id' => auth()->id(),
-            'status' => 'used',
-        ]);
+        if ($request->promocode != '') {
+            $promo_code_id = PromoCode::query()->where('code', $request->promocode)->first()->id;
+
+            CodeHistory::query()->insert([
+                'promo_code_id' => $promo_code_id,
+                'booking_id'    => $booking->id,
+                'customer_id'   => auth()->id(),
+                'created_at'    => Carbon::now(),
+            ]);
+        }
 
         broadcast(new BookingSubmitEvent());
         broadcast(new NotifySoundEvent());
 
         session()->put('success', 'Book has been submitted!');
-
+        session()->forget('form');
         return redirect()->back();
     }
 

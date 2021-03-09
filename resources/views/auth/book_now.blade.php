@@ -201,14 +201,15 @@
                         method: 'POST',
                         data: $this.form,
                         success(value) {
-                            if(value.success) {
+                            if(value.message === 'success') {
                                 $this.discount = value.discount
                                 swal('Succes', 'Promo Code is valid!', 'success');
                                 $this.matrix()
                             } else {
-                                swal('Warning', 'Promo Code is invalid!', 'warning');
-                                $this.discount = 0
+                                swal('Warning', value.message, 'warning');
+                                $this.discount = value.discount
                                 $this.form.promocode = ''
+                                $this.matrix()
                             }
                         },
                         error :function( data ) {
@@ -226,6 +227,7 @@
                         data: $this.form,
                         success(value) {
                             swal('Succes', 'Booking Submitted!', 'success');
+                            window.location = '{{ route('request.status') }}'
                         },
                         error :function( data ) {
                             if( data.status === 422 ) {
