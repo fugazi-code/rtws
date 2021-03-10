@@ -56,7 +56,7 @@
                                             </div>
                                             <div v-if="delivery.promocode" class="col-12 p-0 m-0 text-center">
                                                 <label class="badge badge-warning text-white">
-                                                    Promo Code
+                                                    @{{ delivery.promocode.discount.discount }} Off
                                                 </label>
                                             </div>
                                         </div>
@@ -129,11 +129,16 @@
                                             <div class="col-12 p-1">
                                                 <img v-if="delivery.photo"
                                                      v-bind:src="'/storage/' + delivery.photo.path"
-                                                     class="rounded-circle img-fluid" style="max-height: 150px">
+                                                     class="img-fluid" style="max-height: 150px">
                                             </div>
                                             <div class="col-12 p-0 text-center">
                                                 <label class="badge badge-info text-white">
                                                     @{{ delivery.service }}
+                                                </label>
+                                            </div>
+                                            <div v-if="delivery.promocode" class="col-12 p-0 m-0 text-center">
+                                                <label class="badge badge-warning text-white">
+                                                    @{{ delivery.promocode.discount.discount }} Off
                                                 </label>
                                             </div>
                                         </div>
@@ -146,7 +151,7 @@
                                                 </a>
                                             </div>
                                             <div class="col-auto pr-0">
-                                                Php @{{ delivery.amount }}
+                                                <strong>Php</strong> @{{ delivery.amount }}
                                             </div>
                                             <div class="col-12">
                                                 @{{ delivery.customer.contact}}
@@ -160,12 +165,20 @@
                                             <div class="col-auto" v-if="delivery.weight !== null">
                                                 <strong>Weight:</strong> @{{ delivery.weight }}
                                             </div>
-                                            <div class="col-12">
-                                                <strong>Pick-up:</strong> @{{ delivery.pick_up }}
-                                            </div>
-                                            <div class="col-12">
-                                                <strong>Drop-Off:</strong> @{{ delivery.drop_off }}
-                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 row mb-2">
+                                        <div class="col-12">
+                                            <strong>Pick-up:</strong>
+                                        </div>
+                                        <div class="col">
+                                            @{{ delivery.pick_up }}
+                                        </div>
+                                        <div class="col-12">
+                                            <strong>Drop-Off:</strong>
+                                        </div>
+                                        <div class="col">
+                                            @{{ delivery.drop_off }}
                                         </div>
                                     </div>
                                     <div class="col-12 p-0">
@@ -179,15 +192,6 @@
                                                     class="btn btn-success btn-square btn-block">
                                                 <i class="fas fa-check"></i> Done
                                             </button>
-                                            {{--                                                <button v-if="delivery.validCancel <= 5"--}}
-                                            {{--                                                        @click="cancel('/d/cc/' + delivery.id)"--}}
-                                            {{--                                                        class="btn btn-danger btn-square">--}}
-                                            {{--                                                    <i class="fas fa-ban"></i> Cancel--}}
-                                            {{--                                                </button>--}}
-                                            {{--                                                <button v-if="delivery.validCancel >= 5"--}}
-                                            {{--                                                        class="btn btn-secondary disabled btn-square">--}}
-                                            {{--                                                    <i class="fas fa-ban"></i> Cancel--}}
-                                            {{--                                                </button>--}}
                                         </div>
                                     </div>
                                     <div class="row mt-3 justify-content-center" v-if="yours.length == 0">

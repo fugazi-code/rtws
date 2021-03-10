@@ -71,7 +71,7 @@ class Booking extends Model
                    ->where('status', 'cancelled')
                    ->where('rider_id', $id)
                    ->with(['rider', 'photo', 'customer'])
-                   ->orderBy('created_at', 'desc');
+                   ->orderBy('created_at', 'desc')->with(['promocode']);
     }
 
     public function isAlreadyAccepted($id)
@@ -86,6 +86,6 @@ class Booking extends Model
 
     public function promocode()
     {
-        return $this->hasOne(CodeHistory::class, 'booking_id', 'id');
+        return $this->hasOne(CodeHistory::class, 'booking_id', 'id')->with(['discount']);
     }
 }
