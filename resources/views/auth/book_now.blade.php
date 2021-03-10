@@ -138,7 +138,8 @@
                                                    v-model="form.promocode">
                                         </div>
                                         <div class="col-6 pl-0 mt-3 pt-1">
-                                            <button @click="verifyCode" type="button" class="btn btn-block btn-warning text-white">
+                                            <button @click="verifyCode" type="button"
+                                                    class="btn btn-block btn-warning text-white">
                                                 APPLY
                                             </button>
                                         </div>
@@ -150,7 +151,8 @@
                                     </div>
                                     <div class="row mt-2 justify-content-center">
                                         <div class="col-md-12">
-                                            <button @click="bookSubmit" type="button" class="btn btn-block btn-round btn-success">
+                                            <button @click="bookSubmit" type="button"
+                                                    class="btn btn-block btn-round btn-success">
                                                 BOOK NOW
                                             </button>
                                         </div>
@@ -185,13 +187,18 @@
             data: {
                 form: {!! $form !!},
                 discount: 0,
+                percent: false,
             },
             methods: {
                 compCode() {
                     var $this = this
-                    if($this.discount != 0) {
-                        $hold = $this.form.amount
-                        $this.form.amount = $this.form.amount - ( $hold * (parseFloat($this.discount) / 100))
+                    if ($this.discount != 0) {
+                        if($this.percent) {
+                            $hold = $this.form.amount
+                            $this.form.amount = $this.form.amount - ($hold * (parseFloat($this.discount) / 100))
+                        } else {
+                            $this.form.amount = $this.form.amount - $this.discount;
+                        }
                     }
                 },
                 verifyCode() {
@@ -201,19 +208,21 @@
                         method: 'POST',
                         data: $this.form,
                         success(value) {
-                            if(value.message === 'success') {
+                            if (value.message === 'success') {
                                 $this.discount = value.discount
+                                $this.percent = value.percent
                                 swal('Succes', 'Promo Code is valid!', 'success');
                                 $this.matrix()
                             } else {
                                 swal('Warning', value.message, 'warning');
                                 $this.discount = value.discount
+                                $this.percent = value.percent
                                 $this.form.promocode = ''
                                 $this.matrix()
                             }
                         },
-                        error :function( data ) {
-                            if( data.status === 422 ) {
+                        error: function (data) {
+                            if (data.status === 422) {
                                 swal('Pleas try again', $.parseJSON(data.responseText).message, 'error');
                             }
                         }
@@ -229,10 +238,9 @@
                             swal('Succes', 'Booking Submitted!', 'success');
                             window.location = '{{ route('request.status') }}'
                         },
-                        error :function( data ) {
-                            if( data.status === 422 ) {
+                        error: function (data) {
+                            if (data.status === 422) {
                                 swal('Pleas try again', $.parseJSON(data.responseText).message, 'error');
-                                window.location = '{{ route('book') }}'
                             }
                         }
                     });

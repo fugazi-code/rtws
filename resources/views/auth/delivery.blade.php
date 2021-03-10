@@ -47,24 +47,29 @@
                                             <div class="col-12 p-1 text-center">
                                                 <img v-if="delivery.photo"
                                                      v-bind:src="'/storage/' + delivery.photo.path"
-                                                     class="rounded-circle img-fluid border shadow-sm" style="max-height: 150px; width: 150px;">
+                                                     class="img-fluid border shadow-sm" style="max-height: 150px; width: 150px;">
                                             </div>
-                                            <div class="col-12 p-0 text-center">
-                                                <label class="badge badge-info text-white">
+                                            <div class="col-12 p-0 text-center p-0 m-0">
+                                                <label class="badge badge-info text-white m-0">
                                                     @{{ delivery.service }}
+                                                </label>
+                                            </div>
+                                            <div v-if="delivery.promocode" class="col-12 p-0 m-0 text-center">
+                                                <label class="badge badge-warning text-white">
+                                                    Promo Code
                                                 </label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-9 pl-0">
                                         <div class="row">
-                                            <div class="col-auto pr-0">
+                                            <div class="col-8 pr-0">
                                                 <a v-bind:href="delivery.customer.msg_link" target="_blank">
                                                     @{{ delivery.customer.name }} <i class="fas fa-link"></i>
                                                 </a>
                                             </div>
                                             <div class="col-auto pr-0">
-                                                Php @{{ delivery.amount }}
+                                                <strong>Php</strong> @{{ delivery.amount }}
                                             </div>
                                             <div class="col-12">
                                                 @{{ delivery.customer.contact}}
@@ -78,12 +83,20 @@
                                             <div class="col-auto" v-if="delivery.weight !== null">
                                                 <strong>Weight:</strong> @{{ delivery.weight }}
                                             </div>
-                                            <div class="col-12">
-                                                <strong>Pick-up:</strong> @{{ delivery.pick_up }}
-                                            </div>
-                                            <div class="col-12">
-                                                <strong>Drop-Off:</strong> @{{ delivery.drop_off }}
-                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 row mb-2">
+                                        <div class="col-12">
+                                            <strong>Pick-up:</strong>
+                                        </div>
+                                        <div class="col">
+                                            @{{ delivery.pick_up }}
+                                        </div>
+                                        <div class="col-12">
+                                            <strong>Drop-Off:</strong>
+                                        </div>
+                                        <div class="col">
+                                            @{{ delivery.drop_off }}
                                         </div>
                                     </div>
                                     @if(!\App\Booking::limitBooking(auth()->id()))

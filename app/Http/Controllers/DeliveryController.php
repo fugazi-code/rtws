@@ -6,6 +6,7 @@ use App\Wallet;
 use App\Booking;
 use Carbon\Carbon;
 use App\Commission;
+use App\CodeHistory;
 use App\PubNub\PubNubConnect;
 use App\Events\DeliveryChanges;
 use App\Events\BookingStatusEvent;

@@ -43,7 +43,7 @@ class Booking extends Model
         return self::query()
                    ->with(['customer', 'photo'])
                    ->where('status', 'pending')
-                   ->orderBy('created_at', 'desc');
+                   ->orderBy('created_at', 'desc')->with(['promocode']);
     }
 
     public function yours($id)
@@ -53,7 +53,7 @@ class Booking extends Model
                    ->where('status', 'accepted')
                    ->where('rider_id', $id)
                    ->with(['rider', 'photo', 'customer'])
-                   ->orderBy('created_at', 'desc');
+                   ->orderBy('created_at', 'desc')->with(['promocode']);
     }
 
     public function complete($id)
@@ -62,7 +62,7 @@ class Booking extends Model
                    ->where('status', 'complete')
                    ->where('rider_id', $id)
                    ->with(['rider', 'photo', 'customer'])
-                   ->orderBy('created_at', 'desc');
+                   ->orderBy('created_at', 'desc')->with(['promocode']);
     }
 
     public function cancelled($id)
@@ -82,5 +82,10 @@ class Booking extends Model
     public static function limitBooking($id)
     {
         return (new static())::query()->where('rider_id', $id)->where('status', 'accepted')->count() >= 2;
+    }
+
+    public function promocode()
+    {
+        return $this->hasOne(CodeHistory::class, 'booking_id', 'id');
     }
 }

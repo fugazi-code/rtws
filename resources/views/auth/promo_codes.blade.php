@@ -12,21 +12,13 @@
                     <div class="row">
                         <div class="col-6 pr-0 pl-0">
                             <div class="input-group">
-                                <input type="number" class="form-control" placeholder="Discount"
+                                <input class="form-control" placeholder="Discount"
                                        v-model="overview.discount">
-                                <div class="input-group-append">
-                                    <span class="input-group-text">%</span>
-                                </div>
                             </div>
                         </div>
                         <div class="col-6 pr-0">
                             <div class="input-group">
                                 <input type="number" class="form-control" placeholder="Uses" v-model="overview.overall">
-                                <div class="input-group-append">
-                                    <span class="input-group-text">
-                                        <i class="fa fa-users"></i>
-                                    </span>
-                                </div>
                             </div>
                         </div>
                         <div class="col-6 pl-0 pr-0 mt-2">
@@ -80,7 +72,7 @@
                 },
                 generate: function () {
                     var $this = this;
-                    if ($this.discount === null) {
+                    if ($this.overview.discount === null) {
                         swal('Please try again!', 'No Discount indicated.', 'error');
                         return false;
                     }
@@ -92,6 +84,17 @@
                             $this.discount = null;
                             swal('Success!', 'New Promo Code has been created.', 'success')
                             $this.dt.draw();
+                            $this.overview = {
+                                id: null,
+                                discount: null,
+                                expiration: null,
+                                overall: null,
+                            }
+                        },
+                        error: function (data) {
+                            if (data.status === 422) {
+                                swal('Pleas try again', $.parseJSON(data.responseText).message, 'error');
+                            }
                         }
                     });
                 },
@@ -115,9 +118,11 @@
                     columns: [
                         {data: 'code', name: 'code', title: '<i class="fa fa-code"></i>'},
                         {data: 'discount', name: 'discount', title: '<i class="fa fa-percent"></i>'},
-                        {data: function (value) {
+                        {
+                            data: function (value) {
                                 return value.used + '/' + value.overall;
-                            }, name: 'overall', title: '<i class="fa fa-chart-pie"></i>'},
+                            }, name: 'overall', title: '<i class="fa fa-chart-pie"></i>'
+                        },
                         {data: 'expiration', name: 'expiration', title: '<i class="fa fa-calendar-times"></i>'},
                         {
                             data: function (value) {

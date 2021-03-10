@@ -24,7 +24,7 @@ class GenerateCodeRequest extends FormRequest
     public function rules()
     {
         return [
-            'discount' => 'required',
+            'discount' => 'required|regex:/^[0-9\.]+\%?$/',
             'overall' => 'required',
             'expiration' => 'required'
         ];

@@ -50,13 +50,13 @@ class PromoCodeController extends Controller
     public function verify(Request $request, PromoCode $promo_code, CodeHistory $codeHistory)
     {
         if (! $promo_code->isExist($request->promocode)) {
-            return ['message' => 'Promo code does not exist!', 'discount' => 0];
+            return ['message' => 'Promo code does not exist!', 'discount' => 0, 'percent' => false];
         }
         if (! $promo_code->isExceeded($request->promocode)) {
-            return ['message' => 'Promo code exceed number of uses!', 'discount' => 0];
+            return ['message' => 'Promo code exceed number of uses!', 'discount' => 0, 'percent' => false];
         }
         if ($promo_code->isExpired($request->promocode)) {
-            return ['message' => 'Promo code is expired!', 'discount' => 0];
+            return ['message' => 'Promo code is expired!', 'discount' => 0, 'percent' => false];
         }
 
         $promo_code_id = PromoCode::query()->where('code', $request->promocode)->first()->id;
@@ -64,9 +64,11 @@ class PromoCodeController extends Controller
                         ->where('promo_code_id', $promo_code_id)
                         ->where('customer_id', auth()->id())
                         ->exists()) {
-            return ['message' => 'You already used this code!', 'discount' => 0];
+            return ['message' => 'You already used this code!', 'discount' => 0, 'percent' => false];
         }
 
-        return ['message' => 'success', 'discount' => $promo_code->getDiscount($request->promocode)];
+        $hold = explode('%', $promo_code->getDiscount($request->promocode));
+
+        return ['message' => 'success', 'discount' => $hold[0], 'percent' => count($hold) == 2];
     }
 }
