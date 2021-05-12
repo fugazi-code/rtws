@@ -41,7 +41,7 @@
         "mapbox-gl": "^1.11.1",
         "perfect-scrollbar": "^1.5.0",
         "popper": "^1.0.1",
-        "postcss": "^8.2.2",
+        "postcss": "^8.2.10",
         "socket.io-client": "^2.3.0",
         "tailwindcss": "^2.0.2",
         "three-dots": "^0.2.0",
